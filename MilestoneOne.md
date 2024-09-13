@@ -1,5 +1,9 @@
 hello
 
+![Use Case Diagram](MisterED_UCD.png)
+
+**Figure 1:** A Use Case Diagram describing the MisterED system
+
 
 | Use Case Template       |                                                                           |
 |-------------------------|---------------------------------------------------------------------------|
