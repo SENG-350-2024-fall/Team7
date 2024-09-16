@@ -15,3 +15,14 @@ hello
 | Variations (Optional)   | Any variations in the steps of a use case                                 |
 | Non-Function (Optional) | List of non-functional requirements that the use case must meet.          |
 | Issues                  | List of  issues that remain to be resolved                                |
+
+<br>Patient Registration Use Case (Tay Munro):
+| **Use Case**      | Patient Registration |
+|-------------------|-------------------------------|
+| **Description**   | This use case allows a patient to register virtually using the Mister Ed system. The system collects patient details, validates the input, and registers the patient into the emergency department queue.|
+| **Actors**        | Patient, Mister Ed System, ED Staff |
+| **Assumptions**   | The patient has internet access, the system is online, and the patient can enter correct information. |
+| **Steps**         | 1. Patient accesses Mister Ed System.<br> 2. Patient provides personal details (name, age, symptoms, etc.).<br> 3. Mister Ed validates patient details.<br> 4. The patient is registered in the system |
+| **Variations (Optional)** | 1. Patient already has an account and logs in instead of providing details.<br> 2. Patient chooses not to proceed after seeing the current ED load.<br> 3. System fails to validate patient details (e.g., incorrect or incomplete information). |
+| **Non-Functional (Optional or NFRs)** | 1. The system should handle at least 10,000 concurrent registrations without performance degradation.<br> 2. Registration should take less than 2 minutes per patient. |
+| **Issues**        | 1. How to handle patients with limited internet access.<br> 2. Integrating with external triage systems.<br> 3. Data security and patient privacy concerns. |
