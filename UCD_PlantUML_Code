@@ -1,9 +1,10 @@
-use case diagram (paste this into plantuml.com)
-
 @startuml
+
 left to right direction
-actor "ED System DB" as ED
-actor "Patient" as p
+actor "ED System" as ED
+actor "ED Database" as DB
+actor "Medical Staff" as staff
+actor "User" as p
 
 rectangle MisterED {
    usecase "View ED Load" as UC_Load   
@@ -15,14 +16,21 @@ rectangle MisterED {
    
 }
 
+UC_Triage --> ED
 p -down-> UC_Reg
 p -[hidden]up-> UC_Reg
 p -down-> UC_Triage
 UC_Rec -down-> p
 UC_Notify -down-> p
 p -down-> UC_Load
-UC_Reg -down-> ED
+UC_Reg -down-> DB
+DB -down-> UC_Notify
+DB -down-> UC_Load
+UC_Triage --> staff
+ED -[hidden]-> UC_Load
+ED -down-> UC_Load
 ED -down-> UC_Notify
+ED -[hidden]-> UC_Rec
 ED -down-> UC_Rec
 
 @enduml
