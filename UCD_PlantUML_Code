@@ -1,0 +1,28 @@
+use case diagram (paste this into plantuml.com)
+
+@startuml
+left to right direction
+actor "ED System DB" as ED
+actor "Patient" as p
+
+rectangle MisterED {
+   usecase "View ED Load" as UC_Load   
+   usecase "Register" as UC_Reg
+   usecase "Virtual Triage" as UC_Triage
+   usecase "Provide Recommendation" as UC_Rec
+   usecase "Notify Patient" as UC_Notify
+   UC_Triage .> UC_Rec : extends
+   
+}
+
+p -down-> UC_Reg
+p -[hidden]up-> UC_Reg
+p -down-> UC_Triage
+UC_Rec -down-> p
+UC_Notify -down-> p
+p -down-> UC_Load
+UC_Reg -down-> ED
+ED -down-> UC_Notify
+ED -down-> UC_Rec
+
+@enduml
