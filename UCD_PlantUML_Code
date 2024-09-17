@@ -1,12 +1,12 @@
 @startuml
 
 left to right direction
-actor "ED System" as ED
+actor "Mister Ed System" as ED
 actor "ED Database" as DB
 actor "Medical Staff" as staff
 actor "User" as p
 
-rectangle MisterED {
+rectangle MisterEd as "Mister Ed" {
    usecase "View ED Load" as UC_Load   
    usecase "Register" as UC_Reg
    usecase "Virtual Triage" as UC_Triage
@@ -32,5 +32,8 @@ ED -down-> UC_Load
 ED -down-> UC_Notify
 ED -[hidden]-> UC_Rec
 ED -down-> UC_Rec
+DB -[hidden]-> UC_Rec
+UC_Rec -[hidden]down-> DB
+UC_Rec -up-> DB
 
 @enduml
