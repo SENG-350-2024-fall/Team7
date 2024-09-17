@@ -16,7 +16,7 @@ rectangle MisterED {
    
 }
 
-UC_Triage --> ED
+ED --> UC_Triage
 p -down-> UC_Reg
 p -[hidden]up-> UC_Reg
 p -down-> UC_Triage
