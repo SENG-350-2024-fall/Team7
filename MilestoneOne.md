@@ -17,6 +17,7 @@ hello
 | Non-Functional (Optional) | List of non-functional requirements that the use case must meet.          |
 | Issues                  | List of  issues that remain to be resolved                                |
 
+
 ## Use Cases
 <br> Notify Patient Use Case (Luca Bolzonello):
 | **Use Case**        | Notify Patient                                                                                                            |
@@ -64,4 +65,14 @@ hello
 | **Non-Functional (Optional)** | 	1. The system shall follow current privacy and data protection standards. <br> 2. The system shall be responsive and scalable to handle large numbers of users at all times. <br> 3. The system’s interface shall be user-friendly to ensure patients of all ages and technical skills can understand how to effectively use the system. |
 | **Issues**        | 1. Risk of patients entering inaccurate information. <br> 2. The system’s accuracy heavily depends on the quality of the medical logic used in the backend.|
 
+<br>View ED Load Use Case (Paisley Lewis):
+| Use Case           | View ED Load                                                                           |
+|-------------------------|---------------------------------------------------------------------------|
+| Use Case                | Understand the current load of EDs in the user's area                     |
+| Description             | View capacity percentages and estimated wait times by emergency severity of nearby EDs. |
+| Actors                  | -User (primary) <br> -Emergency Department Database <br> - MisterEd System              |
+| Assumptions             | The user has inputted their location into the system so that nearby EDs can be found. <br> The user is logged into the MisterEd system. |
+| Steps                   | 1. User selects ED of choice from a list of nearby EDs. <br> 2. System loads waiting room and bed records from the ED database. <br> 3. The system calculates capacity percentage from the number of ED beds currently in use. <br> 4. The System calculates wait times by emergency severity from waiting room records. <br> 5. The system displays calculated data. <br> 6. User views data to make their decision about which ED to go to. |
+| Non-Function            | Speed: The time to calculate and display data must be less than 5 seconds from the time the user selects the ED location. <br> Accuracy: Displayed estimated wait times must be within 10% of actual wait times. |
+| Issues                  | What is the most accurate way to split emergency severity to calculate wait times? |
 
