@@ -18,6 +18,17 @@ hello
 | Issues                  | List of  issues that remain to be resolved                                |
 
 ## Use Cases
+<br> Notify Patient Use Case (Luca Bolzonello):
+| **Use Case**        | Notify Patient                                                                                                            |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Description**     | This use case allows a user to choose their preferred notification method (Phone Call, Text). The user is notified when the ED is ready for them, with sufficient notice to arrive while there is still an opening. |
+| **Actors**          | **Users**: Identified by "Virtual Triage" as safe to wait at home but should attend the ED.<br>**Callers**: Employees who monitor the queue and call Users requesting Phone Call notifications.<br>**Text Delivery System**: System that sends text notifications to Users requesting Text notifications.<br>**ED Capacity Tracker**: Monitors ED activity, urgency, and commute time, flagging patients to be notified. |
+| **Assumptions**     | - Virtual triage assesses patient urgency correctly.<br>- ED Capacity Tracker matches urgency, capacity, and commute times to notify patients timely.<br>- Users correctly enter their notification preferences. |
+| **Steps**           | 1. Caller queries the ED Capacity Tracker for the next person to call.<br>2. Caller calls the User, informs them to go to the ED, confirms their attendance, and answers questions. |
+| **Variations**      | 1. The Text Delivery System queries the ED Capacity Tracker for the next person to text.<br>2. The Text Delivery System sends a text notification to the User, informing them to go to the ED. |
+| **Non-Functional**  | - Privacy<br>- Robustness<br>- Accessibility<br>- Safety                                                                 |
+| **Issues**          | How to ensure that Users always receive the notification.                                                                 |
+                                                        
 
 <br>Patient Registration Use Case (Tay Munro):
 | **Use Case**      | Patient Registration |
@@ -29,6 +40,7 @@ hello
 | **Variations (Optional)** | 1. Patient already has an account and logs in instead of providing details.<br> 2. Patient chooses not to proceed after seeing the current ED load.<br> 3. System fails to validate patient details (e.g., incorrect or incomplete information). |
 | **Non-Functional (Optional)** | 1. The system should handle at least 10,000 concurrent registrations without performance degradation.<br> 2. Registration should take less than 2 minutes per patient. |
 | **Issues**        | 1. How to handle patients with limited internet access.<br> 2. Integrating with external triage systems.<br> 3. Data security and patient privacy concerns. |
+
 
 <br>Provide Recommendation Use Case (Tristan Cornwell):
 | Use Case                | Provide Recommendation                                                    |
@@ -51,4 +63,5 @@ hello
 | **Variations (Optional)** | 1. If the patient’s symptoms are vague or unclear, the system may ask for additional details. <br> 2. If the system cannot determine a clear outcome, it may notify a nurse or clinician for a manual review. |
 | **Non-Functional (Optional)** | 	1. The system shall follow current privacy and data protection standards. <br> 2. The system shall be responsive and scalable to handle large numbers of users at all times. <br> 3. The system’s interface shall be user-friendly to ensure patients of all ages and technical skills can understand how to effectively use the system. |
 | **Issues**        | 1. Risk of patients entering inaccurate information. <br> 2. The system’s accuracy heavily depends on the quality of the medical logic used in the backend.|
+
 
