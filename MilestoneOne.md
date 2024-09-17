@@ -2,7 +2,7 @@ hello
 
 ![Use Case Diagram](MisterED_UCD.png)
 
-**Figure 1:** A Use Case Diagram describing the MisterED system
+**Figure 1:** A Use Case Diagram describing the Mister Ed system
 
 
 ## Use Cases
@@ -34,13 +34,13 @@ hello
 <br>Provide Recommendation Use Case (Tristan Cornwell):
 | Use Case                | Provide Recommendation                                                    |
 |-------------------------|---------------------------------------------------------------------------|
-| Description             | System interprets the results of a patient's virtual triage and provides a recommendation to the patient on how to proceed with treatment. |
-| Actors                  | MisterED System (primary), Patient |
-| Assumptions             | Patient has filled in all required information in the registration and virtual triage.<br> Patient is logged in to the MisterED system. |
-| Steps                   | 1. System notifies patient that it has received their information. <br> 2. System starts searching for a nearby ER. <br> 3. REPEAT <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1 System finds an ER within 40km of the patient's address. <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2 System checks the estimated wait time for the ER. <br> &nbsp;&nbsp;&nbsp; UNTIL there are no more ERs within 40km of the patient. <br> 4. System displays the given ERs and their corresponding wait times to the patient. <br> 4. Patient selects their desired ER. <br> 5. System places patient in the queue for the chosen ER | 
-| Variations (Optional)   | 2. System suggests that the patient visit a primary care clinic **or** <br> &nbsp;&nbsp;&nbsp; System suggests that the patient take a particular over-the-counter medication **or** <br> &nbsp;&nbsp;&nbsp; System suggests that the patient contact the nurse/clinician hotline over the phone or Internet and provides a phone number and URL. |
-| Non-Functional (Optional) | Performance: time to find nearby ERs or provide an alternative recommendation must be less than 15 seconds. |
-| Issues                  | What if there aren't any ERs close enough to the patient? |
+| Description             | System interprets the results of a user's virtual triage and provides a recommendation to the user on how to proceed with treatment. |
+| Actors                  | - Mister Ed System (primary) <br> - User <br> - Emergency Department Database |
+| Assumptions             | - User has filled in all required information in the registration and virtual triage. <br> - User is logged in to the system. |
+| Steps                   | 1. System acknowledges that it has received user information. <br> 2. System starts searching for a nearby ED. <br> 3. REPEAT <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1 System finds an ED within 40km of the user's address. <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2 System checks the estimated wait time for the ED. <br> &nbsp;&nbsp;&nbsp; UNTIL there are no more EDs within 40km of the user. <br> 4. System displays the given EDs and their corresponding wait times to the user. <br> 4. User selects their desired ED. <br> 5. System places user in the queue for the chosen ED. | 
+| Variations (Optional)   | #2: System suggests that the user visit a primary care clinic **or** <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System suggests that the user take a particular over-the-counter medication **or** <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System suggests that the user contact the nurse/clinician hotline over the phone or internet and provides &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a phone number and URL. |
+| Non-Functional (Optional) | Performance: time to find nearby EDs or provide an alternative recommendation must be less than 15 seconds. |
+| Issues                  | - What if there aren't any EDs close enough to the user? |
 
 
 <br> Notify Patient Use Case (Luca Bolzonello):
