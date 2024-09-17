@@ -41,3 +41,14 @@ hello
 | Non-Functional (Optional) | Performance: time to find nearby ERs or provide an alternative recommendation must be less than 15 seconds. |
 | Issues                  | What if there aren't any ERs close enough to the patient? |
 
+<br>Patient Virtual Triage Use Case (Lachlan Paulsen):
+| **Use Case**      | Patient Virtual Triage |
+|-------------------|-------------------------------|
+| **Description**   | The Virtual Triage use case allows patients to input their symptoms into the MisterEd system. Based on this input, the system analyzes how urgent the patient's condition is. The system shall provide recommendations such as visiting the ED, visiting a GP, or waiting at home. This helps to mitigate ED congestion by providing patients with appropriate care suggestions for their condition.|
+| **Actors**        |  Patient (Primary), Mister Ed System, Nurse | 
+| **Assumptions**   | - The patient has an internet-connected device to access the Mister Ed system. <br>The system has access to up to date symptom triage protocols. <br> The patient's symptoms are accurately input into the system. |
+| **Steps**         | 1. The patient logs into the Mister Ed system. <br> 2. The patient enters symptoms through a questionnaire or input form. <br> 3. The system uses predefined medical logic to assess the severity of the patient's symptoms. <br> 4. Based on the analysis, the system provides the patient with a recommendation. <br> 5. The patient can either follow the recommendation or contact a clinician for further advice. |
+| **Variations (Optional)** | 1. If the patient’s symptoms are vague or unclear, the system may ask for additional details. <br> 2. If the system cannot determine a clear outcome, it may notify a nurse or clinician for a manual review. |
+| **Non-Functional (Optional)** | 	1. The system shall follow current privacy and data protection standards. <br> 2. The system shall be responsive and scalable to handle large numbers of users at all times. <br> 3. The system’s interface shall be user-friendly to ensure patients of all ages and technical skills can understand how to effectively use the system. |
+| **Issues**        | 1. Risk of patients entering inaccurate information. <br> 2. The system’s accuracy heavily depends on the quality of the medical logic used in the backend.|
+
