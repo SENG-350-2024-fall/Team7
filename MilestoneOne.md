@@ -1,11 +1,70 @@
 hello
 
-![Use Case Diagram](MisterED_UCD.png)
+We split our Use Case Diagram into five smaller diagrams based on each use case's primary actor, as seen in the following sections.
 
-**Figure 1:** A Use Case Diagram describing the Mister Ed system
+## Admin Use Cases
+Figure 1, below, outlines the use cases that may be executed by a system admin. Tables 1-5 describe each use case in more detail.
 
+![Use Case Diagram](Admin_UCD.png)
 
-## Use Cases
+**Figure 1:** A Use Case Diagram describing the Mister Ed system from the perspective of the Admin actor.
+
+<br>**Table 1**: Create User Profile Use Case.
+| Use Case                | Create User Profile     |
+|-------------------------|-------------------------|
+| Description             |  |
+| Actors                  | - Admin (primary) |
+| Assumptions             | -  |
+| Steps                   | 1.  | 
+| Variations (Optional)   | #1: |
+| Non-Functional (Optional) | **Security**:  |
+| Issues                  | -  |
+
+<br>**Table 2**: View User Profile Use Case.
+| Use Case                | View User Profile     |
+|-------------------------|-------------------------|
+| Description             |  |
+| Actors                  | - Admin (primary) |
+| Assumptions             | -  |
+| Steps                   | 1.  | 
+| Variations (Optional)   | #1: |
+| Non-Functional (Optional) | **Security**: User password will be obfuscated. |
+| Issues                  | -  |
+
+<br>**Table 3**: Modify User Profile Use Case.
+| Use Case                | Modify User Profile     |
+|-------------------------|-------------------------|
+| Description             |  |
+| Actors                  | - Admin (primary) |
+| Assumptions             | -  |
+| Steps                   | 1.  | 
+| Variations (Optional)   | #1: |
+| Non-Functional (Optional) | **Security**: |
+| Issues                  | -  |
+
+<br>**Table 4**: View User Access Use Case.
+| Use Case                | View User Access     |
+|-------------------------|-------------------------|
+| Description             |  |
+| Actors                  | - Admin (primary) |
+| Assumptions             | -  |
+| Steps                   | 1.  | 
+| Variations (Optional)   | #1: |
+| Non-Functional (Optional) | **Security**: |
+| Issues                  | -  |
+
+<br>**Table 5**: Modify User Access Use Case.
+| Use Case                | Modify User Access     |
+|-------------------------|-------------------------|
+| Description             |  |
+| Actors                  | - Admin (primary) |
+| Assumptions             | -  |
+| Steps                   | 1.  | 
+| Variations (Optional)   | #1: |
+| Non-Functional (Optional) | **Security**: |
+| Issues                  | -  |
+
+## (Old) Use Cases
 
 <br>Patient Registration Use Case (Tay Munro):
 | **Use Case**      | Patient Registration |
@@ -38,8 +97,8 @@ hello
 | Actors                  | - Mister Ed System (primary) <br> - User <br> - Emergency Department Database |
 | Assumptions             | - User has filled in all required information in the registration and virtual triage. <br> - User is logged in to the system. |
 | Steps                   | 1. System acknowledges that it has received user information. <br> 2. System starts searching for a nearby ED. <br> 3. REPEAT <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1 System finds an ED within 40km of the user's address. <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2 System checks the estimated wait time for the ED. <br> &nbsp;&nbsp;&nbsp; UNTIL there are no more EDs within 40km of the user. <br> 4. System displays the given EDs and their corresponding wait times to the user. <br> 4. User selects their desired ED. <br> 5. System places user in the queue for the chosen ED. | 
-| Variations (Optional)   | #2: System suggests that the user visit a primary care clinic **or** <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System suggests that the user take a particular over-the-counter medication **or** <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System suggests that the user contact the nurse/clinician hotline over the phone or internet and provides &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a phone number and URL. |
-| Non-Functional (Optional) | Performance: time to find nearby EDs or provide an alternative recommendation must be less than 15 seconds. |
+| Variations (Optional)   | #2: System suggests that the user visit a primary care clinic **or** <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System suggests that the user take a particular over-the-counter medication **or** <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System suggests that the user contact the nurse/clinician hotline over the phone or internet and provides a phone number and URL. |
+| Non-Functional (Optional) | **Performance**: time to find nearby EDs or provide an alternative recommendation must be less than 15 seconds. |
 | Issues                  | - What if there aren't any EDs close enough to the user? |
 
 
