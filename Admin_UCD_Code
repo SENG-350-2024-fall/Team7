@@ -1,0 +1,21 @@
+@startuml
+
+left to right direction
+actor "Admin" as a
+
+rectangle MisterEd as "Mister Ed" {
+   usecase "View User Access" as view_access
+   usecase "Modify User Access" as modify_access
+   usecase "Create User Profile" as create_profile
+   usecase "View User Profile" as view_profile
+   usecase "Modify User Profile" as modify_profile
+   view_access .> modify_access : extends
+   view_profile .> modify_profile : extends
+   view_profile .> view_access : extends
+}
+
+a --> create_profile
+a --> view_profile
+a -[hidden]down-> modify_profile
+
+@enduml
