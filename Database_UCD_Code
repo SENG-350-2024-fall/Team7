@@ -1,0 +1,21 @@
+@startuml
+left to right direction
+actor "System Database" as a
+
+rectangle MisterEd as "Mister Ed" {
+   usecase "Store Questionnaire Responses" as responses
+   usecase "Store Recommendations" as recommendations
+   usecase "Store Patient Information" as store_info
+   usecase "Calculate ED Wait Time and Capacity" as calculate
+   usecase "Send Call Centre ED Update" as send
+
+
+   store_info.> recommendations: extends
+   store_info.> responses: extends
+   calculate.> send: includes
+}
+
+a --> calculate
+a --> store_info
+
+@enduml
