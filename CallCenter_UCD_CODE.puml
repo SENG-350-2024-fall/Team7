@@ -1,0 +1,26 @@
+@startuml
+actor CallCenterEmployee
+
+rectangle MisterEdSystem {
+
+    usecase ViewQueue
+    usecase CallNextInQueue
+    usecase ViewPatientInfo
+    usecase NotifyED
+
+}
+
+usecase ContactEmergencyServices
+
+
+CallCenterEmployee -> ViewQueue : "Check current queue"
+CallCenterEmployee -> CallNextInQueue : "Proceed with next call"
+CallCenterEmployee -> NotifyED : "Notify ED staff"
+
+CallCenterEmployee -> ContactEmergencyServices : "Report emergency"
+
+ViewQueue --> CallNextInQueue : <<include>>
+CallNextInQueue --> ViewPatientInfo : <<include>>
+NotifyED --> CallNextInQueue : <<extend>>
+
+@enduml
