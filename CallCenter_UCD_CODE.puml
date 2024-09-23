@@ -1,5 +1,6 @@
 @startuml
 actor CallCenterEmployee
+actor Patient
 
 rectangle MisterEdSystem {
 
@@ -22,5 +23,7 @@ CallCenterEmployee -> ContactEmergencyServices : "Report emergency"
 ViewQueue --> CallNextInQueue : <<include>>
 CallNextInQueue --> ViewPatientInfo : <<include>>
 NotifyED --> CallNextInQueue : <<extend>>
+
+CallNextInQueue -> Patient: Call the patient
 
 @enduml

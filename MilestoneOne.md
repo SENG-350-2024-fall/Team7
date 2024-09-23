@@ -182,3 +182,68 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | Non-Functional  | **Security**: The patient data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
 | Issues                  | What if the call centre does not want constant updates? |
 
+
+## Call Center Use Cases
+
+Figure x, below, outlines the use cases that may be executed by the Call Center. Tables x-x describe each use case in more detail.
+
+
+![Use Case Diagram](CallCenter_UCD.png)
+
+**Figure 5:** A Use Case Diagram describing the Mister Ed system from the perspective of the Call Center actor.
+
+<br>**Table x**: ViewQueue Use Case.
+| **Use Case**        | View Queue                                                                                                   |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Description**     |  - |
+| **Actors**          | - CallCenterEmployee (primary)
+| **Assumptions**     | |
+| **Steps**           | |
+| **Variations**      |  |
+| **Non-Functional**  |                                                                |
+| **Issues**          |                                                                |
+
+<br>**Table x**: ViewPatientInfo Use Case.
+| **Use Case**        | ViewPatientInfo|
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Description**     |  - |
+| **Actors**          | - CallCenterEmployee (primary)
+| **Assumptions**     | |
+| **Steps**           | |
+| **Variations**      |  |
+| **Non-Functional**  |                                                                |
+| **Issues**          |                                                                |
+
+<br>**Table x**: CallPatient Use Case.
+| **Use Case**        | CallPatient|
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Description**     |  - |
+| **Actors**          | - CallCenterEmployee (primary) <br> - Patient
+| **Assumptions**     | |
+| **Steps**           | |
+| **Variations**      |  |
+| **Non-Functional**  |                                                                |
+| **Issues**          |                                                                |
+
+
+<br>**Table x**: NotifyED Use Case.
+| **Use Case**        | NotifyED|
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Description**     |  - |
+| **Actors**          | - CallCenterEmployee (primary)
+| **Assumptions**     | |
+| **Steps**           | |
+| **Variations**      |  |
+| **Non-Functional**  |                                                                |
+| **Issues**          |                                                                |
+
+<br>**Table x**: ContactEmergencyServices Use Case.
+| **Use Case**        | ContactEmergencyServices|
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Description**     |  - |
+| **Actors**          | - CallCenterEmployee (primary)
+| **Assumptions**     | |
+| **Steps**           | |
+| **Variations**      |  |
+| **Non-Functional**  |                                                                |
+| **Issues**          |                                                                |
