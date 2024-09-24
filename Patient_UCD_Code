@@ -1,0 +1,17 @@
+@startuml
+left to right direction
+actor "Patient" as p
+rectangle MisterEd as "Mister Ed" {
+  usecase "View ED Load" as UC1
+  usecase "Register/Login" as UC2
+  usecase "Enter Symptom Information" as UC3
+  usecase "View Treatment Options" as UC4
+  usecase "Enter ED Queue" as UC5
+   UC3 .> UC4 : extends
+   UC1 .> UC5 : extends
+}
+p --> UC2
+p --> UC3
+p --> UC1
+
+@enduml
