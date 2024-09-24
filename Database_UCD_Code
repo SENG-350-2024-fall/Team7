@@ -9,13 +9,12 @@ rectangle MisterEd as "Mister Ed" {
    usecase "Calculate ED Wait Time and Capacity" as calculate
    usecase "Send Call Centre ED Update" as send
 
-
-   store_info.> recommendations: extends
-   store_info.> responses: extends
    calculate.> send: includes
 }
 
 a --> calculate
 a --> store_info
+a --> recommendations
+a --> responses
 
 @enduml
