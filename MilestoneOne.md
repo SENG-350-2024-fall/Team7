@@ -28,34 +28,25 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 | Issues                  | - What if the system fails to match any user to a given search? |
 
 <br>**Table 3**: Modify User Profile Use Case.
-| Use Case                | Modify User Profile     |
+| Use Case Extension      | Modify User Profile *extends* View User Profile |
 |-------------------------|-------------------------|
-| Description             | Modify the system profile of a medical staff member, call center operator, or admin. |
-| Actors                  | - Admin (primary) |
-| Assumptions             | - Admin is logged in to the system. <br> - User profile has already been created. |
-| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. <br> 3. Click the "Edit" button to edit the user's profile. <br> 4. Make the desired changes. <br> 5. Click the "Save" button to confirm the changes. | 
-| Variations              | #2: Admin may click the "Edit" button directly from the search results, in which case step 3 is omitted. |
+| Description             | Admin decides to edit a profile that they are currently viewing. |
+| Steps                   | 1. Click the "Edit" button to edit the user's profile. <br> 2. Make the desired changes. <br> 3. Click the "Save" button to confirm the changes. | 
 | Non-Functional          | **Security**: An admin must not be able to modify a user's password. |
 | Issues                  | - What if someone needs a history of who has modified a given user's profile? |
 
 <br>**Table 4**: View User Access Use Case.
-| Use Case                | View User Access     |
+| Use Case Extension      | View User Access *extends* View User Profile |
 |-------------------------|-------------------------|
-| Description             | View the system access for a medical staff member, call center operator, or admin. |
-| Actors                  | - Admin (primary) |
-| Assumptions             | - Admin is logged in to the system. <br> - User access has already been configured. |
-| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. <br> 3. Click on the "Access" button to view the user's access to all parts of the system. |
-| Variations              | #2: Admin may click the "Access" button directly from the search results, in which case step 3 is omitted. |
+| Description             | Admin decides to view the system access for a profile that they are currently viewing. |
+| Steps                   | 1. Click on the "Access" button to view the user's access to all parts of the system. |
 | Issues                  | - What if a user has an account with no access to any part of the system? |
 
 <br>**Table 5**: Modify User Access Use Case.
-| Use Case                | Modify User Access     |
+| Use Case Extension      | Modify User Access *extends* View User Access |
 |-------------------------|-------------------------|
-| Description             | Modify the system access for a medical staff member, call center operator, or admin. |
-| Actors                  | - Admin (primary) |
-| Assumptions             | - Admin is logged in to the system. <br> - User access has already been configured. |
-| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. <br> 3. Click on the "Access" button to view the user's access to all parts of the system. 3. Click the "Edit" button to edit the user's access. <br> 4. Make the desired changes. <br> 5. Click the "Save" button to confirm the changes. | 
-| Variations              | #2: Admin may click the "Access" button directly from the search results, in which case step 3 is omitted. |
+| Description             | Admin decides to modify the system access for a profile that they are currently viewing. |
+| Steps                   | 1. Click the "Edit" button to edit the user's access. <br> 2. Make the desired changes. <br> 3. Click the "Save" button to confirm the changes. | 
 | Non-Functional          | **Security**: An admin must not be able to grant or revoke access that they themselves do not have. |
 | Issues                  | - What if the admin attempts to modify their own access, or that of another admin? |
 
@@ -125,7 +116,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | Description             | Store any information inputted by a patient for later reference. |
 | Actors                  | - System Database (primary) <br> - Patient |
 | Assumptions             | - Patient does not yet have an account. <br> - Patient has an internet connection. |
-| Steps                   | 1. Patient provides their Name, Contact Information, Username, Password, and Personal Health Number during account creation. <br> 2. The provided encrypted information is passed to the system database. <br>  3. The database decrypts the information. 4. A new entry is created in the accounts table in the database. <br> 5. The patient information is stored in that entry. | 
+| Steps                   | 1. Patient provides their Name, Contact Information, Username, Password, and Personal Health Number during account creation. <br> 2. The provided encrypted information is passed to the system database. <br>  3. The database decrypts the information. <br> 4. A new entry is created in the accounts table in the database. <br> 5. The patient information is stored in that entry. | 
 | Non-Functional  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
 | Issues                  | What if the patient does not provide all the required information fields? |
 
@@ -140,11 +131,11 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | Issues                  | What if the patient does not answer all questions? |
 
 <br>**Table x**: Store Reccomendations Responses Use Case.
-| Use Case                | Store Questionnaire Responses     |
+| Use Case                | Store Reccomendations Responses     |
 |-------------------------|-------------------------|
 | Description             | Store any recommendation results to the patient triage questionnaire in the system database. |
 | Actors                  | - System Database (primary) |
-| Assumptions             | - The patient has submitted a triage questionnaire. <br> - Mister Ed system or Medical Professional have submitted recommendations. |
+| Assumptions             | - The patient has an account. <br> The patient has submitted a triage questionnaire. <br> - Mister Ed system or Medical Professional have submitted recommendations. |
 | Steps                   | 1. The provided encrypted recommendations are passed to the system database. <br>  3. The database decrypts the information. 4. A new entry is created in the recommendation table in the database. <br> 5. The patient username and questionnaire ID are used as the key and the recommendation and source of recommendation are stored in that entry. | 
 | Non-Functional  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
 | Issues                  | What if the recommendation came from a Medical Professional, should their name be added to the database entry? |
@@ -160,7 +151,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | Issues                  | What is the most accurate way to split emergency severity to calculate wait times? |
 
 <br>**Table x**: Send Call Centre ED Update Use Case.
-| Use Case                | Send Call Centre ED Update     |
+| Use Case Inclusion       | Calculate ED Wait Time and Capacity *includes* Send Call Centre ED Update    |
 |-------------------------|-------------------------|
 | Description             | Send calculated ED capacity percentage and wait time information to the call centre so they can notify the next patients on the waiting list. |
 | Actors                  | - System Database (primary) |
