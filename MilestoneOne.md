@@ -231,3 +231,70 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | Non-Functional  | **Security**: The patient data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
 | Issues                  | What if the call centre does not want constant updates? |
 
+## Patient Use Cases
+Figure X, below, outlines the use cases that may be executed by a patient using the system. Tables 1-5 describe each use case in more detail.
+
+![Use Case Diagram](Patient_UCD.png)
+
+**Figure x:** A Use Case Diagram describing the Mister Ed system from the perspective of the Admin actor.
+
+<br>**Table x**: Register/Login Use Case.
+| Use Case                | Register/Login     |
+|-------------------------|-------------------------|
+| Description             | The patient registers if they are a first time user or logs into the Mister Ed system using their credentials. This ensures secure access to the system. |
+| Actors                  | - Patient (primary) |
+| Assumptions             | - The patient has access to a device that is connected to the internet. <br>- The system securely stores patients' login credentials.|
+| Steps                   | 1. The patient opens the Mister Ed system. <br>2. The patient either enters their login credentials or creates a new account. <br> 3. If creating a new account, the patient fills out the necessary details. <br> 4. The system authenticates the patient’s credentials. <br>5. The patient successfully gains access to the system. | 
+| Variations (Optional)   | #2 The patient may opt for a password reset if they forget their credentials. |
+| Non-Functional (Optional) | **Security**: The login system must adhere to data privacy regulations and ensure secure encryption. |
+| Issues                  | - Forgotten credentials or system errors during login.  |
+
+
+<br>**Table x**: View ED Load Use Case.
+| Use Case                | View ED Load     |
+|-------------------------|-------------------------|
+| Description             |  The patient views the current load of emergency departments in their location, helping them choose the facility with the shortest wait time.|
+| Actors                  | - Patient (primary) |
+| Assumptions             | - The system has accurate data on ED load. <br>- The patient is already logged into the system. |
+| Steps                   | 1. The patient selects the option to view ED load. <br> 2. The system displays a list of nearby EDs with the current load. <br> 3. The patient views the information and decides what ED to visit based on the load. | 
+| Variations (Optional)   |  |
+| Non-Functional (Optional) | **Security**: The system must provide data in real time on the current ED load. |
+| Issues                  | - System may delay in providing ED load updates |
+
+
+<br>**Table x**: Enter Symptom Information Use Case.
+| Use Case                | Enter Symptom Information    |
+|-------------------------|-------------------------|
+| Description             | The patient enters their symptoms into the system for a virtual triage to determine the urgency of their condition. |
+| Actors                  | - Patient (primary) |
+| Assumptions             | -The patient enters their symptoms accurately.  |
+| Steps                   |1. The patient selects the option to enter symptom information. <br>2. The system provides the patient with a questionnaire to gather medical details. <br> 3. The patient inputs their symptoms. <br> 4. The system stores this information for analysis.  | 
+| Variations (Optional)   |  |
+| Non-Functional (Optional) | - The system must be intuitive and simple to use for all users. |
+| Issues                  | - Patients may provide vague or inaccurate information, which will affect the virtual triage result.  |
+
+<br>**Table x**: View Treatment Options Use Case.
+| Use Case                | View Treatment Options |
+|-------------------------|-------------------------|
+| Description             | The patient can view treatment options based on their symptoms. The system will recommend visiting an ED, going to a general practitioner (GP), or staying at home. |
+| Actors                  | - Patient (primary) |
+| Assumptions             | - The patient has completed symptom input. |
+| Steps                   | 1. After entering symptoms, the patient views suggested treatment options. <br> 2. The system displays recommendations based on the severity of the condition. <br> 3. The patient reviews and selects the appropriate option. | 
+| Variations (Optional)   |  |
+| Non-Functional (Optional) | - The treatment recommendations must be based on up to date medical standards and guidelines. |
+| Issues                  | - Patients may not follow system recommendations.  |
+
+<br>**Table x**: Enter ED Queue Use Case.
+| Use Case                | Enter ED Queue    |
+|-------------------------|-------------------------|
+| Description             | The patient enters the queue for an ED if the system recommends this action. The patient can wait at home until it is their turn. |
+| Actors                  | - Patient (primary) |
+| Assumptions             | - The system accurately assesses the ED load and provides a reasonable waiting time.  |
+| Steps                   | 1. The patient decides to enter the ED queue based on the system recommendation. <br> 2. The system assigns the patient a place in the queue and provides an estimated wait time. <br> 3. The patient waits at home and receives a notification when it is their turn to visit the ED. | 
+| Variations (Optional)   | |
+| Non-Functional (Optional) |- The system must be accurate in estimating waiting times to avoid overcrowding at the ED. |
+| Issues                  | - Delays in the system notifying the patient could cause issues with estimated ED wait times. |
+
+
+
+
