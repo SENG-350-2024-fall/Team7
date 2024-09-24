@@ -28,34 +28,25 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 | Issues                  | - What if the system fails to match any user to a given search? |
 
 <br>**Table 3**: Modify User Profile Use Case.
-| Use Case                | Modify User Profile     |
+| Use Case Extension      | Modify User Profile *extends* View User Profile |
 |-------------------------|-------------------------|
-| Description             | Modify the system profile of a medical staff member, call center operator, or admin. |
-| Actors                  | - Admin (primary) |
-| Assumptions             | - Admin is logged in to the system. <br> - User profile has already been created. |
-| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. <br> 3. Click the "Edit" button to edit the user's profile. <br> 4. Make the desired changes. <br> 5. Click the "Save" button to confirm the changes. | 
-| Variations              | #2: Admin may click the "Edit" button directly from the search results, in which case step 3 is omitted. |
+| Description             | Admin decides to edit a profile that they are currently viewing. |
+| Steps                   | 1. Click the "Edit" button to edit the user's profile. <br> 2. Make the desired changes. <br> 3. Click the "Save" button to confirm the changes. | 
 | Non-Functional          | **Security**: An admin must not be able to modify a user's password. |
 | Issues                  | - What if someone needs a history of who has modified a given user's profile? |
 
 <br>**Table 4**: View User Access Use Case.
-| Use Case                | View User Access     |
+| Use Case Extension      | View User Access *extends* View User Profile |
 |-------------------------|-------------------------|
-| Description             | View the system access for a medical staff member, call center operator, or admin. |
-| Actors                  | - Admin (primary) |
-| Assumptions             | - Admin is logged in to the system. <br> - User access has already been configured. |
-| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. <br> 3. Click on the "Access" button to view the user's access to all parts of the system. |
-| Variations              | #2: Admin may click the "Access" button directly from the search results, in which case step 3 is omitted. |
+| Description             | Admin decides to view the system access for a profile that they are currently viewing. |
+| Steps                   | 1. Click on the "Access" button to view the user's access to all parts of the system. |
 | Issues                  | - What if a user has an account with no access to any part of the system? |
 
 <br>**Table 5**: Modify User Access Use Case.
-| Use Case                | Modify User Access     |
+| Use Case Extension      | Modify User Access *extends* View User Access |
 |-------------------------|-------------------------|
-| Description             | Modify the system access for a medical staff member, call center operator, or admin. |
-| Actors                  | - Admin (primary) |
-| Assumptions             | - Admin is logged in to the system. <br> - User access has already been configured. |
-| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. <br> 3. Click on the "Access" button to view the user's access to all parts of the system. 3. Click the "Edit" button to edit the user's access. <br> 4. Make the desired changes. <br> 5. Click the "Save" button to confirm the changes. | 
-| Variations              | #2: Admin may click the "Access" button directly from the search results, in which case step 3 is omitted. |
+| Description             | Admin decides to modify the system access for a profile that they are currently viewing. |
+| Steps                   | 1. Click the "Edit" button to edit the user's access. <br> 2. Make the desired changes. <br> 3. Click the "Save" button to confirm the changes. | 
 | Non-Functional          | **Security**: An admin must not be able to grant or revoke access that they themselves do not have. |
 | Issues                  | - What if the admin attempts to modify their own access, or that of another admin? |
 
