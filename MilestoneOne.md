@@ -235,4 +235,58 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 
 
 
+## Call Center Use Cases
+
+Figure x, below, outlines the use cases that may be executed by the Call Center. Tables x-x describe each use case in more detail.
+
+
+![Use Case Diagram](CallCenter_UCD.png)
+
+**Figure 5:** A Use Case Diagram describing the Mister Ed system from the perspective of the Call Center actor.
+
+<br>**Table x**: ViewQueue Use Case.
+| **Use Case**        | View Queue |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Description**     |  View the queue of patients that have requested notification. |
+| **Actors**          | - CallCenterEmployee (primary)
+| **Assumptions**     | - CallCenterEmployee is logged in. <br> - CallCenterEmployee has correct permissions to view the patient queue.|
+| **Steps**    | 1. CallCenterEmployee selects the "View Queue" option. <br> 2. The CallCenterEmployee is shown the patient queue.|
+| **Non-Functional**  |     **Efficency**: Queue must load and be shown to the CallCenterEmployee in under 3 seconds.                                                         |
+| **Issues**          |   What happens if the queue is empty?      |
+
+
+
+<br>**Table x**: ViewPatientInfo Use Case.
+| **Use Case**        | ViewPatientInfo|
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Description**     |  View the information page for the currently selected patient. |
+| **Actors**          | - CallCenterEmployee (primary)
+| **Assumptions**     | - CallCenterEmployee is currently viewing the queue. <br> - CallCenterEmployee has correct permissions to view the patient information page.|
+| **Steps**           | 1. CallCenterEmpoloyee selects a patient from the queue. <br> 2. CallCenterEmployee and chooses "View Info". <br> 3. CallCenterEmployee is shown the patients information page. |
+| **Non-Functional**  |    **Traceability**: Must track and log who views the information page for each patient. |
+| **Issues**          |                                                                |
+
+
+<br>**Table x**: CallPatient Use Case.
+| **Use Case**        | CallPatient|
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Description**     |  Call the patient and inform them that there is a spot in the ED available to them. |
+| **Actors**          | - CallCenterEmployee (primary) <br> - Patient
+| **Assumptions**     | - CallCenterEmployee is currently viewing the patient information page. <br>- Assume that Patient picks up. <br> Patient hasn't changed their mind about going to the  ED.|
+| **Steps**           | 1. CallCenterEmployee clicks on "Call Patient". <br> 2. Call is sent to the Patient. <br> 3. CallCenterEmployee informs the patient that there is a spot available in the ED for them. <br> 4. Patient confirms that they will be going into the ED. |
+| **Non-Functional**  |   **Privacy**: Must verify that the person on the phone is the Patient before discussing medical information.                                                      |
+| **Issues**          |      What happens if the Patient doesn't pick up?                                                          |
+
+
+
+<br>**Table x**: NotifyED Use Case.
+| **Use Case**        | NotifyED|
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Description**     |  Notify the ED that a patient will be coming in. |
+| **Actors**          | - CallCenterEmployee (primary)
+| **Assumptions**     | - The CallCenterEmployee is currently viewing the Patient information page.  <br>- The patient has been called and confirmed that they will be going into the ED.|
+| **Steps**           | 1. CallCenterEmployee clicks the "Notify ED" button. <br> 2. Notification is sent out to the ED that the Patient will be coming in.  |
+| **Non-Functional**  |     **Security**: Data is sensitive and must be encrypted and sent over a secure communication network. <br> **Efficiency**: Process is time sensitive and notification must be sent to the ED within 10 seconds.                                         |
+| **Issues**          |  How to forward Patient information to the ED?                                                              |
+
 
