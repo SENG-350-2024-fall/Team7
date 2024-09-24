@@ -96,8 +96,6 @@ Figure 2, below, outlines the use cases that may be followed by medical staff wh
 | **Non-Functional (Optional)** | **Security**: Access to the triage queue should be restricted to authorized personnel.|
 | **Issues**              | - Handling high volumes of patients in the queue without overwhelming the system. <br> - Prioritization fairness and accuracy (e.g., ensuring that the most critical cases are prioritized properly). |
 
-**Table 6**: View Triage Queue.
-
 
 
 ## System Database Use Cases
