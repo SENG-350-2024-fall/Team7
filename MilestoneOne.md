@@ -60,46 +60,43 @@ Figure 2, below, outlines the use cases that may be followed by medical staff wh
 <br>**Table 6**: Review Symptoms.
 | Use Case                | Review Symptoms    |
 |-------------------------|-------------------------|
-| Description             |  |
-| Actors                  | - Medical Staff (primary) |
-| Assumptions             | -  |
-| Steps                   | 1.  | 
-| Variations (Optional)   | #1: |
-| Non-Functional (Optional) | **Security**:  |
-| Issues                  | -  |
+| **Description**         | Medical staff can review the symptoms provided by the patient during virtual registration. |
+| **Actors**              | - Medical Staff (primary) |
+| **Assumptions**         | - Medical staff has access to the Mister Ed system and patient records. <br> - Patient has provided symptom information. |
+| **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. Staff accesses the patient's registered details. <br> 3. The system displays the patient's symptoms and any accompanying notes. <br> 4. Staff reviews the symptoms and determines the next steps|
+| **Variations (Optional)** | #1: Automated symptom analysis suggests possible conditions. |
+| **Non-Functional (Optional)** | **Security**: Ensure that symptom data is encrypted and only accessible by authorized medical staff. <br> **Performance**: Display patient symptom data in under 2 seconds after selection. |
+| **Issues**              | - Patients may input incomplete or inaccurate information. <br> - Ensuring privacy while storing sensitive health data. |
 
 <br>**Table 7**: View Patient Medical History.
-| Use Case                | View Patient Medical History    |
+| Use Case Extension    | View Patient Medical History    |
 |-------------------------|-------------------------|
-| Description             |  |
-| Actors                  | - Medical Staff (primary) |
-| Assumptions             | -  |
-| Steps                   | 1.  | 
-| Variations (Optional)   | #1: |
-| Non-Functional (Optional) | **Security**:  |
-| Issues                  | -  |
+| **Description**         | Medical staff can access the patient’s medical history to make informed decisions during triage or treatment. |
+| **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. The staff selects the patient whose medical history is required. <br> 3. The system retrieves and displays relevant medical history (past diagnoses, treatments, medications, allergies). <br> 4. The staff reviews the history and uses it to make informed decisions. |
+| **Non-Functional (Optional)** | **Security**: Medical history should be encrypted, and access should be logged for audit purposes.|
+| **Issues**              | - Incomplete integration with external medical records. <br> - Patient consent may be required for access to certain medical data. |
 
 <br>**Table 8**: Make Recommendation.
 | Use Case                | Make Recommendation     |
 |-------------------------|-------------------------|
-| Description             |  |
-| Actors                  | - Medical Staff (primary) |
-| Assumptions             | -  |
-| Steps                   | 1.  | 
-| Variations (Optional)   | #1: |
-| Non-Functional (Optional) | **Security**:  |
-| Issues                  | -  |
+| **Description**         | Medical staff can use Mister Ed to make recommendations based on the patient's symptoms and history. |
+| **Actors**              | - Medical Staff (primary)) |
+| **Assumptions**         | - The system has up-to-date patient information (symptoms, history). |
+| **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. Staff reviews the patient's symptoms and medical history. <br> 3. Based on data, the staff selects a recommendation option from the system’s interface. <br> 4. The recommendation is communicated to the patient through the system. |
+| **Non-Functional (Optional)** | **Security**: Ensure recommendations are only made by authorized medical staff and not altered by unauthorized users.|
+| **Issues**              | - Legal implications of incorrect recommendations. <br> - Ensuring that recommendations are personalized and not purely algorithmic. |
 
-<br>**Table 6**: View Triage Queue.
+<br>**Table 9**: View Triage Queue.
 | Use Case                | View Triage Queue    |
 |-------------------------|-------------------------|
-| Description             |  |
-| Actors                  | - Medical Staff (primary) |
-| Assumptions             | -  |
-| Steps                   | 1.  | 
-| Variations (Optional)   | #1: |
-| Non-Functional (Optional) | **Security**:  |
-| Issues                  | -  |
+| **Description**         | Medical staff can view the current triage queue to prioritize patients based on severity, registration time, and other factors. |
+| **Actors**              | - Medical Staff (primary)|
+| **Assumptions**         | - The system updates the triage queue in real time. <br> - Patients are properly registered and categorized based on triage requirements. |
+| **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. The system displays the list of patients in the triage queue. <br> 3. Staff reviews the queue, with patients sorted by severity, registration time, or custom criteria. <br> 4. Staff selects patients for triage or treatment based on priority. |
+| **Non-Functional (Optional)** | **Security**: Access to the triage queue should be restricted to authorized personnel.|
+| **Issues**              | - Handling high volumes of patients in the queue without overwhelming the system. <br> - Prioritization fairness and accuracy (e.g., ensuring that the most critical cases are prioritized properly). |
+
+**Table 6**: View Triage Queue.
 
 
 
