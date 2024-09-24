@@ -236,7 +236,7 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 
 ![Use Case Diagram](Patient_UCD.png)
 
-**Figure x:** A Use Case Diagram describing the Mister Ed system from the perspective of the Admin actor.
+**Figure x:** A Use Case Diagram describing the Mister Ed system from the perspective of the Patient actor.
 
 <br>**Table x**: Register/Login Use Case.
 | Use Case                | Register/Login     |
