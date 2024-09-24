@@ -24,7 +24,6 @@ CallCenterEmployee -> ContactEmergencyServices : "Report emergency"
 
 ViewPatientInfo --> ViewQueue : <<include>>
 CallPatient --> ViewPatientInfo: <<include>>
-NotifyED --> CallPatient : <<extend>>
 
 CallPatient -> Patient: Call the patient
 
