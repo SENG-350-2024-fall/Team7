@@ -187,7 +187,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | Description             | Store any information inputted by a patient for later reference. |
 | Actors                  | - System Database (primary) <br> - Patient |
 | Assumptions             | - Patient does not yet have an account. <br> - Patient has an internet connection. |
-| Steps                   | 1. Patient provides their Name, Contact Information, Username, Password, and Personal Health Number during account creation. <br> 2. The provided encrypted information is passed to the system database. <br>  3. The database decrypts the information. 4. A new entry is created in the accounts table in the database. <br> 5. The patient information is stored in that entry. | 
+| Steps                   | 1. Patient provides their Name, Contact Information, Username, Password, and Personal Health Number during account creation. <br> 2. The provided encrypted information is passed to the system database. <br>  3. The database decrypts the information. <br> 4. A new entry is created in the accounts table in the database. <br> 5. The patient information is stored in that entry. | 
 | Non-Functional  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
 | Issues                  | What if the patient does not provide all the required information fields? |
 
@@ -202,11 +202,11 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | Issues                  | What if the patient does not answer all questions? |
 
 <br>**Table x**: Store Reccomendations Responses Use Case.
-| Use Case                | Store Questionnaire Responses     |
+| Use Case                | Store Reccomendations Responses     |
 |-------------------------|-------------------------|
 | Description             | Store any recommendation results to the patient triage questionnaire in the system database. |
 | Actors                  | - System Database (primary) |
-| Assumptions             | - The patient has submitted a triage questionnaire. <br> - Mister Ed system or Medical Professional have submitted recommendations. |
+| Assumptions             | - The patient has an account. <br> The patient has submitted a triage questionnaire. <br> - Mister Ed system or Medical Professional have submitted recommendations. |
 | Steps                   | 1. The provided encrypted recommendations are passed to the system database. <br>  3. The database decrypts the information. 4. A new entry is created in the recommendation table in the database. <br> 5. The patient username and questionnaire ID are used as the key and the recommendation and source of recommendation are stored in that entry. | 
 | Non-Functional  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
 | Issues                  | What if the recommendation came from a Medical Professional, should their name be added to the database entry? |
@@ -222,7 +222,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | Issues                  | What is the most accurate way to split emergency severity to calculate wait times? |
 
 <br>**Table x**: Send Call Centre ED Update Use Case.
-| Use Case                | Send Call Centre ED Update     |
+| Use Case Inclusion       | Calculate ED Wait Time and Capacity *includes* Send Call Centre ED Update    |
 |-------------------------|-------------------------|
 | Description             | Send calculated ED capacity percentage and wait time information to the call centre so they can notify the next patients on the waiting list. |
 | Actors                  | - System Database (primary) |
