@@ -3,7 +3,7 @@ We split our Use Case Diagram into five smaller diagrams based on each use case'
 ## Admin Use Cases
 Figure 1, below, outlines the use cases that may be executed by a system admin. Tables 1-5 describe each use case in more detail.
 
-![Use Case Diagram](Admin_UCD.png)
+![Use Case Diagram](UCDs/Admin_UCD.png)
 
 **Figure 1:** A Use Case Diagram describing the Mister Ed system from the perspective of the Admin actor.
 
@@ -53,7 +53,7 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 ## Medical Staff Use Cases
 Figure 2, below, outlines the use cases that may be followed by medical staff when using the system. Tables 6-9 describe each use case in more detail.
 
-![Use Case Diagram](medical_staff.png)
+![Use Case Diagram](UCDs/medical_staff.png)
 
 **Figure 2:** A Use Case Diagram describing the Mister Ed system from the perspective of the Medical Staff actor.
 
@@ -106,7 +106,7 @@ Figure 2, below, outlines the use cases that may be followed by medical staff wh
 ## System Database Use Cases
 Figure 5, below, outlines the use cases that may be executed by the system database. Tables x-x describe each use case in more detail.
 
-![Use Case Diagram](Database_UCD.png)
+![Use Case Diagram](UCDs/Database_UCD.png)
 
 **Figure 5:** A Use Case Diagram describing the Mister Ed system from the perspective of the System Database actor.
 
@@ -163,7 +163,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 ## Patient Use Cases
 Figure X, below, outlines the use cases that may be executed by a patient using the system. Tables 1-5 describe each use case in more detail.
 
-![Use Case Diagram](Patient_UCD.png)
+![Use Case Diagram](UCDs/Patient_UCD.png)
 
 **Figure x:** A Use Case Diagram describing the Mister Ed system from the perspective of the Patient actor.
 
@@ -231,7 +231,7 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 Figure x, below, outlines the use cases that may be executed by the Call Center. Tables x-x describe each use case in more detail.
 
 
-![Use Case Diagram](CallCenter_UCD.png)
+![Use Case Diagram](UCDs/CallCenter_UCD.png)
 
 **Figure 5:** A Use Case Diagram describing the Mister Ed system from the perspective of the Call Center actor.
 
