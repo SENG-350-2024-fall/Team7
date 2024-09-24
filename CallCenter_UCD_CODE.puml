@@ -11,15 +11,12 @@ rectangle MisterEdSystem {
 
 }
 
-usecase ContactEmergencyServices
-
 
 CallCenterEmployee -> ViewQueue : "Check current queue"
 CallCenterEmployee -> ViewPatientInfo: "View patient information"
 CallCenterEmployee -> CallPatient : "Proceed with next call"
 CallCenterEmployee -> NotifyED : "Notify ED staff"
 
-CallCenterEmployee -> ContactEmergencyServices : "Report emergency"
 
 
 ViewPatientInfo --> ViewQueue : <<include>>

@@ -237,15 +237,3 @@ Figure x, below, outlines the use cases that may be executed by the Call Center.
 | **Non-Functional**  |     **Security**: Data is sensitive and must be encrypted and sent over a secure communication network. <br> **Efficiency**: Process is time sensitive and notification must be sent to the ED within 10 seconds.                                         |
 | **Issues**          |  How to forward Patient information to the ED?                                                              |
 
-<br>**Table x**: ContactEmergencyServices Use Case.
-| **Use Case**        | ContactEmergencyServices|
-|---------------------|---------------------------------------------------------------------------------------------------------------------------|
-| **Description**     | Not sure if I should include this? Would require CallCenter to have medical experience in order to make a decision on this. |
-| **Actors**          | - CallCenterEmployee (primary)
-| **Assumptions**     | |
-| **Steps**           | |
-| **Variations**      |  |
-| **Non-Functional**  |                                                                |
-| **Issues**          |                                                                |
-
-
