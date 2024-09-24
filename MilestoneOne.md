@@ -1,7 +1,9 @@
 We split our Use Case Diagram into five smaller diagrams based on each use case's primary actor, as seen in the following sections.
 
 The Mister Ed system is a medical information system that enhances resources for emergency departments (EDs). Its purpose is to reduce crowded wait rooms and improve efficiency of patient flow. Its main feature is virtual triage which allows users to assess their symptoms and determine whether they should visit an ED or look for other treatments. This helps reduce unnecessary ED visits, taking the load off hospitals. <br>
+
 The system also allows patients and medical staff to view the ED waitlist which provides real-time information on the capacity of local hospitals. This feature helps patients decide the best time and place to seek care while distributing patient loads across multiple locations. The virtual triage feature in Mister Ed provides recommendations which could include visiting a clinic, self-care instructions, or waiting at home until it’s time for an ED visit. The system notifies patients when to proceed to the hospital.<br>
+
 In addition to these features, Mister Ed facilitates patient registration for the ED, reducing administrative tasks when patients arrive. The system integrates with the ED database, ensuring patient data is shared with healthcare providers. By connecting patients, medical staff, and emergency departments through virtual triage Mister Ed optimizes the use of healthcare resources, improves the overall patient experience, and reduces the load on medical staff.<br>
 
 
