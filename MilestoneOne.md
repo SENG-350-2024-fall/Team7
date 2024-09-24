@@ -1,5 +1,3 @@
-hello
-
 We split our Use Case Diagram into five smaller diagrams based on each use case's primary actor, as seen in the following sections.
 
 ## Admin Use Cases
@@ -63,6 +61,60 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 | Variations (Optional)   | #1: |
 | Non-Functional (Optional) | **Security**: |
 | Issues                  | -  |
+
+## Medical Staff Use Cases
+Figure 2, below, outlines the use cases that may be followed by medical staff when using the system. Tables 6-9 describe each use case in more detail.
+
+![Use Case Diagram](medical_staff.png)
+
+**Figure 2:** A Use Case Diagram describing the Mister Ed system from the perspective of the Medical Staff actor.
+
+<br>**Table 6**: Review Symptoms.
+| Use Case                | Review Symptoms    |
+|-------------------------|-------------------------|
+| Description             |  |
+| Actors                  | - Medical Staff (primary) |
+| Assumptions             | -  |
+| Steps                   | 1.  | 
+| Variations (Optional)   | #1: |
+| Non-Functional (Optional) | **Security**:  |
+| Issues                  | -  |
+
+br>**Table 7**: View Patient Medical History.
+| Use Case                | View Patient Medical History    |
+|-------------------------|-------------------------|
+| Description             |  |
+| Actors                  | - Medical Staff (primary) |
+| Assumptions             | -  |
+| Steps                   | 1.  | 
+| Variations (Optional)   | #1: |
+| Non-Functional (Optional) | **Security**:  |
+| Issues                  | -  |
+
+br>**Table 8**: Make Recommendation.
+| Use Case                | Make Recommendation     |
+|-------------------------|-------------------------|
+| Description             |  |
+| Actors                  | - Medical Staff (primary) |
+| Assumptions             | -  |
+| Steps                   | 1.  | 
+| Variations (Optional)   | #1: |
+| Non-Functional (Optional) | **Security**:  |
+| Issues                  | -  |
+
+br>**Table 6**: View Triage Queue.
+| Use Case                | View Triage Queue    |
+|-------------------------|-------------------------|
+| Description             |  |
+| Actors                  | - Medical Staff (primary) |
+| Assumptions             | -  |
+| Steps                   | 1.  | 
+| Variations (Optional)   | #1: |
+| Non-Functional (Optional) | **Security**:  |
+| Issues                  | -  |
+
+
+
 
 ## (Old) Use Cases
 
