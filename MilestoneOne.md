@@ -10,57 +10,54 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 <br>**Table 1**: Create User Profile Use Case.
 | Use Case                | Create User Profile     |
 |-------------------------|-------------------------|
-| Description             |  |
+| Description             | Create a system profile and configure system access for a medical staff member, call center operator, or admin.  |
 | Actors                  | - Admin (primary) |
-| Assumptions             | -  |
-| Steps                   | 1.  | 
-| Variations (Optional)   | #1: |
-| Non-Functional (Optional) | **Security**:  |
-| Issues                  | -  |
+| Assumptions             | - Admin is logged in to the system. |
+| Steps                   | 1. Generate a username by concatenating the user's first and last name, as well as a number representing the number of users currently in the system with that name. <br> 2. Generate a temporary password. 3. Enter information about the user's position in their respective company (e.g., ED Nurse, ED Receptionist, Call Centre Manager). 4. Configure what parts of the system the user has access to. 5. Configure the level of patient information the user has access to. 6. Send an email to the user's provided email with their temporary password. | 
+| Non-Functional          | **Security**: An admin must not be able to create a user with more access than themselves. <br> **Security**: An admin must enter their password before creating an account. |
+| Issues                  | - What if a user quits or is fired? |
 
 <br>**Table 2**: View User Profile Use Case.
 | Use Case                | View User Profile     |
 |-------------------------|-------------------------|
-| Description             |  |
+| Description             | View the system profile of a medical staff member, call center operator, or admin. |
 | Actors                  | - Admin (primary) |
-| Assumptions             | -  |
-| Steps                   | 1.  | 
-| Variations (Optional)   | #1: |
-| Non-Functional (Optional) | **Security**: User password will be obfuscated. |
-| Issues                  | -  |
+| Assumptions             | - Admin is logged in to the system. <br> - User profile has already been created. |
+| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. | 
+| Non-Functional          | **Security**: User password must be obfuscated. <br> **Efficiency**: Search results must appear within 5 seconds. |
+| Issues                  | - What if the system fails to match any user to a given search? |
 
 <br>**Table 3**: Modify User Profile Use Case.
 | Use Case                | Modify User Profile     |
 |-------------------------|-------------------------|
-| Description             |  |
+| Description             | Modify the system profile of a medical staff member, call center operator, or admin. |
 | Actors                  | - Admin (primary) |
-| Assumptions             | -  |
-| Steps                   | 1.  | 
-| Variations (Optional)   | #1: |
-| Non-Functional (Optional) | **Security**: |
-| Issues                  | -  |
+| Assumptions             | - Admin is logged in to the system. <br> - User profile has already been created. |
+| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. <br> 3. Click the "Edit" button to edit the user's profile. <br> 4. Make the desired changes. <br> 5. Click the "Save" button to confirm the changes. | 
+| Variations              | #2: Admin may click the "Edit" button directly from the search results, in which case step 3 is omitted. |
+| Non-Functional          | **Security**: An admin must not be able to modify a user's password. |
+| Issues                  | - What if someone needs a history of who has modified a given user's profile? |
 
 <br>**Table 4**: View User Access Use Case.
 | Use Case                | View User Access     |
 |-------------------------|-------------------------|
-| Description             |  |
+| Description             | View the system access for a medical staff member, call center operator, or admin. |
 | Actors                  | - Admin (primary) |
-| Assumptions             | -  |
-| Steps                   | 1.  | 
-| Variations (Optional)   | #1: |
-| Non-Functional (Optional) | **Security**: |
-| Issues                  | -  |
+| Assumptions             | - Admin is logged in to the system. <br> - User access has already been configured. |
+| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. <br> 3. Click on the "Access" button to view the user's access to all parts of the system. |
+| Variations              | #2: Admin may click the "Access" button directly from the search results, in which case step 3 is omitted. |
+| Issues                  | - What if a user has an account with no access to any part of the system? |
 
 <br>**Table 5**: Modify User Access Use Case.
 | Use Case                | Modify User Access     |
 |-------------------------|-------------------------|
-| Description             |  |
+| Description             | Modify the system access for a medical staff member, call center operator, or admin. |
 | Actors                  | - Admin (primary) |
-| Assumptions             | -  |
-| Steps                   | 1.  | 
-| Variations (Optional)   | #1: |
-| Non-Functional (Optional) | **Security**: |
-| Issues                  | -  |
+| Assumptions             | - Admin is logged in to the system. <br> - User access has already been configured. |
+| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. <br> 3. Click on the "Access" button to view the user's access to all parts of the system. 3. Click the "Edit" button to edit the user's access. <br> 4. Make the desired changes. <br> 5. Click the "Save" button to confirm the changes. | 
+| Variations              | #2: Admin may click the "Access" button directly from the search results, in which case step 3 is omitted. |
+| Non-Functional          | **Security**: An admin must not be able to grant or revoke access that they themselves do not have. |
+| Issues                  | - What if the admin attempts to modify their own access, or that of another admin? |
 
 ## Medical Staff Use Cases
 Figure 2, below, outlines the use cases that may be followed by medical staff when using the system. Tables 6-9 describe each use case in more detail.
