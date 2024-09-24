@@ -80,7 +80,7 @@ Figure 2, below, outlines the use cases that may be followed by medical staff wh
 | Non-Functional (Optional) | **Security**:  |
 | Issues                  | -  |
 
-br>**Table 7**: View Patient Medical History.
+<br>**Table 7**: View Patient Medical History.
 | Use Case                | View Patient Medical History    |
 |-------------------------|-------------------------|
 | Description             |  |
@@ -91,7 +91,7 @@ br>**Table 7**: View Patient Medical History.
 | Non-Functional (Optional) | **Security**:  |
 | Issues                  | -  |
 
-br>**Table 8**: Make Recommendation.
+<br>**Table 8**: Make Recommendation.
 | Use Case                | Make Recommendation     |
 |-------------------------|-------------------------|
 | Description             |  |
@@ -102,7 +102,7 @@ br>**Table 8**: Make Recommendation.
 | Non-Functional (Optional) | **Security**:  |
 | Issues                  | -  |
 
-br>**Table 6**: View Triage Queue.
+<br>**Table 6**: View Triage Queue.
 | Use Case                | View Triage Queue    |
 |-------------------------|-------------------------|
 | Description             |  |
