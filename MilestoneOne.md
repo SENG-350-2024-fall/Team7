@@ -7,162 +7,6 @@ The system also allows patients and medical staff to view the ED waitlist which 
 In addition to these features, Mister Ed facilitates patient registration for the ED, reducing administrative tasks when patients arrive. The system integrates with the ED database, ensuring patient data is shared with healthcare providers. By connecting patients, medical staff, and emergency departments through virtual triage Mister Ed optimizes the use of healthcare resources, improves the overall patient experience, and reduces the load on medical staff.<br>
 
 
-
-## Admin Use Cases
-Figure 1, below, outlines the use cases that may be executed by a system admin. Tables 1-5 describe each use case in more detail.
-
-![Use Case Diagram](UCDs/Admin_UCD.png)
-
-**Figure 1:** A Use Case Diagram describing the Mister Ed system from the perspective of the Admin actor.
-
-<br>**Table 1**: Create User Profile Use Case.
-| Use Case                | Create User Profile     |
-|-------------------------|-------------------------|
-| Description             | Create a system profile and configure system access for a medical staff member, call center operator, or admin.  |
-| Actors                  | - Admin (primary) |
-| Assumptions             | - Admin is logged in to the system. |
-| Steps                   | 1. Generate a username by concatenating the user's first and last name, as well as a number representing the number of users currently in the system with that name. <br> 2. Generate a temporary password. <br> 3. Enter information about the user's position in their respective company (e.g., ED Nurse, ED Receptionist, Call Centre Manager). <br> 4. Configure what parts of the system the user has access to. <br> 5. Configure the level of patient information the user has access to. <br> 6. Send an email to the user's provided email with their temporary password. | 
-| Non-Functional          | **Security**: An admin must not be able to create a user with more access than themselves. <br> **Security**: An admin must enter their password before creating an account. |
-| Issues                  | - What if a user quits or is fired? |
-
-<br>**Table 2**: View User Profile Use Case.
-| Use Case                | View User Profile     |
-|-------------------------|-------------------------|
-| Description             | View the system profile of a medical staff member, call center operator, or admin. |
-| Actors                  | - Admin (primary) |
-| Assumptions             | - Admin is logged in to the system. <br> - User profile has already been created. |
-| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. | 
-| Non-Functional          | **Security**: User password must be obfuscated. <br> **Efficiency**: Search results must appear within 5 seconds. |
-| Issues                  | - What if the system fails to match any user to a given search? |
-
-<br>**Table 3**: Modify User Profile Use Case.
-| Use Case Extension      | Modify User Profile *extends* View User Profile |
-|-------------------------|-------------------------|
-| Description             | Admin decides to edit a profile that they are currently viewing. |
-| Steps                   | 1. Click the "Edit" button to edit the user's profile. <br> 2. Make the desired changes. <br> 3. Click the "Save" button to confirm the changes. | 
-| Non-Functional          | **Security**: An admin must not be able to modify a user's password. |
-| Issues                  | - What if someone needs a history of who has modified a given user's profile? |
-
-<br>**Table 4**: View User Access Use Case.
-| Use Case Extension      | View User Access *extends* View User Profile |
-|-------------------------|-------------------------|
-| Description             | Admin decides to view the system access for a profile that they are currently viewing. |
-| Steps                   | 1. Click on the "Access" button to view the user's access to all parts of the system. |
-| Issues                  | - What if a user has an account with no access to any part of the system? |
-
-<br>**Table 5**: Modify User Access Use Case.
-| Use Case Extension      | Modify User Access *extends* View User Access |
-|-------------------------|-------------------------|
-| Description             | Admin decides to modify the system access for a profile that they are currently viewing. |
-| Steps                   | 1. Click the "Edit" button to edit the user's access. <br> 2. Make the desired changes. <br> 3. Click the "Save" button to confirm the changes. | 
-| Non-Functional          | **Security**: An admin must not be able to grant or revoke access that is higher than their own access. |
-| Issues                  | - What if the admin attempts to modify their own access, or that of another admin? |
-
-## Medical Staff Use Cases
-Figure 2, below, outlines the use cases that may be followed by medical staff when using the system. Tables 6-9 describe each use case in more detail.
-
-![Use Case Diagram](UCDs/medical_staff.png)
-
-**Figure 2:** A Use Case Diagram describing the Mister Ed system from the perspective of the Medical Staff actor.
-
-<br>**Table 6**: Review Symptoms.
-| Use Case                | Review Symptoms    |
-|-------------------------|-------------------------|
-| **Description**         | Medical staff can review the symptoms provided by the patient during virtual registration. |
-| **Actors**              | - Medical Staff (primary) |
-| **Assumptions**         | - Medical staff has access to the Mister Ed system and patient records. <br> - Patient has provided symptom information. |
-| **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. Staff accesses the patient's registered details. <br> 3. The system displays the patient's symptoms and any accompanying notes. <br> 4. Staff reviews the symptoms and determines the next steps|
-| **Variations** | #1: Automated symptom analysis suggests possible conditions. |
-| **Non-Functional** | **Security**: Ensure that symptom data is encrypted and only accessible by authorized medical staff. <br> **Performance**: Display patient symptom data in under 2 seconds after selection. |
-| **Issues**              | - Patients may input incomplete or inaccurate information. <br> - Ensuring privacy while storing sensitive health data. |
-
-<br>**Table 7**: View Patient Medical History.
-| Use Case Extension    | View Patient Medical History    |
-|-------------------------|-------------------------|
-| **Description**         | Medical staff can access the patient’s medical history to make informed decisions during triage or treatment. |
-| **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. The staff selects the patient whose medical history is required. <br> 3. The system retrieves and displays relevant medical history (past diagnoses, treatments, medications, allergies). <br> 4. The staff reviews the history and uses it to make informed decisions. |
-| **Non-Functional** | **Security**: Medical history should be encrypted, and access should be logged for audit purposes.|
-| **Issues**              | - Incomplete integration with external medical records. <br> - Patient consent may be required for access to certain medical data. |
-
-<br>**Table 8**: Make Recommendation.
-| Use Case                | Make Recommendation     |
-|-------------------------|-------------------------|
-| **Description**         | Medical staff can use Mister Ed to make recommendations based on the patient's symptoms and history. |
-| **Actors**              | - Medical Staff (primary)) |
-| **Assumptions**         | - The system has up-to-date patient information (symptoms, history). |
-| **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. Staff reviews the patient's symptoms and medical history. <br> 3. Based on data, the staff selects a recommendation option from the system’s interface. <br> 4. The recommendation is communicated to the patient through the system. |
-| **Non-Functional** | **Security**: Ensure recommendations are only made by authorized medical staff and not altered by unauthorized users.|
-| **Issues**              | - Legal implications of incorrect recommendations. <br> - Ensuring that recommendations are personalized and not purely algorithmic. |
-
-<br>**Table 9**: View Triage Queue.
-| Use Case                | View Triage Queue    |
-|-------------------------|-------------------------|
-| **Description**         | Medical staff can view the current triage queue to prioritize patients based on severity, registration time, and other factors. |
-| **Actors**              | - Medical Staff (primary)|
-| **Assumptions**         | - The system updates the triage queue in real-time. <br> - Patients are properly registered and categorized based on triage requirements. |
-| **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. The system displays the list of patients in the triage queue. <br> 3. Staff reviews the queue, with patients sorted by severity, registration time, or custom criteria. <br> 4. Staff selects patients for triage or treatment based on priority. |
-| **Non-Functional** | **Security**: Access to the triage queue should be restricted to authorized personnel.|
-| **Issues**              | - Handling high volumes of patients in the queue without overwhelming the system. <br> - Prioritization fairness and accuracy (e.g., ensuring that the most critical cases are prioritized properly). |
-
-
-
-## System Database Use Cases
-Figure 5, below, outlines the use cases that may be executed by the system database. Tables x-x describe each use case in more detail.
-
-![Use Case Diagram](UCDs/Database_UCD.png)
-
-**Figure 5:** A Use Case Diagram describing the Mister Ed system from the perspective of the System Database actor.
-
-<br>**Table x**: Store Patient Information Use Case.
-| Use Case                | Store Patient Information     |
-|-------------------------|-------------------------|
-| **Description**             | Store any information inputted by a patient for later reference. |
-| **Actors**                  | - System Database (primary) <br> - Patient |
-| **Assumptions**             | - Patient does not yet have an account. <br> - Patient has an internet connection. |
-| **Steps**                   | 1. Patient provides their Name, Contact Information, Username, Password, and Personal Health Number during account creation. <br> 2. The provided encrypted information is passed to the system database. <br>  3. The database decrypts the information. <br> 4. A new entry is created in the accounts table in the database. <br> 5. The patient information is stored in that entry. | 
-| **Non-Functional**  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
-| **Issues**                  | What if the patient does not provide all the required information fields? |
-
-<br>**Table x**: Store Questionnaire Responses Use Case.
-| Use Case                | Store Questionnaire Responses     |
-|-------------------------|-------------------------|
-| **Description**             | Store any responses to the triage questionnaire from the patient in the system database. |
-| **Actors**                  | - System Database (primary) |
-| **Assumptions**             | - Patient has an account. <br> - The patient has just submitted a triage questionnaire. <br> - Patient has an internet connection. |
-| **Steps**                   | 1. The provided encrypted questionnaire questions and answers are passed to the system database. <br>  3. The database decrypts the information. 4. A new entry is created in the questionnaire table in the database. <br> 5. The patient username is used as the key and each response to a question is stored in a separate column. | 
-| **Non-Functional**  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
-| **Issues**                  | What if the patient does not answer all questions? |
-
-<br>**Table x**: Store Reccomendations Responses Use Case.
-| Use Case                | Store Reccomendations Responses     |
-|-------------------------|-------------------------|
-| **Description**             | Store any recommendation results to the patient triage questionnaire in the system database. |
-| **Actors**                  | - System Database (primary) |
-| **Assumptions**             | - The patient has an account. <br> The patient has submitted a triage questionnaire. <br> - Mister Ed system or Medical Professional have submitted recommendations. |
-| **Steps**                   | 1. The provided encrypted recommendations are passed to the system database. <br>  3. The database decrypts the information. 4. A new entry is created in the recommendation table in the database. <br> 5. The patient username and questionnaire ID are used as the key and the recommendation and source of recommendation are stored in that entry. | 
-| **Non-Functional**  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
-| **Issues**                  | What if the recommendation came from a Medical Professional, should their name be added to the database entry? |
-
-<br>**Table x**: Calculate ED Wait Time and Capacity Use Case.
-| Use Case                | Calculate ED Wait Time and Capacity     |
-|-------------------------|-------------------------|
-| **Description**             | Calculate an ED's current wait time and capacity percentage from waiting room records. |
-| **Actors**                  | - System Database (primary) <br> |
-| **Assumptions**             | - System Database waiting room records have been recently updated. |
-| **Steps**                   | 1. Pick ED to perform calculations for based off request or timeout. <br> 2. From the ED table get the number of beds in use and the number of total beds to get ED capacity. <br>  3. From the ED table get the number of medical staff currently working and the ED capacity percentage to calculate wait time based on emergency severity. 4. Update ED table capacity percentage and wait time columns. <br> 5. Update timeout timestamp. | 
-| **Non-Functional**  | **Efficency**: The time to perform calculations and save data must be less than 5 seconds. <br> **Accuracy**: Displayed estimated wait times must be within 10% of actual wait times. |
-| **Issues**                  | What is the most accurate way to split emergency severity to calculate wait times? |
-
-<br>**Table x**: Send Call Centre ED Update Use Case.
-| Use Case Inclusion       | Calculate ED Wait Time and Capacity *includes* Send Call Centre ED Update    |
-|-------------------------|-------------------------|
-| **Description**             | Send calculated ED capacity percentage and wait time information to the call centre so they can notify the next patients on the waiting list. |
-| **Actors**                  | - System Database (primary) |
-| **Assumptions**             | - ED calculations have just been performed and saved in the System Database. |
-| **Steps**                   | 1. Database collects ED Name, Capacity Percentage, and Wait Time. <br> 2. The information is encrypted for transmission. <br>  3. The database transmits the information to the Call Centre. | 
-| **Non-Functional**  | **Security**: The patient data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
-| **Issues**                  | What if the call centre does not want constant updates? |
-
 ## Patient Use Cases
 Figure X, below, outlines the use cases that may be executed by a patient using the system. Tables 1-5 describe each use case in more detail.
 
@@ -222,6 +66,163 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 | **Steps**                   | 1. The patient decides to enter the ED queue based on the system recommendation. <br> 2. The system assigns the patient a place in the queue and provides an estimated wait time. <br> 3. The patient waits at home and receives a notification when it is their turn to visit the ED. | 
 | **Non-Functional** |- The system must be accurate in estimating waiting times to avoid overcrowding at the ED. |
 | **Issues**                | - Delays in the system notifying the patient could cause issues with estimated ED wait times. |
+
+
+## Medical Staff Use Cases
+Figure 2, below, outlines the use cases that may be followed by medical staff when using the system. Tables 6-9 describe each use case in more detail.
+
+![Use Case Diagram](UCDs/medical_staff.png)
+
+**Figure 2:** A Use Case Diagram describing the Mister Ed system from the perspective of the Medical Staff actor.
+
+<br>**Table 6**: Review Symptoms.
+| Use Case                | Review Symptoms    |
+|-------------------------|-------------------------|
+| **Description**         | Medical staff can review the symptoms provided by the patient during virtual registration. |
+| **Actors**              | - Medical Staff (primary) |
+| **Assumptions**         | - Medical staff has access to the Mister Ed system and patient records. <br> - Patient has provided symptom information. |
+| **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. Staff accesses the patient's registered details. <br> 3. The system displays the patient's symptoms and any accompanying notes. <br> 4. Staff reviews the symptoms and determines the next steps|
+| **Variations** | #1: Automated symptom analysis suggests possible conditions. |
+| **Non-Functional** | **Security**: Ensure that symptom data is encrypted and only accessible by authorized medical staff. <br> **Performance**: Display patient symptom data in under 2 seconds after selection. |
+| **Issues**              | - Patients may input incomplete or inaccurate information. <br> - Ensuring privacy while storing sensitive health data. |
+
+<br>**Table 7**: View Patient Medical History.
+| Use Case Extension    | View Patient Medical History    |
+|-------------------------|-------------------------|
+| **Description**         | Medical staff can access the patient’s medical history to make informed decisions during triage or treatment. |
+| **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. The staff selects the patient whose medical history is required. <br> 3. The system retrieves and displays relevant medical history (past diagnoses, treatments, medications, allergies). <br> 4. The staff reviews the history and uses it to make informed decisions. |
+| **Non-Functional** | **Security**: Medical history should be encrypted, and access should be logged for audit purposes.|
+| **Issues**              | - Incomplete integration with external medical records. <br> - Patient consent may be required for access to certain medical data. |
+
+<br>**Table 8**: Make Recommendation.
+| Use Case                | Make Recommendation     |
+|-------------------------|-------------------------|
+| **Description**         | Medical staff can use Mister Ed to make recommendations based on the patient's symptoms and history. |
+| **Actors**              | - Medical Staff (primary)) |
+| **Assumptions**         | - The system has up-to-date patient information (symptoms, history). |
+| **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. Staff reviews the patient's symptoms and medical history. <br> 3. Based on data, the staff selects a recommendation option from the system’s interface. <br> 4. The recommendation is communicated to the patient through the system. |
+| **Non-Functional** | **Security**: Ensure recommendations are only made by authorized medical staff and not altered by unauthorized users.|
+| **Issues**              | - Legal implications of incorrect recommendations. <br> - Ensuring that recommendations are personalized and not purely algorithmic. |
+
+<br>**Table 9**: View Triage Queue.
+| Use Case                | View Triage Queue    |
+|-------------------------|-------------------------|
+| **Description**         | Medical staff can view the current triage queue to prioritize patients based on severity, registration time, and other factors. |
+| **Actors**              | - Medical Staff (primary)|
+| **Assumptions**         | - The system updates the triage queue in real-time. <br> - Patients are properly registered and categorized based on triage requirements. |
+| **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. The system displays the list of patients in the triage queue. <br> 3. Staff reviews the queue, with patients sorted by severity, registration time, or custom criteria. <br> 4. Staff selects patients for triage or treatment based on priority. |
+| **Non-Functional** | **Security**: Access to the triage queue should be restricted to authorized personnel.|
+| **Issues**              | - Handling high volumes of patients in the queue without overwhelming the system. <br> - Prioritization fairness and accuracy (e.g., ensuring that the most critical cases are prioritized properly). |
+
+
+## Admin Use Cases
+Figure 1, below, outlines the use cases that may be executed by a system admin. Tables 1-5 describe each use case in more detail.
+
+![Use Case Diagram](UCDs/Admin_UCD.png)
+
+**Figure 1:** A Use Case Diagram describing the Mister Ed system from the perspective of the Admin actor.
+
+<br>**Table 1**: Create User Profile Use Case.
+| Use Case                | Create User Profile     |
+|-------------------------|-------------------------|
+| Description             | Create a system profile and configure system access for a medical staff member, call center operator, or admin.  |
+| Actors                  | - Admin (primary) |
+| Assumptions             | - Admin is logged in to the system. |
+| Steps                   | 1. Generate a username by concatenating the user's first and last name, as well as a number representing the number of users currently in the system with that name. <br> 2. Generate a temporary password. <br> 3. Enter information about the user's position in their respective company (e.g., ED Nurse, ED Receptionist, Call Centre Manager). <br> 4. Configure what parts of the system the user has access to. <br> 5. Configure the level of patient information the user has access to. <br> 6. Send an email to the user's provided email with their temporary password. | 
+| Non-Functional          | **Security**: An admin must not be able to create a user with more access than themselves. <br> **Security**: An admin must enter their password before creating an account. |
+| Issues                  | - What if a user quits or is fired? |
+
+<br>**Table 2**: View User Profile Use Case.
+| Use Case                | View User Profile     |
+|-------------------------|-------------------------|
+| Description             | View the system profile of a medical staff member, call center operator, or admin. |
+| Actors                  | - Admin (primary) |
+| Assumptions             | - Admin is logged in to the system. <br> - User profile has already been created. |
+| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. | 
+| Non-Functional          | **Security**: User password must be obfuscated. <br> **Efficiency**: Search results must appear within 5 seconds. |
+| Issues                  | - What if the system fails to match any user to a given search? |
+
+<br>**Table 3**: Modify User Profile Use Case.
+| Use Case Extension      | Modify User Profile *extends* View User Profile |
+|-------------------------|-------------------------|
+| Description             | Admin decides to edit a profile that they are currently viewing. |
+| Steps                   | 1. Click the "Edit" button to edit the user's profile. <br> 2. Make the desired changes. <br> 3. Click the "Save" button to confirm the changes. | 
+| Non-Functional          | **Security**: An admin must not be able to modify a user's password. |
+| Issues                  | - What if someone needs a history of who has modified a given user's profile? |
+
+<br>**Table 4**: View User Access Use Case.
+| Use Case Extension      | View User Access *extends* View User Profile |
+|-------------------------|-------------------------|
+| Description             | Admin decides to view the system access for a profile that they are currently viewing. |
+| Steps                   | 1. Click on the "Access" button to view the user's access to all parts of the system. |
+| Issues                  | - What if a user has an account with no access to any part of the system? |
+
+<br>**Table 5**: Modify User Access Use Case.
+| Use Case Extension      | Modify User Access *extends* View User Access |
+|-------------------------|-------------------------|
+| Description             | Admin decides to modify the system access for a profile that they are currently viewing. |
+| Steps                   | 1. Click the "Edit" button to edit the user's access. <br> 2. Make the desired changes. <br> 3. Click the "Save" button to confirm the changes. | 
+| Non-Functional          | **Security**: An admin must not be able to grant or revoke access that is higher than their own access. |
+| Issues                  | - What if the admin attempts to modify their own access, or that of another admin? |
+
+
+## System Database Use Cases
+Figure 5, below, outlines the use cases that may be executed by the system database. Tables x-x describe each use case in more detail.
+
+![Use Case Diagram](UCDs/Database_UCD.png)
+
+**Figure 5:** A Use Case Diagram describing the Mister Ed system from the perspective of the System Database actor.
+
+<br>**Table x**: Store Patient Information Use Case.
+| Use Case                | Store Patient Information     |
+|-------------------------|-------------------------|
+| **Description**             | Store any information inputted by a patient for later reference. |
+| **Actors**                  | - System Database (primary) <br> - Patient |
+| **Assumptions**             | - Patient does not yet have an account. <br> - Patient has an internet connection. |
+| **Steps**                   | 1. Patient provides their Name, Contact Information, Username, Password, and Personal Health Number during account creation. <br> 2. The provided encrypted information is passed to the system database. <br>  3. The database decrypts the information. <br> 4. A new entry is created in the accounts table in the database. <br> 5. The patient information is stored in that entry. | 
+| **Non-Functional**  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
+| **Issues**                  | What if the patient does not provide all the required information fields? |
+
+<br>**Table x**: Store Questionnaire Responses Use Case.
+| Use Case                | Store Questionnaire Responses     |
+|-------------------------|-------------------------|
+| **Description**             | Store any responses to the triage questionnaire from the patient in the system database. |
+| **Actors**                  | - System Database (primary) |
+| **Assumptions**             | - Patient has an account. <br> - The patient has just submitted a triage questionnaire. <br> - Patient has an internet connection. |
+| **Steps**                   | 1. The provided encrypted questionnaire questions and answers are passed to the system database. <br>  3. The database decrypts the information. 4. A new entry is created in the questionnaire table in the database. <br> 5. The patient username is used as the key and each response to a question is stored in a separate column. | 
+| **Non-Functional**  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
+| **Issues**                  | What if the patient does not answer all questions? |
+
+<br>**Table x**: Store Reccomendations Responses Use Case.
+| Use Case                | Store Reccomendations Responses     |
+|-------------------------|-------------------------|
+| **Description**             | Store any recommendation results to the patient triage questionnaire in the system database. |
+| **Actors**                  | - System Database (primary) |
+| **Assumptions**             | - The patient has an account. <br> The patient has submitted a triage questionnaire. <br> - Mister Ed system or Medical Professional have submitted recommendations. |
+| **Steps**                   | 1. The provided encrypted recommendations are passed to the system database. <br>  3. The database decrypts the information. 4. A new entry is created in the recommendation table in the database. <br> 5. The patient username and questionnaire ID are used as the key and the recommendation and source of recommendation are stored in that entry. | 
+| **Non-Functional**  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
+| **Issues**                  | What if the recommendation came from a Medical Professional, should their name be added to the database entry? |
+
+<br>**Table x**: Calculate ED Wait Time and Capacity Use Case.
+| Use Case                | Calculate ED Wait Time and Capacity     |
+|-------------------------|-------------------------|
+| **Description**             | Calculate an ED's current wait time and capacity percentage from waiting room records. |
+| **Actors**                  | - System Database (primary) <br> |
+| **Assumptions**             | - System Database waiting room records have been recently updated. |
+| **Steps**                   | 1. Pick ED to perform calculations for based off request or timeout. <br> 2. From the ED table get the number of beds in use and the number of total beds to get ED capacity. <br>  3. From the ED table get the number of medical staff currently working and the ED capacity percentage to calculate wait time based on emergency severity. 4. Update ED table capacity percentage and wait time columns. <br> 5. Update timeout timestamp. | 
+| **Non-Functional**  | **Efficency**: The time to perform calculations and save data must be less than 5 seconds. <br> **Accuracy**: Displayed estimated wait times must be within 10% of actual wait times. |
+| **Issues**                  | What is the most accurate way to split emergency severity to calculate wait times? |
+
+<br>**Table x**: Send Call Centre ED Update Use Case.
+| Use Case Inclusion       | Calculate ED Wait Time and Capacity *includes* Send Call Centre ED Update    |
+|-------------------------|-------------------------|
+| **Description**             | Send calculated ED capacity percentage and wait time information to the call centre so they can notify the next patients on the waiting list. |
+| **Actors**                  | - System Database (primary) |
+| **Assumptions**             | - ED calculations have just been performed and saved in the System Database. |
+| **Steps**                   | 1. Database collects ED Name, Capacity Percentage, and Wait Time. <br> 2. The information is encrypted for transmission. <br>  3. The database transmits the information to the Call Centre. | 
+| **Non-Functional**  | **Security**: The patient data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
+| **Issues**                  | What if the call centre does not want constant updates? |
+
 
 
 
