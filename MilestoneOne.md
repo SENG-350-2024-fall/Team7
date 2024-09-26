@@ -44,7 +44,7 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 | **Actors**                  | - Patient (primary) |
 | **Assumptions**             | -The patient enters their symptoms accurately.  |
 | **Steps**                   |1. The patient selects the option to enter symptom information. <br>2. The system provides the patient with a questionnaire to gather medical details. <br> 3. The patient inputs their symptoms. <br> 4. The system stores this information for analysis.  |
-| **Non-Functional** | - The system must be intuitive and simple to use for all users. |
+| **Non-Functional** | **Usability**: The system must be intuitive and simple to use for all users. |
 | **Issues**                  | - Patients may provide vague or inaccurate information, which will affect the virtual triage result.  |
 
 <br>**Table x**: View Treatment Options Use Case.
@@ -54,7 +54,7 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 | **Actors**                  | - Patient (primary) |
 | **Assumptions**             | - The patient has completed symptom input. |
 | **Steps**                   | 1. After entering symptoms, the patient views the suggested treatment options. <br> 2. The system displays recommendations based on the severity of the condition. <br> 3. The patient reviews and selects the appropriate option. | 
-| **Non-Functional** | - The treatment recommendations must be based on up-to-date medical standards and guidelines. |
+| **Non-Functional** | **Accuracy**: The treatment recommendations must be based on up-to-date medical standards and guidelines. |
 | **Issues**                  | - Patients may not follow system recommendations.  |
 
 <br>**Table x**: Enter ED Queue Use Case.
@@ -64,7 +64,7 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 | **Actors**                  | - Patient (primary) |
 | **Assumptions**             | - The system accurately assesses the ED load and provides a reasonable waiting time.  |
 | **Steps**                   | 1. The patient decides to enter the ED queue based on the system recommendation. <br> 2. The system assigns the patient a place in the queue and provides an estimated wait time. <br> 3. The patient waits at home and receives a notification when it is their turn to visit the ED. | 
-| **Non-Functional** |- The system must be accurate in estimating waiting times to avoid overcrowding at the ED. |
+| **Non-Functional** | **Accuracy**: The system must be accurate in estimating waiting times to avoid overcrowding at the ED. |
 | **Issues**                | - Delays in the system notifying the patient could cause issues with estimated ED wait times. |
 
 
@@ -181,7 +181,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | **Assumptions**             | - Patient does not yet have an account. <br> - Patient has an internet connection. |
 | **Steps**                   | 1. Patient provides their Name, Contact Information, Username, Password, and Personal Health Number during account creation. <br> 2. The provided encrypted information is passed to the system database. <br>  3. The database decrypts the information. <br> 4. A new entry is created in the accounts table in the database. <br> 5. The patient information is stored in that entry. | 
 | **Non-Functional**  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
-| **Issues**                  | What if the patient does not provide all the required information fields? |
+| **Issues**                  | - What if the patient does not provide all the required information fields? |
 
 <br>**Table x**: Store Questionnaire Responses Use Case.
 | Use Case                | Store Questionnaire Responses     |
@@ -191,7 +191,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | **Assumptions**             | - Patient has an account. <br> - The patient has just submitted a triage questionnaire. <br> - Patient has an internet connection. |
 | **Steps**                   | 1. The provided encrypted questionnaire questions and answers are passed to the system database. <br>  3. The database decrypts the information. 4. A new entry is created in the questionnaire table in the database. <br> 5. The patient username is used as the key and each response to a question is stored in a separate column. | 
 | **Non-Functional**  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
-| **Issues**                  | What if the patient does not answer all questions? |
+| **Issues**                  | - What if the patient does not answer all questions? |
 
 <br>**Table x**: Store Reccomendations Responses Use Case.
 | Use Case                | Store Reccomendations Responses     |
@@ -201,7 +201,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | **Assumptions**             | - The patient has an account. <br> The patient has submitted a triage questionnaire. <br> - Mister Ed system or Medical Professional have submitted recommendations. |
 | **Steps**                   | 1. The provided encrypted recommendations are passed to the system database. <br>  3. The database decrypts the information. 4. A new entry is created in the recommendation table in the database. <br> 5. The patient username and questionnaire ID are used as the key and the recommendation and source of recommendation are stored in that entry. | 
 | **Non-Functional**  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
-| **Issues**                  | What if the recommendation came from a Medical Professional, should their name be added to the database entry? |
+| **Issues**                  | - What if the recommendation came from a Medical Professional, should their name be added to the database entry? |
 
 <br>**Table x**: Calculate ED Wait Time and Capacity Use Case.
 | Use Case                | Calculate ED Wait Time and Capacity     |
@@ -211,7 +211,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | **Assumptions**             | - System Database waiting room records have been recently updated. |
 | **Steps**                   | 1. Pick ED to perform calculations for based off request or timeout. <br> 2. From the ED table get the number of beds in use and the number of total beds to get ED capacity. <br>  3. From the ED table get the number of medical staff currently working and the ED capacity percentage to calculate wait time based on emergency severity. 4. Update ED table capacity percentage and wait time columns. <br> 5. Update timeout timestamp. | 
 | **Non-Functional**  | **Efficency**: The time to perform calculations and save data must be less than 5 seconds. <br> **Accuracy**: Displayed estimated wait times must be within 10% of actual wait times. |
-| **Issues**                  | What is the most accurate way to split emergency severity to calculate wait times? |
+| **Issues**                  | - What is the most accurate way to split emergency severity to calculate wait times? |
 
 <br>**Table x**: Send Call Centre ED Update Use Case.
 | Use Case Inclusion       | Calculate ED Wait Time and Capacity *includes* Send Call Centre ED Update    |
@@ -221,7 +221,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | **Assumptions**             | - ED calculations have just been performed and saved in the System Database. |
 | **Steps**                   | 1. Database collects ED Name, Capacity Percentage, and Wait Time. <br> 2. The information is encrypted for transmission. <br>  3. The database transmits the information to the Call Centre. | 
 | **Non-Functional**  | **Security**: The patient data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
-| **Issues**                  | What if the call centre does not want constant updates? |
+| **Issues**                  | - What if the call centre does not want constant updates? |
 
 
 
@@ -243,7 +243,7 @@ Figure x, below, outlines the use cases that may be executed by the Call Center.
 | **Assumptions**     | - CallCenterEmployee is logged in. <br> - CallCenterEmployee has the correct permissions to view the patient queue.|
 | **Steps**    | 1. CallCenterEmployee selects the "View Queue" option. <br> 2. The CallCenterEmployee is shown the patient queue.|
 | **Non-Functional**  |     **Efficency**: Queue must load and be shown to the CallCenterEmployee in under 3 seconds.                                                         |
-| **Issues**          |   What happens if the queue is empty?      |
+| **Issues**          | - What happens if the queue is empty?      |
 
 
 
@@ -255,7 +255,6 @@ Figure x, below, outlines the use cases that may be executed by the Call Center.
 | **Assumptions**     | - CallCenterEmployee is currently viewing the queue. <br> - CallCenterEmployee has correct permissions to view the patient information page.|
 | **Steps**           | 1. CallCenterEmpoloyee selects a patient from the queue. <br> 2. CallCenterEmployee chooses "View Info". <br> 3. CallCenterEmployee is shown the patients' information page. |
 | **Non-Functional**  |    **Traceability**: Must track and log who views the information page for each patient. |
-| **Issues**          |                                                                |
 
 
 <br>**Table x**: CallPatient Use Case.
@@ -263,10 +262,10 @@ Figure x, below, outlines the use cases that may be executed by the Call Center.
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | **Description**     |  Call the patient and inform them that there is a spot in the ED available to them. |
 | **Actors**          | - CallCenterEmployee (primary) <br> - Patient
-| **Assumptions**     | - CallCenterEmployee is currently viewing the patient information page. <br>- Assume that the Patient answers the call. <br> Patient hasn't changed their mind about going to the  ED.|
+| **Assumptions**     | - CallCenterEmployee is currently viewing the patient information page. <br>- Assume that the Patient answers the call. <br> - Patient hasn't changed their mind about going to the  ED.|
 | **Steps**           | 1. CallCenterEmployee clicks on "Call Patient". <br> 2. A call is sent to the Patient. <br> 3. CallCenterEmployee informs the patient that there is a spot available in the ED for them. <br> 4. The patient confirms that they will be going into the ED. |
-| **Non-Functional**  |   **Privacy**: Must verify that the person on the phone is the Patient before discussing medical information.                                                      |
-| **Issues**          |      What happens if the Patient doesn't pick up?                                                          |
+| **Non-Functional**  |  **Privacy**: Must verify that the person on the phone is the Patient before discussing medical information.                                                      |
+| **Issues**          | - What happens if the Patient doesn't pick up?                                                          |
 
 
 
@@ -278,4 +277,4 @@ Figure x, below, outlines the use cases that may be executed by the Call Center.
 | **Assumptions**     | - The CallCenterEmployee is currently viewing the Patient information page.  <br>- The patient has been called and confirmed that they will be going into the ED.|
 | **Steps**           | 1. CallCenterEmployee clicks the "Notify ED" button. <br> 2. Notification is sent out to the ED that the Patient will be coming in.  |
 | **Non-Functional**  |     **Security**: Data is sensitive and must be encrypted and sent over a secure communication network. <br> **Efficiency**: Process is time sensitive and notification must be sent to the ED within 10 seconds.                                         |
-| **Issues**          |  How to forward Patient information to the ED?                                                              |
+| **Issues**          | - How to forward Patient information to the ED?                                                              |
