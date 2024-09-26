@@ -1,6 +1,6 @@
 We split our Use Case Diagram into five smaller diagrams based on each use case's primary actor, as seen in the following sections.
 
-The Mister Ed system is a medical information system that enhances resources for emergency departments (EDs). Its purpose is to reduce crowded wait rooms and improve efficiency of patient flow. Its main feature is virtual triage which allows users to assess their symptoms and determine whether they should visit an ED or look for other treatments. This helps reduce unnecessary ED visits, taking the load off hospitals. <br>
+The Mister Ed system is a medical information system that enhances resources for emergency departments (EDs). Its purpose is to reduce crowded waitrooms and improve efficiency of patient flow. Its main feature is virtual triage which allows users to assess their symptoms and determine whether they should visit an ED or look for other treatments. This helps reduce unnecessary ED visits, taking the load off hospitals. <br>
 
 The system also allows patients and medical staff to view the ED waitlist which provides real-time information on the capacity of local hospitals. This feature helps patients decide the best time and place to seek care while distributing patient loads across multiple locations. The virtual triage feature in Mister Ed provides recommendations which could include visiting a clinic, self-care instructions, or waiting at home until it’s time for an ED visit. The system notifies patients when to proceed to the hospital.<br>
 
@@ -21,7 +21,7 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 | Description             | Create a system profile and configure system access for a medical staff member, call center operator, or admin.  |
 | Actors                  | - Admin (primary) |
 | Assumptions             | - Admin is logged in to the system. |
-| Steps                   | 1. Generate a username by concatenating the user's first and last name, as well as a number representing the number of users currently in the system with that name. <br> 2. Generate a temporary password. <br> 3. Enter information about the user's position in their respective company (e.g., ED Nurse, ED Receptionist, Call Centre Manager). <br> 4. Configure what parts of the system the user has access to. <br> 5. Configure the level of patient information the user has access to. <br> 6. Send an email to the user's provided email with their temporary password. | 
+| Steps                   | 1. Generate a username by concatenating the user's first and last name, as well as a number representing the number of users currently in the system with that name. <br> 2. Generate a temporary password. <br> 3. Enter information about the user's position in their respective company (e.g., ED Nurse, ED Receptionist, Call Centre Manager). <br> 4. Configure what parts of the system the user has access to. <br> 5. Configure the level of patient information the user has access to. <br> 6. Send an email to the user's provided email with their temporary password. | 
 | Non-Functional          | **Security**: An admin must not be able to create a user with more access than themselves. <br> **Security**: An admin must enter their password before creating an account. |
 | Issues                  | - What if a user quits or is fired? |
 
@@ -31,7 +31,7 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 | Description             | View the system profile of a medical staff member, call center operator, or admin. |
 | Actors                  | - Admin (primary) |
 | Assumptions             | - Admin is logged in to the system. <br> - User profile has already been created. |
-| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. | 
+| Steps                   | 1. Search for a user by username, position, or company. <br> 2. Click on the user to view the user's profile. | 
 | Non-Functional          | **Security**: User password must be obfuscated. <br> **Efficiency**: Search results must appear within 5 seconds. |
 | Issues                  | - What if the system fails to match any user to a given search? |
 
@@ -39,7 +39,7 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 | Use Case Extension      | Modify User Profile *extends* View User Profile |
 |-------------------------|-------------------------|
 | Description             | Admin decides to edit a profile that they are currently viewing. |
-| Steps                   | 1. Click the "Edit" button to edit the user's profile. <br> 2. Make the desired changes. <br> 3. Click the "Save" button to confirm the changes. | 
+| Steps                   | 1. Click the "Edit" button to edit the user's profile. <br> 2. Make the desired changes. <br> 3. Click the "Save" button to confirm the changes. | 
 | Non-Functional          | **Security**: An admin must not be able to modify a user's password. |
 | Issues                  | - What if someone needs a history of who has modified a given user's profile? |
 
@@ -54,8 +54,8 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 | Use Case Extension      | Modify User Access *extends* View User Access |
 |-------------------------|-------------------------|
 | Description             | Admin decides to modify the system access for a profile that they are currently viewing. |
-| Steps                   | 1. Click the "Edit" button to edit the user's access. <br> 2. Make the desired changes. <br> 3. Click the "Save" button to confirm the changes. | 
-| Non-Functional          | **Security**: An admin must not be able to grant or revoke access that they themselves do not have. |
+| Steps                   | 1. Click the "Edit" button to edit the user's access. <br> 2. Make the desired changes. <br> 3. Click the "Save" button to confirm the changes. | 
+| Non-Functional          | **Security**: An admin must not be able to grant or revoke access that is higher than their own access. |
 | Issues                  | - What if the admin attempts to modify their own access, or that of another admin? |
 
 ## Medical Staff Use Cases
@@ -99,7 +99,7 @@ Figure 2, below, outlines the use cases that may be followed by medical staff wh
 |-------------------------|-------------------------|
 | **Description**         | Medical staff can view the current triage queue to prioritize patients based on severity, registration time, and other factors. |
 | **Actors**              | - Medical Staff (primary)|
-| **Assumptions**         | - The system updates the triage queue in real time. <br> - Patients are properly registered and categorized based on triage requirements. |
+| **Assumptions**         | - The system updates the triage queue in real-time. <br> - Patients are properly registered and categorized based on triage requirements. |
 | **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. The system displays the list of patients in the triage queue. <br> 3. Staff reviews the queue, with patients sorted by severity, registration time, or custom criteria. <br> 4. Staff selects patients for triage or treatment based on priority. |
 | **Non-Functional (Optional)** | **Security**: Access to the triage queue should be restricted to authorized personnel.|
 | **Issues**              | - Handling high volumes of patients in the queue without overwhelming the system. <br> - Prioritization fairness and accuracy (e.g., ensuring that the most critical cases are prioritized properly). |
@@ -173,7 +173,7 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 <br>**Table x**: Register/Login Use Case.
 | Use Case                | Register/Login     |
 |-------------------------|-------------------------|
-| Description             | The patient registers if they are a first time user or logs into the Mister Ed system using their credentials. This ensures secure access to the system. |
+| Description             | The patient registers if they are a first-time user or logs into the Mister Ed system using their credentials. This ensures secure access to the system. |
 | Actors                  | - Patient (primary) |
 | Assumptions             | - The patient has access to a device that is connected to the internet. <br>- The system securely stores patients' login credentials.|
 | Steps                   | 1. The patient opens the Mister Ed system. <br>2. The patient either enters their login credentials or creates a new account. <br> 3. If creating a new account, the patient fills out the necessary details. <br> 4. The system authenticates the patient’s credentials. <br>5. The patient successfully gains access to the system. | 
@@ -188,9 +188,9 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 | Description             |  The patient views the current load of emergency departments in their location, helping them choose the facility with the shortest wait time.|
 | Actors                  | - Patient (primary) |
 | Assumptions             | - The system has accurate data on ED load. <br>- The patient is already logged into the system. |
-| Steps                   | 1. The patient selects the option to view ED load. <br> 2. The system displays a list of nearby EDs with the current load. <br> 3. The patient views the information and decides what ED to visit based on the load. | 
+| Steps                   | 1. The patient selects the option to view the ED load. <br> 2. The system displays a list of nearby EDs with the current load. <br> 3. The patient views the information and decides what ED to visit based on the load. | 
 | Variations (Optional)   |  |
-| Non-Functional (Optional) | **Security**: The system must provide data in real time on the current ED load. |
+| Non-Functional (Optional) | **Security**: The system must provide data in real-time on the current ED load. |
 | Issues                  | - System may delay in providing ED load updates |
 
 
@@ -211,9 +211,9 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 | Description             | The patient can view treatment options based on their symptoms. The system will recommend visiting an ED, going to a general practitioner (GP), or staying at home. |
 | Actors                  | - Patient (primary) |
 | Assumptions             | - The patient has completed symptom input. |
-| Steps                   | 1. After entering symptoms, the patient views suggested treatment options. <br> 2. The system displays recommendations based on the severity of the condition. <br> 3. The patient reviews and selects the appropriate option. | 
+| Steps                   | 1. After entering symptoms, the patient views the suggested treatment options. <br> 2. The system displays recommendations based on the severity of the condition. <br> 3. The patient reviews and selects the appropriate option. | 
 | Variations (Optional)   |  |
-| Non-Functional (Optional) | - The treatment recommendations must be based on up to date medical standards and guidelines. |
+| Non-Functional (Optional) | - The treatment recommendations must be based on up-to-date medical standards and guidelines. |
 | Issues                  | - Patients may not follow system recommendations.  |
 
 <br>**Table x**: Enter ED Queue Use Case.
@@ -241,9 +241,9 @@ Figure x, below, outlines the use cases that may be executed by the Call Center.
 <br>**Table x**: ViewQueue Use Case.
 | **Use Case**        | View Queue |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
-| **Description**     |  View the queue of patients that have requested notification. |
+| **Description**     |  View the queue of patients who have requested notification. |
 | **Actors**          | - CallCenterEmployee (primary)
-| **Assumptions**     | - CallCenterEmployee is logged in. <br> - CallCenterEmployee has correct permissions to view the patient queue.|
+| **Assumptions**     | - CallCenterEmployee is logged in. <br> - CallCenterEmployee has the correct permissions to view the patient queue.|
 | **Steps**    | 1. CallCenterEmployee selects the "View Queue" option. <br> 2. The CallCenterEmployee is shown the patient queue.|
 | **Non-Functional**  |     **Efficency**: Queue must load and be shown to the CallCenterEmployee in under 3 seconds.                                                         |
 | **Issues**          |   What happens if the queue is empty?      |
@@ -256,7 +256,7 @@ Figure x, below, outlines the use cases that may be executed by the Call Center.
 | **Description**     |  View the information page for the currently selected patient. |
 | **Actors**          | - CallCenterEmployee (primary)
 | **Assumptions**     | - CallCenterEmployee is currently viewing the queue. <br> - CallCenterEmployee has correct permissions to view the patient information page.|
-| **Steps**           | 1. CallCenterEmpoloyee selects a patient from the queue. <br> 2. CallCenterEmployee and chooses "View Info". <br> 3. CallCenterEmployee is shown the patients information page. |
+| **Steps**           | 1. CallCenterEmpoloyee selects a patient from the queue. <br> 2. CallCenterEmployee chooses "View Info". <br> 3. CallCenterEmployee is shown the patients' information page. |
 | **Non-Functional**  |    **Traceability**: Must track and log who views the information page for each patient. |
 | **Issues**          |                                                                |
 
@@ -266,8 +266,8 @@ Figure x, below, outlines the use cases that may be executed by the Call Center.
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | **Description**     |  Call the patient and inform them that there is a spot in the ED available to them. |
 | **Actors**          | - CallCenterEmployee (primary) <br> - Patient
-| **Assumptions**     | - CallCenterEmployee is currently viewing the patient information page. <br>- Assume that Patient picks up. <br> Patient hasn't changed their mind about going to the  ED.|
-| **Steps**           | 1. CallCenterEmployee clicks on "Call Patient". <br> 2. Call is sent to the Patient. <br> 3. CallCenterEmployee informs the patient that there is a spot available in the ED for them. <br> 4. Patient confirms that they will be going into the ED. |
+| **Assumptions**     | - CallCenterEmployee is currently viewing the patient information page. <br>- Assume that the Patient answers the call. <br> Patient hasn't changed their mind about going to the  ED.|
+| **Steps**           | 1. CallCenterEmployee clicks on "Call Patient". <br> 2. A call is sent to the Patient. <br> 3. CallCenterEmployee informs the patient that there is a spot available in the ED for them. <br> 4. The patient confirms that they will be going into the ED. |
 | **Non-Functional**  |   **Privacy**: Must verify that the person on the phone is the Patient before discussing medical information.                                                      |
 | **Issues**          |      What happens if the Patient doesn't pick up?                                                          |
 
@@ -282,5 +282,3 @@ Figure x, below, outlines the use cases that may be executed by the Call Center.
 | **Steps**           | 1. CallCenterEmployee clicks the "Notify ED" button. <br> 2. Notification is sent out to the ED that the Patient will be coming in.  |
 | **Non-Functional**  |     **Security**: Data is sensitive and must be encrypted and sent over a secure communication network. <br> **Efficiency**: Process is time sensitive and notification must be sent to the ED within 10 seconds.                                         |
 | **Issues**          |  How to forward Patient information to the ED?                                                              |
-
-
