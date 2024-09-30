@@ -1,3 +1,5 @@
+# Mister Ed Use Cases
+### Team 7 - Luca Bolzonello, Tristan Cornwell, Paisley Lewis, Tay Munro, Lauchlan Paulson
 
 ### Table of Contents:
 
@@ -378,3 +380,14 @@ Figure 5, below, outlines the use cases that may be executed by the Call Center.
 | **Steps**           | 1. CallCenterEmployee clicks the "Notify ED" button. <br> 2. Notification is sent out to the ED that the Patient will be coming in.  |
 | **Non-Functional**  |     **Security**: Data is sensitive and must be encrypted and sent over a secure communication network. <br> **Efficiency**: Process is time sensitive and notification must be sent to the ED within 10 seconds.                                         |
 | **Issues**          | - How to forward Patient information to the ED?                                                              |
+
+
+## Contributions
+| Member Name          | Description of work done                                                           |
+|----------------------|------------------------------------------------------------------------------------|
+|Luca Bolzonello       |                                                                                    |
+|Tristan Cornwell      |                                                                                    |
+|Paisley Lewis        |                                                                                    |
+|Tay Munro     |                                                                                    |
+|Lauchlan Paulson       |                                                                                    |
+
