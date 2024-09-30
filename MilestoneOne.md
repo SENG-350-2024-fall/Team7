@@ -8,13 +8,13 @@ In addition to these features, Mister Ed facilitates patient registration for th
 
 
 ## Patient Use Cases
-Figure X, below, outlines the use cases that may be executed by a patient using the system. Tables 1-5 describe each use case in more detail.
+Figure 1, below, outlines the use cases that may be executed by a patient using the system. Tables 1-5 describe each use case in more detail.
 
 ![Use Case Diagram](UCDs/Patient_UCD.png)
 
-**Figure x:** A Use Case Diagram describing the Mister Ed system from the perspective of the Patient actor.
+**Figure 1:** A Use Case Diagram describing the Mister Ed system from the perspective of the Patient actor.
 
-<br>**Table x**: Register/Login Use Case.
+<br>**Table 1**: Register/Login Use Case.
 | Use Case                | Register/Login     |
 |-------------------------|-------------------------|
 | **Description**             | The patient registers if they are a first-time user or logs into the Mister Ed system using their credentials. This ensures secure access to the system. |
@@ -26,7 +26,7 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 | **Issues**                  | - Forgotten credentials or system errors during login.  |
 
 
-<br>**Table x**: View ED Load Use Case.
+<br>**Table 2**: View ED Load Use Case.
 | Use Case                | View ED Load     |
 |-------------------------|-------------------------|
 | **Description**             |  The patient views the current load of emergency departments in their location, helping them choose the facility with the shortest wait time.|
@@ -37,7 +37,7 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 | **Issues**                  | - System may delay in providing ED load updates |
 
 
-<br>**Table x**: Enter Symptom Information Use Case.
+<br>**Table 3**: Enter Symptom Information Use Case.
 | Use Case                | Enter Symptom Information    |
 |-------------------------|-------------------------|
 | **Description**             | The patient enters their symptoms into the system for a virtual triage to determine the urgency of their condition. |
@@ -47,7 +47,7 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 | **Non-Functional** | **Usability**: The system must be intuitive and simple to use for all users. |
 | **Issues**                  | - Patients may provide vague or inaccurate information, which will affect the virtual triage result.  |
 
-<br>**Table x**: View Treatment Options Use Case.
+<br>**Table 4**: View Treatment Options Use Case.
 | Use Case                | View Treatment Options |
 |-------------------------|-------------------------|
 | **Description**             | The patient can view treatment options based on their symptoms. The system will recommend visiting an ED, going to a general practitioner (GP), or staying at home. |
@@ -57,7 +57,7 @@ Figure X, below, outlines the use cases that may be executed by a patient using 
 | **Non-Functional** | **Accuracy**: The treatment recommendations must be based on up-to-date medical standards and guidelines. |
 | **Issues**                  | - Patients may not follow system recommendations.  |
 
-<br>**Table x**: Enter ED Queue Use Case.
+<br>**Table 5**: Enter ED Queue Use Case.
 | Use Case                | Enter ED Queue    |
 |-------------------------|-------------------------|
 | **Description**             | The patient enters the queue for an ED if the system recommends this action. The patient can wait at home until it is their turn. |
@@ -116,13 +116,13 @@ Figure 2, below, outlines the use cases that may be followed by medical staff wh
 
 
 ## Admin Use Cases
-Figure 1, below, outlines the use cases that may be executed by a system admin. Tables 1-5 describe each use case in more detail.
+Figure 3, below, outlines the use cases that may be executed by a system admin. Tables 1-5 describe each use case in more detail.
 
 ![Use Case Diagram](UCDs/Admin_UCD.png)
 
-**Figure 1:** A Use Case Diagram describing the Mister Ed system from the perspective of the Admin actor.
+**Figure 3:** A Use Case Diagram describing the Mister Ed system from the perspective of the Admin actor.
 
-<br>**Table 1**: Create User Profile Use Case.
+<br>**Table 10**: Create User Profile Use Case.
 | Use Case                | Create User Profile     |
 |-------------------------|-------------------------|
 | Description             | Create a system profile and configure system access for a medical staff member, call center operator, or admin.  |
@@ -132,7 +132,7 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 | Non-Functional          | **Security**: An admin must not be able to create a user with more access than themselves. <br> **Security**: An admin must enter their password before creating an account. |
 | Issues                  | - What if a user quits or is fired? |
 
-<br>**Table 2**: View User Profile Use Case.
+<br>**Table 11**: View User Profile Use Case.
 | Use Case                | View User Profile     |
 |-------------------------|-------------------------|
 | Description             | View the system profile of a medical staff member, call center operator, or admin. |
@@ -142,7 +142,7 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 | Non-Functional          | **Security**: User password must be obfuscated. <br> **Efficiency**: Search results must appear within 5 seconds. |
 | Issues                  | - What if the system fails to match any user to a given search? |
 
-<br>**Table 3**: Modify User Profile Use Case.
+<br>**Table 12**: Modify User Profile Use Case.
 | Use Case Extension      | Modify User Profile *extends* View User Profile |
 |-------------------------|-------------------------|
 | Description             | Admin decides to edit a profile that they are currently viewing. |
@@ -150,14 +150,14 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 | Non-Functional          | **Security**: An admin must not be able to modify a user's password. |
 | Issues                  | - What if someone needs a history of who has modified a given user's profile? |
 
-<br>**Table 4**: View User Access Use Case.
+<br>**Table 13**: View User Access Use Case.
 | Use Case Extension      | View User Access *extends* View User Profile |
 |-------------------------|-------------------------|
 | Description             | Admin decides to view the system access for a profile that they are currently viewing. |
 | Steps                   | 1. Click on the "Access" button to view the user's access to all parts of the system. |
 | Issues                  | - What if a user has an account with no access to any part of the system? |
 
-<br>**Table 5**: Modify User Access Use Case.
+<br>**Table 14**: Modify User Access Use Case.
 | Use Case Extension      | Modify User Access *extends* View User Access |
 |-------------------------|-------------------------|
 | Description             | Admin decides to modify the system access for a profile that they are currently viewing. |
@@ -167,13 +167,13 @@ Figure 1, below, outlines the use cases that may be executed by a system admin. 
 
 
 ## System Database Use Cases
-Figure 5, below, outlines the use cases that may be executed by the system database. Tables x-x describe each use case in more detail.
+Figure 4, below, outlines the use cases that may be executed by the system database. Tables x-x describe each use case in more detail.
 
 ![Use Case Diagram](UCDs/Database_UCD.png)
 
-**Figure 5:** A Use Case Diagram describing the Mister Ed system from the perspective of the System Database actor.
+**Figure 4:** A Use Case Diagram describing the Mister Ed system from the perspective of the System Database actor.
 
-<br>**Table x**: Store Patient Information Use Case.
+<br>**Table 15**: Store Patient Information Use Case.
 | Use Case                | Store Patient Information     |
 |-------------------------|-------------------------|
 | **Description**             | Store any information inputted by a patient for later reference. |
@@ -183,7 +183,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | **Non-Functional**  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
 | **Issues**                  | - What if the patient does not provide all the required information fields? |
 
-<br>**Table x**: Store Questionnaire Responses Use Case.
+<br>**Table 16**: Store Questionnaire Responses Use Case.
 | Use Case                | Store Questionnaire Responses     |
 |-------------------------|-------------------------|
 | **Description**             | Store any responses to the triage questionnaire from the patient in the system database. |
@@ -193,7 +193,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | **Non-Functional**  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
 | **Issues**                  | - What if the patient does not answer all questions? |
 
-<br>**Table x**: Store Reccomendations Responses Use Case.
+<br>**Table 17**: Store Reccomendations Responses Use Case.
 | Use Case                | Store Reccomendations Responses     |
 |-------------------------|-------------------------|
 | **Description**             | Store any recommendation results to the patient triage questionnaire in the system database. |
@@ -203,7 +203,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | **Non-Functional**  | **Security**: The data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
 | **Issues**                  | - What if the recommendation came from a Medical Professional, should their name be added to the database entry? |
 
-<br>**Table x**: Calculate ED Wait Time and Capacity Use Case.
+<br>**Table 18**: Calculate ED Wait Time and Capacity Use Case.
 | Use Case                | Calculate ED Wait Time and Capacity     |
 |-------------------------|-------------------------|
 | **Description**             | Calculate an ED's current wait time and capacity percentage from waiting room records. |
@@ -213,7 +213,7 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 | **Non-Functional**  | **Efficency**: The time to perform calculations and save data must be less than 5 seconds. <br> **Accuracy**: Displayed estimated wait times must be within 10% of actual wait times. |
 | **Issues**                  | - What is the most accurate way to split emergency severity to calculate wait times? |
 
-<br>**Table x**: Send Call Centre ED Update Use Case.
+<br>**Table 19**: Send Call Centre ED Update Use Case.
 | Use Case Inclusion       | Calculate ED Wait Time and Capacity *includes* Send Call Centre ED Update    |
 |-------------------------|-------------------------|
 | **Description**             | Send calculated ED capacity percentage and wait time information to the call centre so they can notify the next patients on the waiting list. |
@@ -228,14 +228,14 @@ Figure 5, below, outlines the use cases that may be executed by the system datab
 
 ## Call Center Use Cases
 
-Figure x, below, outlines the use cases that may be executed by the Call Center. Tables x-x describe each use case in more detail.
+Figure 5, below, outlines the use cases that may be executed by the Call Center. Tables x-x describe each use case in more detail.
 
 
 ![Use Case Diagram](UCDs/CallCenter_UCD.png)
 
 **Figure 5:** A Use Case Diagram describing the Mister Ed system from the perspective of the Call Center actor.
 
-<br>**Table x**: ViewQueue Use Case.
+<br>**Table 20**: ViewQueue Use Case.
 | **Use Case**        | View Queue |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | **Description**     |  View the queue of patients who have requested notification. |
@@ -247,7 +247,7 @@ Figure x, below, outlines the use cases that may be executed by the Call Center.
 
 
 
-<br>**Table x**: ViewPatientInfo Use Case.
+<br>**Table 21**: ViewPatientInfo Use Case.
 | **Use Case**        | ViewPatientInfo|
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | **Description**     |  View the information page for the currently selected patient. |
@@ -257,7 +257,7 @@ Figure x, below, outlines the use cases that may be executed by the Call Center.
 | **Non-Functional**  |    **Traceability**: Must track and log who views the information page for each patient. |
 
 
-<br>**Table x**: CallPatient Use Case.
+<br>**Table 22**: CallPatient Use Case.
 | **Use Case**        | CallPatient|
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | **Description**     |  Call the patient and inform them that there is a spot in the ED available to them. |
@@ -269,7 +269,7 @@ Figure x, below, outlines the use cases that may be executed by the Call Center.
 
 
 
-<br>**Table x**: NotifyED Use Case.
+<br>**Table 23**: NotifyED Use Case.
 | **Use Case**        | NotifyED|
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | **Description**     |  Notify the ED that a patient will be coming in. |
