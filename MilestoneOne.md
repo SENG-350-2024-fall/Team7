@@ -33,14 +33,14 @@
     - [Notify ED Use Case.](#table-23-notify-ed-use-case)
 
 
-We split our Use Case Diagram into five smaller diagrams based on each use case's primary actor, as seen in the following sections.
 
-The Mister Ed system is a medical information system that enhances resources for emergency departments (EDs). Its purpose is to reduce time spent in crowded wait rooms and improve the efficiency of patient flow. Its main feature is virtual triage which allows users to assess their symptoms and receive recommendations. The virtual triage feature in Mister Ed provides recommendations which could include visiting a clinic, self-care instructions, or waiting at home until it’s time for an ED visit. The patient will see recommendations made by the app if their symptoms are common enough that the app is able to make a suggestion, otherwise, medical staff will be prompted to provide a recommendation. Based on the provided recommendation the patient can determine whether they should visit an ED or use alternate treatment methods. This helps reduce unnecessary ED visits, taking the load off hospitals. <br>
+The Mister Ed system is a medical information system that enhances resources for emergency departments (EDs). Its purpose is to reduce time spent in crowded wait rooms and improve the efficiency of patient flow. Its main feature is virtual triaging, wherein users assess their symptoms and receive recommendations for how to proceed with treatment. These recommendations include visiting a clinic, administering self-care, or waiting at home until it’s time for an ED visit. The system will provide recommendations autonomously if the patient's symptoms are common enough to diagnose easily. Otherwise, medical staff will be prompted to manually provide a recommendation. Based on the provided recommendation, the patient can determine whether they should visit an ED or use alternate treatment methods. This helps reduce unnecessary ED visits, taking some of the load off of EDs. <br>
 
-The system also allows patients and call center staff to view the ED waitlist which provides real-time information on the capacity of local hospitals. This feature helps patients decide the best time and place to seek care while distributing patient loads across multiple locations. The system provides capacity percentages and expected wait time based on emergency severity. This information can be used by patients to determine which ED to join a waitlist for and by call center staff to determine when to call a wait-listed patient to start travelling. Once a patient has received a recommendation from the virtual triage they can choose to join the waitlist for an ED, this allows a patient to wait their turn from the comfort of their own home. Being able to wait from home will reduce the amount of people in the ED and save patients the frustration of having to sit in a waiting room for hours. The call center will then notify patients when to proceed to the hospital.<br>
+The system also allows patients and call center staff to view the ED waitlist, which provides real-time information about local EDs. The system provides capacity percentages and expected wait times based on the assessed severity of the patient's condition. This information can be used by patients to decide which ED to join a waitlist for, and by call center staff to determine when to instruct a patient to come to their selected ED: once a patient has received a recommendation from the virtual triage, they can choose to join the waitlist for an ED, which allows them to wait their turn from the comfort of their own home; the call center will then notify patients when to proceed to the ED. Viewing this information helps patients decide on the best time and place for them to seek care while keeping patients evenly distributed across neighbouring locations.<br>
 
-In addition to these features, Mister Ed facilitates patient registration for the ED, reducing administrative tasks when patients arrive. The system integrates with the ED database, ensuring patient data is shared with healthcare providers. By connecting patients, medical staff, and emergency departments through virtual triage Mister Ed optimizes the use of healthcare resources, improves the overall patient experience, and reduces the load on medical staff.<br>
+In addition to these features, Mister Ed facilitates patient registration for the ED, reducing administrative tasks when patients arrive. By communicating with the ED database, the system shares patient data with healthcare providers before the patient arrives. By connecting patients, medical staff, and emergency departments, Mister Ed optimizes the use of healthcare resources, improves the overall patient experience, and reduces the load on medical staff.<br>
 
+The following sections describe the system's use cases in more detail, as seen from the perspective of each of its 5 actors: patients, medical staff, administrative users (admin), the system database, and the call center.
 
 
 <a name="patient-use-cases"></a>
@@ -88,7 +88,7 @@ Figure 1, below, outlines the use cases that may be executed by a patient using 
 | **Assumptions**             | - The patient enters their symptoms accurately.  |
 | **Steps**                   |1. The patient selects the option to enter symptom information. <br>2. The system provides the patient with a questionnaire to gather medical details. <br> 3. The patient inputs their symptoms. <br> 4. The system stores this information for analysis.  |
 | **Non-Functional** | **Usability**: The system must be intuitive and simple to use for all users. |
-| **Issues**                  | - How will virtual triage result be affected by patients providing vague or inaccurate information?  |
+| **Issues**                  | - How will virtual triage results be affected by patients providing vague or inaccurate information?  |
 
 <br>
 
@@ -157,7 +157,7 @@ Figure 2, below, outlines the use cases that may be followed by medical staff wh
 | **Assumptions**         | - The system has up-to-date patient information (symptoms, history). |
 | **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. Staff reviews the patient's symptoms and medical history. <br> 3. Based on data, the staff selects a recommendation option from the system’s interface. <br> 4. The recommendation is communicated to the patient through the system. |
 | **Non-Functional** | **Security**: Ensure recommendations are only made by authorized medical staff and not altered by unauthorized users.|
-| **Issues**              | - Legal implications of incorrect recommendations. <br> - Ensuring that recommendations are personalized and not purely algorithmic. |
+| **Issues**              | - What are the legal implications of an incorrect recommendation? |
 
 <br>
 
@@ -170,7 +170,7 @@ Figure 2, below, outlines the use cases that may be followed by medical staff wh
 | **Assumptions**         | - The system updates the triage queue in real-time. <br> - Patients are properly registered and categorized based on triage requirements. |
 | **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. The system displays the list of patients in the triage queue. <br> 3. Staff reviews the queue, with patients sorted by severity, registration time, or custom criteria. <br> 4. Staff selects patients for triage or treatment based on priority. |
 | **Non-Functional** | **Security**: Access to the triage queue should be restricted to authorized personnel.|
-| **Issues**              | - How should high volumes of patients in the queue be handled so the system is not overwhelmed. <br> - How to ensure prioritization fairness and accuracy? (e.g., ensuring that the most critical cases are prioritized properly). |
+| **Issues**              | - What if the system is overwhelmed by a large number of patients filling up the queues? <br> - What can we do to ensure prioritization fairness and accuracy (i.e., ensuring that the most critical cases are prioritized properly)? |
 
 
 <a name="admin-use-cases"></a>
@@ -337,7 +337,7 @@ Figure 5, below, outlines the use cases that may be executed by the Call Center.
 | **Assumptions**     | - Call Center Employee is logged in. <br> - Call Center Employee has the correct permissions to view the patient queue.|
 | **Steps**    | 1. Call Center Employee selects the "View Queue" option. <br> 2. The Call Center Employee is shown the patient queue.|
 | **Non-Functional**  |     **Efficiency**: Queue must load and be shown to the Call Center Employee in under 3 seconds.                                                         |
-| **Issues**          | - What happens if the queue is empty?      |
+| **Issues**          | - What if the queue is empty?      |
 
 
 
@@ -363,9 +363,9 @@ Figure 5, below, outlines the use cases that may be executed by the Call Center.
 | **Description**     |  Call the patient and inform them that there is a spot in the ED available to them. |
 | **Actors**          | - Call Center Employee (primary) <br> - Patient
 | **Assumptions**     | - Call Center Employee is currently viewing the patient information page. <br>- Assume that the Patient answers the call. <br> - Patient hasn't changed their mind about going to the  ED.|
-| **Steps**           | 1. Call Center Employee clicks on "Call Patient". <br> 2. A call is sent to the Patient. <br> 3. Call Center Employee informs the patient that there is a spot available in the ED for them. <br> 4. The patient confirms that they will be going into the ED. |
+| **Steps**           | 1. Call Center Employee clicks on "Call Patient". <br> 2. A call is sent to the patient. <br> 3. Call Center Employee informs the patient that there is a spot available in the ED for them. <br> 4. The patient confirms that they will be going into the ED. |
 | **Non-Functional**  |  **Privacy**: Must verify that the person on the phone is the Patient before discussing medical information.                                                      |
-| **Issues**          | - What happens if the Patient doesn't pick up?                                                          |
+| **Issues**          | - What if the patient doesn't pick up?                                                          |
 
 
 
@@ -378,9 +378,9 @@ Figure 5, below, outlines the use cases that may be executed by the Call Center.
 | **Description**     |  Notify the ED that a patient will be coming in. |
 | **Actors**          | - Call Center Employee (primary)
 | **Assumptions**     | - The Call Center Employee is currently viewing the Patient information page.  <br>- The patient has been called and confirmed that they will be going into the ED.|
-| **Steps**           | 1. Call Center Employee clicks the "Notify ED" button. <br> 2. Notification is sent out to the ED that the Patient will be coming in.  |
+| **Steps**           | 1. Call Center Employee clicks the "Notify ED" button. <br> 2. Notification is sent out to the ED that the patient will be coming in.  |
 | **Non-Functional**  |     **Security**: Data is sensitive and must be encrypted and sent over a secure communication network. <br> **Efficiency**: Process is time sensitive and notification must be sent to the ED within 10 seconds.                                         |
-| **Issues**          | - How to forward Patient information to the ED?                                                              |
+| **Issues**          | - What if the patient information fails to be forwarded to the ED?                                                              |
 
 
 ## Contributions
