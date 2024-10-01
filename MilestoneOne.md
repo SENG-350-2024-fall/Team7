@@ -1,5 +1,5 @@
 # Mister Ed Use Cases
-### Team 7 - Luca Bolzonello, Tristan Cornwell, Paisley Lewis, Tay Munro, Lauchlan Paulson
+### Team 7 - Luca Bolzonello, Tristan Cornwell, Paisley Lewis, Tay Munro, Lachlan Paulsen
 
 ### Table of Contents:
 
@@ -391,5 +391,5 @@ Figure 5, below, outlines the use cases that may be executed by the Call Center.
 |Tristan Cornwell      |   [Admin Use Cases](#admin-use-cases)                                                                                 |
 |Paisley Lewis        |    [System Database Use Cases](#system-database-use-cases)                                                                                |
 |Tay Munro     |   [Medical Staff Use Cases](#medical-staff-use-cases)                                                                                 |
-|Lauchlan Paulson       |  [Patient Use Cases](#patient-use-cases)                                                                                  |
+|Lachlan Paulsen       |  [Patient Use Cases](#patient-use-cases)                                                                                  |
 
