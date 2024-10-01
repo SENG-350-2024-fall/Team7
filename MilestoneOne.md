@@ -10,10 +10,10 @@
     - [View Treatment Options Use Case.](#table-4-view-treatment-options-use-case)
     - [Enter ED Queue Use Case.](#table-5-enter-ed-queue-use-case)
 - [Medical Staff Use Cases](#medical-staff-use-cases)
-    - [Review Symptoms.](#table-6-review-symptoms)
-    - [View Patient Medical History.](#table-7-view-patient-medical-history)
-    - [Make Recommendation.](#table-8-make-recommendation)
-    - [View Triage.](#table-9-view-triage)
+    - [Review Symptoms Use Case.](#table-6-review-symptoms-use-case)
+    - [View Patient Medical History Use Case.](#table-7-view-patient-medical-history-use-case)
+    - [Make Recommendation Use Case.](#table-8-make-recommendation-use-case)
+    - [View Triage Use Case.](#table-9-view-triage-use-case)
 - [Admin Use Cases](#admin-use-cases)
     - [Create User Profile Use Case.](#table-10-create-user-profile-use-case)
     - [View User Profile Use Case.](#table-11-view-user-profile-use-case)
@@ -23,23 +23,24 @@
 - [System Database Use Cases](#system-database-use-cases)
     - [Store Patient Information Use Case.](#table-15-store-patient-information-use-case)
     - [Store Questionnaire Responses Use Case.](#table-16-store-questionnaire-responses-use-case)
-    - [Store Reccomendations Responses Use Case.](#table-17-store-reccomendations-responses-use-case)
+    - [Store Recommendations Responses Use Case.](#table-17-store-recommendations-responses-use-case)
     - [Calculate ED Wait Time and Capacity Use Case.](#table-18-calculate-ed-wait-time-and-capacity-use-case)
-    - [Send Call Centre ED Update Use Case.](#table-19-send-call-centre-ed-update-use-case)
+    - [Send Call Center ED Update Use Case.](#table-19-send-call-center-ed-update-use-case)
 - [Call Center Use Cases](#call-center-use-cases)
-    - [ViewQueue Use Case.](#table-20-viewqueue-use-case)
-    - [ViewPatientInfo Use Case.](#table-21-viewpatientinfo-use-case)
-    - [CallPatient Use Case.](#table-22-callpatient-use-case)
-    - [NotifyED Use Case.](#table-23-notifyed-use-case)
+    - [View Queue Use Case.](#table-20-view-queue-use-case)
+    - [View Patient Info Use Case.](#table-21-view-patient-info-use-case)
+    - [Call Patient Use Case.](#table-22-call-patient-use-case)
+    - [Notify ED Use Case.](#table-23-notify-ed-use-case)
 
 
 We split our Use Case Diagram into five smaller diagrams based on each use case's primary actor, as seen in the following sections.
 
-The Mister Ed system is a medical information system that enhances resources for emergency departments (EDs). Its purpose is to reduce crowded waitrooms and improve efficiency of patient flow. Its main feature is virtual triage which allows users to assess their symptoms and determine whether they should visit an ED or look for other treatments. This helps reduce unnecessary ED visits, taking the load off hospitals. <br>
+The Mister Ed system is a medical information system that enhances resources for emergency departments (EDs). Its purpose is to reduce time spent in crowded wait rooms and improve the efficiency of patient flow. Its main feature is virtual triage which allows users to assess their symptoms and receive recommendations. The virtual triage feature in Mister Ed provides recommendations which could include visiting a clinic, self-care instructions, or waiting at home until it’s time for an ED visit. The patient will see recommendations made by the app if their symptoms are common enough that the app is able to make a suggestion, otherwise, medical staff will be prompted to provide a recommendation. Based on the provided recommendation the patient can determine whether they should visit an ED or use alternate treatment methods. This helps reduce unnecessary ED visits, taking the load off hospitals. <br>
 
-The system also allows patients and medical staff to view the ED waitlist which provides real-time information on the capacity of local hospitals. This feature helps patients decide the best time and place to seek care while distributing patient loads across multiple locations. The virtual triage feature in Mister Ed provides recommendations which could include visiting a clinic, self-care instructions, or waiting at home until it’s time for an ED visit. The system notifies patients when to proceed to the hospital.<br>
+The system also allows patients and call center staff to view the ED waitlist which provides real-time information on the capacity of local hospitals. This feature helps patients decide the best time and place to seek care while distributing patient loads across multiple locations. The system provides capacity percentages and expected wait time based on emergency severity. This information can be used by patients to determine which ED to join a waitlist for and by call center staff to determine when to call a wait-listed patient to start travelling. Once a patient has received a recommendation from the virtual triage they can choose to join the waitlist for an ED, this allows a patient to wait their turn from the comfort of their own home. Being able to wait from home will reduce the amount of people in the ED and save patients the frustration of having to sit in a waiting room for hours. The call center will then notify patients when to proceed to the hospital.<br>
 
 In addition to these features, Mister Ed facilitates patient registration for the ED, reducing administrative tasks when patients arrive. The system integrates with the ED database, ensuring patient data is shared with healthcare providers. By connecting patients, medical staff, and emergency departments through virtual triage Mister Ed optimizes the use of healthcare resources, improves the overall patient experience, and reduces the load on medical staff.<br>
+
 
 
 <a name="patient-use-cases"></a>
@@ -61,7 +62,7 @@ Figure 1, below, outlines the use cases that may be executed by a patient using 
 | **Steps**                   | 1. The patient opens the Mister Ed system. <br>2. The patient either enters their login credentials or creates a new account. <br> 3. If creating a new account, the patient fills out the necessary details. <br> 4. The system authenticates the patient’s credentials. <br>5. The patient successfully gains access to the system. | 
 | **Variations**   | #2 The patient may opt for a password reset if they forget their credentials. |
 | **Non-Functional** | **Security**: The login system must adhere to data privacy regulations and ensure secure encryption. |
-| **Issues**                  | - Forgotten credentials or system errors during login.  |
+| **Issues**                  | - What happens if there are system errors during login?  |
 
 
 <br>
@@ -74,7 +75,7 @@ Figure 1, below, outlines the use cases that may be executed by a patient using 
 | **Assumptions**             | - The system has accurate data on ED load. <br>- The patient is already logged into the system. |
 | **Steps**                   | 1. The patient selects the option to view the ED load. <br> 2. The system displays a list of nearby EDs with the current load. <br> 3. The patient views the information and decides what ED to visit based on the load. | 
 | **Non-Functional** | **Security**: The system must provide data in real-time on the current ED load. |
-| **Issues**                  | - System may delay in providing ED load updates |
+| **Issues**                  | - What happens if the system delays in providing ED load updates? |
 
 
 <br>
@@ -84,10 +85,10 @@ Figure 1, below, outlines the use cases that may be executed by a patient using 
 |-------------------------|-------------------------|
 | **Description**             | The patient enters their symptoms into the system for a virtual triage to determine the urgency of their condition. |
 | **Actors**                  | - Patient (primary) |
-| **Assumptions**             | -The patient enters their symptoms accurately.  |
+| **Assumptions**             | - The patient enters their symptoms accurately.  |
 | **Steps**                   |1. The patient selects the option to enter symptom information. <br>2. The system provides the patient with a questionnaire to gather medical details. <br> 3. The patient inputs their symptoms. <br> 4. The system stores this information for analysis.  |
 | **Non-Functional** | **Usability**: The system must be intuitive and simple to use for all users. |
-| **Issues**                  | - Patients may provide vague or inaccurate information, which will affect the virtual triage result.  |
+| **Issues**                  | - How will virtual triage result be affected by patients providing vague or inaccurate information?  |
 
 <br>
 
@@ -99,19 +100,19 @@ Figure 1, below, outlines the use cases that may be executed by a patient using 
 | **Assumptions**             | - The patient has completed symptom input. |
 | **Steps**                   | 1. After entering symptoms, the patient views the suggested treatment options. <br> 2. The system displays recommendations based on the severity of the condition. <br> 3. The patient reviews and selects the appropriate option. | 
 | **Non-Functional** | **Accuracy**: The treatment recommendations must be based on up-to-date medical standards and guidelines. |
-| **Issues**                  | - Patients may not follow system recommendations.  |
+| **Issues**                  | - How does the app handle patients not following system recommendations? |
 
 <br>
 
 ##### **Table 5**: Enter ED Queue Use Case.
 | Use Case                | Enter ED Queue    |
 |-------------------------|-------------------------|
-| **Description**             | The patient enters the queue for an ED if the system recommends this action. The patient can wait at home until it is their turn. |
+| **Description**             | The patient enters the queue for an ED after receiving a recommendation. The patient can wait at home until it is their turn. |
 | **Actors**                  | - Patient (primary) |
 | **Assumptions**             | - The system accurately assesses the ED load and provides a reasonable waiting time.  |
-| **Steps**                   | 1. The patient decides to enter the ED queue based on the system recommendation. <br> 2. The system assigns the patient a place in the queue and provides an estimated wait time. <br> 3. The patient waits at home and receives a notification when it is their turn to visit the ED. | 
+| **Steps**                   | 1. The patient decides to enter an ED queue based on the system recommendation. <br> 2. The system assigns the patient a place in the queue and provides an estimated wait time. <br> 3. The patient waits at home and receives a notification when it is their turn to visit the ED. | 
 | **Non-Functional** | **Accuracy**: The system must be accurate in estimating waiting times to avoid overcrowding at the ED. |
-| **Issues**                | - Delays in the system notifying the patient could cause issues with estimated ED wait times. |
+| **Issues**                | - How will ED wait times be affected by delays in the system notifying the patient late? |
 
 
 <a name="medical-staff-use-cases"></a>
@@ -124,7 +125,7 @@ Figure 2, below, outlines the use cases that may be followed by medical staff wh
 
 <br>
 
-##### **Table 6**: Review Symptoms.
+##### **Table 6**: Review Symptoms Use Case.
 | Use Case                | Review Symptoms    |
 |-------------------------|-------------------------|
 | **Description**         | Medical staff can review the symptoms provided by the patient during virtual registration. |
@@ -133,21 +134,21 @@ Figure 2, below, outlines the use cases that may be followed by medical staff wh
 | **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. Staff accesses the patient's registered details. <br> 3. The system displays the patient's symptoms and any accompanying notes. <br> 4. Staff reviews the symptoms and determines the next steps|
 | **Variations** | #1: Automated symptom analysis suggests possible conditions. |
 | **Non-Functional** | **Security**: Ensure that symptom data is encrypted and only accessible by authorized medical staff. <br> **Performance**: Display patient symptom data in under 2 seconds after selection. |
-| **Issues**              | - Patients may input incomplete or inaccurate information. <br> - Ensuring privacy while storing sensitive health data. |
+| **Issues**              | - What happens if patients input incomplete or inaccurate information? <br> - How can the system ensure privacy while storing sensitive health data? |
 
 <br>
 
-##### **Table 7**: View Patient Medical History.
+##### **Table 7**: View Patient Medical History Use Case.
 | Use Case Extension    | View Patient Medical History    |
 |-------------------------|-------------------------|
 | **Description**         | Medical staff can access the patient’s medical history to make informed decisions during triage or treatment. |
 | **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. The staff selects the patient whose medical history is required. <br> 3. The system retrieves and displays relevant medical history (past diagnoses, treatments, medications, allergies). <br> 4. The staff reviews the history and uses it to make informed decisions. |
 | **Non-Functional** | **Security**: Medical history should be encrypted, and access should be logged for audit purposes.|
-| **Issues**              | - Incomplete integration with external medical records. <br> - Patient consent may be required for access to certain medical data. |
+| **Issues**              | - How will patient information be affected by incomplete integration with external medical records? <br> - How should the system handle access to medical records which require patient consent? |
 
 <br>
 
-##### **Table 8**: Make Recommendation.
+##### **Table 8**: Make Recommendation Use Case.
 
 | Use Case                | Make Recommendation     |
 |-------------------------|-------------------------|
@@ -160,7 +161,7 @@ Figure 2, below, outlines the use cases that may be followed by medical staff wh
 
 <br>
 
-##### **Table 9**: View Triage.
+##### **Table 9**: View Triage Use Case.
 
 | Use Case                | View Triage Queue    |
 |-------------------------|-------------------------|
@@ -169,12 +170,12 @@ Figure 2, below, outlines the use cases that may be followed by medical staff wh
 | **Assumptions**         | - The system updates the triage queue in real-time. <br> - Patients are properly registered and categorized based on triage requirements. |
 | **Steps**               | 1. Medical staff logs into the Mister Ed system. <br> 2. The system displays the list of patients in the triage queue. <br> 3. Staff reviews the queue, with patients sorted by severity, registration time, or custom criteria. <br> 4. Staff selects patients for triage or treatment based on priority. |
 | **Non-Functional** | **Security**: Access to the triage queue should be restricted to authorized personnel.|
-| **Issues**              | - Handling high volumes of patients in the queue without overwhelming the system. <br> - Prioritization fairness and accuracy (e.g., ensuring that the most critical cases are prioritized properly). |
+| **Issues**              | - How should high volumes of patients in the queue be handled so the system is not overwhelmed. <br> - How to ensure prioritization fairness and accuracy? (e.g., ensuring that the most critical cases are prioritized properly). |
 
 
 <a name="admin-use-cases"></a>
 ## Admin Use Cases
-Figure 3, below, outlines the use cases that may be executed by a system admin. Tables 1-5 describe each use case in more detail.
+Figure 3, below, outlines the use cases that may be executed by a system admin. Tables 10-14 describe each use case in more detail.
 
 ![Use Case Diagram](UCDs/Admin_UCD.png)
 
@@ -189,7 +190,7 @@ Figure 3, below, outlines the use cases that may be executed by a system admin. 
 | Description             | Create a system profile and configure system access for a medical staff member, call center operator, or admin.  |
 | Actors                  | - Admin (primary) |
 | Assumptions             | - Admin is logged in to the system. |
-| Steps                   | 1. Generate a username by concatenating the user's first and last name, as well as a number representing the number of users currently in the system with that name. <br> 2. Generate a temporary password. <br> 3. Enter information about the user's position in their respective company (e.g., ED Nurse, ED Receptionist, Call Centre Manager). <br> 4. Configure what parts of the system the user has access to. <br> 5. Configure the level of patient information the user has access to. <br> 6. Send an email to the user's provided email with their temporary password. | 
+| Steps                   | 1. Generate a username by concatenating the user's first and last name, as well as a number representing the number of users currently in the system with that name. <br> 2. Generate a temporary password. <br> 3. Enter information about the user's position in their respective company (e.g., ED Nurse, ED Receptionist, Call Center Manager). <br> 4. Configure what parts of the system the user has access to. <br> 5. Configure the level of patient information the user has access to. <br> 6. Send an email to the user's provided email with their temporary password. | 
 | Non-Functional          | **Security**: An admin must not be able to create a user with more access than themselves. <br> **Security**: An admin must enter their password before creating an account. |
 | Issues                  | - What if a user quits or is fired? |
 
@@ -241,7 +242,7 @@ Figure 3, below, outlines the use cases that may be executed by a system admin. 
 
 <a name="system-database-use-cases"></a>
 ## System Database Use Cases
-Figure 4, below, outlines the use cases that may be executed by the system database. Tables x-x describe each use case in more detail.
+Figure 4, below, outlines the use cases that may be executed by the system database. Tables 15-19 describe each use case in more detail.
 
 ![Use Case Diagram](UCDs/Database_UCD.png)
 
@@ -275,9 +276,9 @@ Figure 4, below, outlines the use cases that may be executed by the system datab
 
 <br>
 
-##### **Table 17**: Store Reccomendations Responses Use Case.
+##### **Table 17**: Store Recommendations Responses Use Case.
 
-| Use Case                | Store Reccomendations Responses     |
+| Use Case                | Store Recommendation Responses     |
 |-------------------------|-------------------------|
 | **Description**             | Store any recommendation results to the patient triage questionnaire in the system database. |
 | **Actors**                  | - System Database (primary) |
@@ -296,21 +297,21 @@ Figure 4, below, outlines the use cases that may be executed by the system datab
 | **Actors**                  | - System Database (primary) <br> |
 | **Assumptions**             | - System Database waiting room records have been recently updated. |
 | **Steps**                   | 1. Pick ED to perform calculations for based off request or timeout. <br> 2. From the ED table get the number of beds in use and the number of total beds to get ED capacity. <br>  3. From the ED table get the number of medical staff currently working and the ED capacity percentage to calculate wait time based on emergency severity. 4. Update ED table capacity percentage and wait time columns. <br> 5. Update timeout timestamp. | 
-| **Non-Functional**  | **Efficency**: The time to perform calculations and save data must be less than 5 seconds. <br> **Accuracy**: Displayed estimated wait times must be within 10% of actual wait times. |
+| **Non-Functional**  | **Efficiency**: The time to perform calculations and save data must be less than 5 seconds. <br> **Accuracy**: Displayed estimated wait times must be within 10% of actual wait times. |
 | **Issues**                  | - What is the most accurate way to split emergency severity to calculate wait times? |
 
 <br>
 
-##### **Table 19**: Send Call Centre ED Update Use Case.
+##### **Table 19**: Send Call Center ED Update Use Case.
 
-| Use Case Inclusion       | Calculate ED Wait Time and Capacity *includes* Send Call Centre ED Update    |
+| Use Case Inclusion       | Calculate ED Wait Time and Capacity *includes* Send Call Center ED Update    |
 |-------------------------|-------------------------|
-| **Description**             | Send calculated ED capacity percentage and wait time information to the call centre so they can notify the next patients on the waiting list. |
+| **Description**             | Send calculated ED capacity percentage and wait time information to the call center so they can notify the next patients on the waiting list. |
 | **Actors**                  | - System Database (primary) |
 | **Assumptions**             | - ED calculations have just been performed and saved in the System Database. |
-| **Steps**                   | 1. Database collects ED Name, Capacity Percentage, and Wait Time. <br> 2. The information is encrypted for transmission. <br>  3. The database transmits the information to the Call Centre. | 
+| **Steps**                   | 1. Database collects ED Name, Capacity Percentage, and Wait Time. <br> 2. The information is encrypted for transmission. <br>  3. The database transmits the information to the Call Center. | 
 | **Non-Functional**  | **Security**: The patient data provided is sensitive and must be encrypted so that it cannot be intercepted and read. |
-| **Issues**                  | - What if the call centre does not want constant updates? |
+| **Issues**                  | - What if the call center does not want constant updates? |
 
 
 
@@ -318,7 +319,7 @@ Figure 4, below, outlines the use cases that may be executed by the system datab
 <a name="call-center-use-cases"></a>
 ## Call Center Use Cases
 
-Figure 5, below, outlines the use cases that may be executed by the Call Center. Tables x-x describe each use case in more detail.
+Figure 5, below, outlines the use cases that may be executed by the Call Center. Tables 20-23 describe each use case in more detail.
 
 
 ![Use Case Diagram](UCDs/CallCenter_UCD.png)
@@ -327,42 +328,42 @@ Figure 5, below, outlines the use cases that may be executed by the Call Center.
 
 <br>
 
-##### **Table 20**: ViewQueue Use Case.
+##### **Table 20**: View Queue Use Case.
 
 | **Use Case**        | View Queue |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | **Description**     |  View the queue of patients who have requested notification. |
-| **Actors**          | - CallCenterEmployee (primary)
-| **Assumptions**     | - CallCenterEmployee is logged in. <br> - CallCenterEmployee has the correct permissions to view the patient queue.|
-| **Steps**    | 1. CallCenterEmployee selects the "View Queue" option. <br> 2. The CallCenterEmployee is shown the patient queue.|
-| **Non-Functional**  |     **Efficency**: Queue must load and be shown to the CallCenterEmployee in under 3 seconds.                                                         |
+| **Actors**          | - Call Center Employee (primary)
+| **Assumptions**     | - Call Center Employee is logged in. <br> - Call Center Employee has the correct permissions to view the patient queue.|
+| **Steps**    | 1. Call Center Employee selects the "View Queue" option. <br> 2. The Call Center Employee is shown the patient queue.|
+| **Non-Functional**  |     **Efficiency**: Queue must load and be shown to the Call Center Employee in under 3 seconds.                                                         |
 | **Issues**          | - What happens if the queue is empty?      |
 
 
 
 <br>
 
-##### **Table 21**: ViewPatientInfo Use Case.
+##### **Table 21**: View Patient Info Use Case.
 
-| **Use Case**        | ViewPatientInfo|
+| **Use Case**        | View Patient Info|
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | **Description**     |  View the information page for the currently selected patient. |
-| **Actors**          | - CallCenterEmployee (primary)
-| **Assumptions**     | - CallCenterEmployee is currently viewing the queue. <br> - CallCenterEmployee has correct permissions to view the patient information page.|
-| **Steps**           | 1. CallCenterEmpoloyee selects a patient from the queue. <br> 2. CallCenterEmployee chooses "View Info". <br> 3. CallCenterEmployee is shown the patients' information page. |
+| **Actors**          | - Call Center Employee (primary)
+| **Assumptions**     | - Call Center Employee is currently viewing the queue. <br> - Call Center Employee has correct permissions to view the patient information page.|
+| **Steps**           | 1. Call Center Employee selects a patient from the queue. <br> 2. Call Center Employee chooses "View Info". <br> 3. Call Center Employee is shown the patients' information page. |
 | **Non-Functional**  |    **Traceability**: Must track and log who views the information page for each patient. |
 
 
 <br>
 
-##### **Table 22**: CallPatient Use Case.
+##### **Table 22**: Call Patient Use Case.
 
-| **Use Case**        | CallPatient|
+| **Use Case**        | Call Patient|
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | **Description**     |  Call the patient and inform them that there is a spot in the ED available to them. |
-| **Actors**          | - CallCenterEmployee (primary) <br> - Patient
-| **Assumptions**     | - CallCenterEmployee is currently viewing the patient information page. <br>- Assume that the Patient answers the call. <br> - Patient hasn't changed their mind about going to the  ED.|
-| **Steps**           | 1. CallCenterEmployee clicks on "Call Patient". <br> 2. A call is sent to the Patient. <br> 3. CallCenterEmployee informs the patient that there is a spot available in the ED for them. <br> 4. The patient confirms that they will be going into the ED. |
+| **Actors**          | - Call Center Employee (primary) <br> - Patient
+| **Assumptions**     | - Call Center Employee is currently viewing the patient information page. <br>- Assume that the Patient answers the call. <br> - Patient hasn't changed their mind about going to the  ED.|
+| **Steps**           | 1. Call Center Employee clicks on "Call Patient". <br> 2. A call is sent to the Patient. <br> 3. Call Center Employee informs the patient that there is a spot available in the ED for them. <br> 4. The patient confirms that they will be going into the ED. |
 | **Non-Functional**  |  **Privacy**: Must verify that the person on the phone is the Patient before discussing medical information.                                                      |
 | **Issues**          | - What happens if the Patient doesn't pick up?                                                          |
 
@@ -370,24 +371,25 @@ Figure 5, below, outlines the use cases that may be executed by the Call Center.
 
 <br>
 
-##### **Table 23**: NotifyED Use Case.
+##### **Table 23**: Notify ED Use Case.
 
-| **Use Case**        | NotifyED|
+| **Use Case**        | Notify ED|
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | **Description**     |  Notify the ED that a patient will be coming in. |
-| **Actors**          | - CallCenterEmployee (primary)
-| **Assumptions**     | - The CallCenterEmployee is currently viewing the Patient information page.  <br>- The patient has been called and confirmed that they will be going into the ED.|
-| **Steps**           | 1. CallCenterEmployee clicks the "Notify ED" button. <br> 2. Notification is sent out to the ED that the Patient will be coming in.  |
+| **Actors**          | - Call Center Employee (primary)
+| **Assumptions**     | - The Call Center Employee is currently viewing the Patient information page.  <br>- The patient has been called and confirmed that they will be going into the ED.|
+| **Steps**           | 1. Call Center Employee clicks the "Notify ED" button. <br> 2. Notification is sent out to the ED that the Patient will be coming in.  |
 | **Non-Functional**  |     **Security**: Data is sensitive and must be encrypted and sent over a secure communication network. <br> **Efficiency**: Process is time sensitive and notification must be sent to the ED within 10 seconds.                                         |
 | **Issues**          | - How to forward Patient information to the ED?                                                              |
 
 
 ## Contributions
-| Member Name          | Description of work done                                                           |
+##### **Table 24**: Contributions.
+| Member Name          | Main Contribution Section                                                           |
 |----------------------|------------------------------------------------------------------------------------|
-|Luca Bolzonello       |                                                                                    |
-|Tristan Cornwell      |                                                                                    |
-|Paisley Lewis        |                                                                                    |
-|Tay Munro     |                                                                                    |
-|Lauchlan Paulson       |                                                                                    |
+|Luca Bolzonello       |  [Call Center Use Cases](#call-center-use-cases)                                                                                  |
+|Tristan Cornwell      |   [Admin Use Cases](#admin-use-cases)                                                                                 |
+|Paisley Lewis        |    [System Database Use Cases](#system-database-use-cases)                                                                                |
+|Tay Munro     |   [Medical Staff Use Cases](#medical-staff-use-cases)                                                                                 |
+|Lauchlan Paulson       |  [Patient Use Cases](#patient-use-cases)                                                                                  |
 
