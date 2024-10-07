@@ -1,0 +1,76 @@
+@startuml
+entity User {
+    UserID : Int                       PK
+    --
+    Username : String
+    Password : String
+    Name : String
+    Email : String
+    PhoneNumber : String
+    UserRole : String
+}
+
+entity Patient {
+    PatientID : Int                       PK
+    --
+    UserID : Int                           FK
+    WaitlistID : Int                      FK
+    HealthNumber : String
+    Gender : String
+    Address : String
+    Birthdate : Date
+}
+
+entity Admin {
+    AdminID : Int       PK
+    --
+    UserID : Int          FK
+}
+
+entity MedicalStaff {
+    MedicalStaffID : Int         PK
+    --
+    UserID : Int                     FK
+    Certification: String
+    ED : String
+}
+
+entity CallCentreEmployee {
+    CallerID : Int              PK
+    --
+    UserID : Int                FK
+}
+
+entity Triage {
+    TriageID : Int                                   PK
+    --
+    PatientID : Int                                  FK
+    MedicalStaffID : Int                          FK
+    Symptoms : String
+    SystemRecommendation : String
+    TimeOfSubmission : Date
+    Severity : String
+}
+
+entity Waitlist {
+    WaitlistID : Int                     PK
+    --
+    EDAddress : String
+    EDPhoneNumber : String
+    EDName : String
+    Capacity : Int
+    EstimatedWaitTime : Int
+}
+
+
+User ||--|| Patient : "is a"
+User ||--|| Admin : "is a"
+User ||--|| MedicalStaff : "is a"
+User ||--|| CallCentreEmployee : "is a"
+
+Patient ||--o{ Triage : "begins"
+Patient }o--o| Waitlist : "is on"
+
+MedicalStaff |o--{ Triage : "recommends"
+
+@enduml
