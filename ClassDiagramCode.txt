@@ -1,0 +1,104 @@
+@startuml
+'skinparam linetype ortho
+'skinparam inheritanceStyle straight
+
+class User {
+    + Username : String
+    - Password : String
+    + Name : String
+    # Email : String
+    # PhoneNumber : String
+    + UserRole : String
+    login()
+    logout()
+    resetPassword()
+    createAccount()
+    updateContactInfo()
+}
+
+class Patient {
+    # HealthNumber : String
+    # Gender : String
+    # Address : String
+    # Birthdate : Date
+    / Age : Int
+    startTriage()
+    enterWaitlist()
+    viewRecommendations()
+    viewEDLoad()
+}
+
+class Admin {
+    createUser()
+    modifyUserDetails()
+    deleteUser()
+    viewUser()
+    viewWaitlist()
+    modifyWaitlist()
+}
+
+class MedicalStaff {
+    + Certification : String
+    + ED : String
+    viewPatientInformation()
+    giveRecommendation()
+    viewTriageResults()
+    viewTriageQueue()
+}
+
+class CallCentreEmployee {
+    viewEDQueue()
+    viewPatientInfo()
+    callPatient()
+    notifyED()
+    modifyEDQueue()
+}
+
+class Database {
+    + ConnectionStatus : String
+    getConnectionStatus()
+    setConnectionStatus()
+    getPatientInfo()
+    updateWaitlist()
+    getWaitlistWaitTime()
+    storeUpdatedData()
+}
+
+class Waitlist {
+    + EDAddress : String
+    + EDPhoneNumber : String
+    + EDName : String
+    getCapacity()
+    estimateWaitTime()
+}
+
+class Triage {
+    # Symptoms : String
+    # SystemRecommendation : String
+    # TimeOfSubmission : Date
+    # Severity : String
+    generateRecommendation()
+    setSeverity()
+    enterTriageQueue()
+    viewTriageQueue()
+}
+
+User <|-- Patient
+User <|-- Admin
+User <|-- MedicalStaff
+User <|-- CallCentreEmployee
+
+
+Database "1" -up- "*" Waitlist : Stores
+Database "1" -right- "*" User : Stores
+Database "1" -right- "*" Triage : Stores
+Patient "1" -down- "*" Triage : Starts
+Patient "*" -left- "1" Waitlist : IsOn
+MedicalStaff "1" -up- "*" Patient : RecommendsTreatment
+MedicalStaff "*" -down- "*" Triage : Views
+CallCentreEmployee "1" -right- "*" Patient : Contacts
+CallCentreEmployee "*" -down- "*" Waitlist : Views/Updates
+Admin "1" -right- "*" Waitlist : Views/Updates
+Admin "*" -down- "*" User : Modifies
+
+@enduml
