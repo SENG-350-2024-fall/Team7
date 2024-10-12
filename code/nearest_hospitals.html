@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearest Hospitals</title>
+    <!-- Include Material Icons, currently pulling from google fonts for simplicity -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #get-location-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 30px;
+        }
+        #get-location-btn:hover {
+            background-color: #0056b3;
+        }
+        .hospital-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .hospital-card h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .hospital-card p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .action-btn {
+            flex: 1 0 calc(50% - 10px);
+            margin: 5px;
+            padding: 10px;
+            background-color: #ffffff;
+            color: #333333;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        .action-btn:hover {
+            background-color: #f0f0f0;
+        }
+        .action-btn .material-icons {
+            margin-right: 5px;
+            font-size: 18px;
+        }
+        .waitlist-info {
+            background-color: #e9ecef;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+    <!-- Include PapaParse library to parse the CSV -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Find the 10 Nearest Hospitals</h1>
+    <button id="get-location-btn">Get Nearest Hospitals</button>
+    <div id="hospital-list"></div>
+</div>
+
+<!-- Script to handle location and hospital listing -->
+<script>
+    const csvUrl = './data/hlbc_hospitals.csv';
+
+    // Function to approximate the distance between two points by latitude/longitude by using the  Haversine formula
+    function getDistance(lat1, lon1, lat2, lon2) {
+        const R = 6371; // Radius of the earth in km
+        const dLat = (lat2 - lat1) * (Math.PI / 180);
+        const dLon = (lon2 - lon1) * (Math.PI / 180);
+        const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * (Math.PI / 180)) *
+            Math.cos(lat2 * (Math.PI / 180)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c; // Distance in km
+    }
+
+    // Function to parse CSV and handle location
+    document.getElementById('get-location-btn').addEventListener('click', () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, error);
+        } else {
+            alert('Geolocation is not supported by this browser.');
+        }
+    });
+
+    function success(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        // Fetch and parse the CSV file
+        Papa.parse(csvUrl, {
+            download: true,
+            header: true,
+            complete: (result) => {
+                const hospitals = result.data;
+
+                // Calculate distance for each hospital and sort by distance
+                hospitals.forEach(hospital => {
+                    hospital.distance = getDistance(latitude, longitude, hospital.LATITUDE, hospital.LONGITUDE);
+                });
+
+                // Get top 10 closest hospitals
+                const sortedHospitals = hospitals
+                    .sort((a, b) => a.distance - b.distance)
+                    .slice(0, 10);
+
+                displayHospitals(sortedHospitals, latitude, longitude);
+            }
+        });
+    }
+
+    function error() {
+        alert('Unable to retrieve your location');
+    }
+
+    // Function to clean and format phone numbers for display, some regex
+    function formatPhoneNumber(phoneNumberString) {
+        var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+        var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+        if (match) {
+            return '(' + match[1] + ') - ' + match[2] + '-' + match[3];
+        }
+        return null;
+    }
+
+    // Function to get waitlist count, currently hardcoded to be 68.  Will eventually be replaced to call some db to get this info.
+    function getWaitlist() {
+        return 68;
+    }
+
+    // Function to join waitlist, this is currently a placeholder. Will allow
+    function joinWaitlist(hospitalName) {
+        alert(`You have joined the waitlist for ${hospitalName}`);
+        // In a real application, this would update the server and refresh the waitlist count
+        document.getElementById(`waitlist-count-${hospitalName.replace(/\s+/g, '-')}`).textContent = getWaitlist() + 1;
+    }
+
+    // Function to display the hospitals
+    function displayHospitals(hospitals, userLat, userLong) {
+        const hospitalList = document.getElementById('hospital-list');
+        hospitalList.innerHTML = ''; // Clear any previous list
+
+        hospitals.forEach(hospital => {
+            const hospitalDiv = document.createElement('div');
+            hospitalDiv.className = 'hospital-card';
+
+            const formattedPhoneNumber = formatPhoneNumber(hospital.PHONE_NUMBER) || hospital.PHONE_NUMBER;
+
+            // Make information card for every hospital
+            hospitalDiv.innerHTML = `
+          <h3>${hospital.SV_NAME}</h3>
+          <p><strong>Address:</strong> ${hospital.STREET_NUMBER} ${hospital.STREET_NAME} ${hospital.STREET_TYPE}, ${hospital.CITY}, ${hospital.PROVINCE}, ${hospital.POSTAL_CODE}</p>
+          <p><strong>Phone:</strong> ${formattedPhoneNumber}</p>
+          <p><strong>Wheelchair Accessible:</strong> ${hospital.WHEELCHAIR_ACCESSIBLE === 'Y' ? 'Yes' : 'No'}</p>
+          <p><strong>Distance:</strong> ${hospital.distance.toFixed(2)} km</p>
+          <div class="waitlist-info">
+            Current Waitlist: <span id="waitlist-count-${hospital.SV_NAME.replace(/\s+/g, '-')}">${getWaitlist()}</span> people
+          </div>
+          <div class="action-buttons">
+            <button class="action-btn" onclick="getDirections(${hospital.LATITUDE}, ${hospital.LONGITUDE}, ${userLat}, ${userLong})">
+              <span class="material-icons">directions</span> Directions
+            </button>
+            <button class="action-btn" onclick="callHospital('${hospital.PHONE_NUMBER}')">
+              <span class="material-icons">phone</span> Call
+            </button>
+            <button class="action-btn" onclick="visitWebsite('${hospital.WEBSITE}')">
+              <span class="material-icons">language</span> Website
+            </button>
+
+            <button class="action-btn" onclick="joinWaitlist('${hospital.SV_NAME}')">
+              <span class="material-icons">queue</span> Join Waitlist
+            </button>
+          </div>
+        `;
+
+            hospitalList.appendChild(hospitalDiv);
+        });
+    }
+
+    // Feed the hospital and user coordinates to google maps, in future modify for the case where user hasn't allowed location sharing
+    function getDirections(hospitalLat, hospitalLng, userLat, userLng) {
+        const directionsUrl = `https://www.google.com/maps/dir/${userLat},${userLng}/${hospitalLat},${hospitalLng}`;
+        window.open(directionsUrl, '_blank');
+    }
+
+    // Function to enable calling a number
+    function callHospital(phoneNumber) {
+        window.location.href = `tel:${phoneNumber}`;
+    }
+
+    // Function to follow link to hospital's website
+    function visitWebsite(website) {
+        window.open(website, '_blank');
+    }
+</script>
+</body>
+</html>
