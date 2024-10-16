@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Papa from 'papaparse';
+import 'material-design-icons/iconfont/material-icons.css';
 
-const csvUrl = './data/hlbc_hospitals.csv'; // CSV file location
+
+const csvUrl = '/data/hlbc_hospitals.csv'; // CSV file location
 
 const BrowseEDs = () => {
   const [hospitals, setHospitals] = useState([]);
@@ -25,6 +27,7 @@ const BrowseEDs = () => {
   // Function to parse the CSV and calculate distances
   const handleGetLocation = () => {
     if (navigator.geolocation) {
+      console.log("Getting location");
       navigator.geolocation.getCurrentPosition(success, error);
     } else {
       alert('Geolocation is not supported by this browser.');
@@ -36,7 +39,7 @@ const BrowseEDs = () => {
     const lon = position.coords.longitude;
     setLatitude(lat);
     setLongitude(lon);
-
+    console.log("Parsing csv");
     Papa.parse(csvUrl, {
       download: true,
       header: true,
@@ -44,6 +47,7 @@ const BrowseEDs = () => {
         const hospitalsData = result.data;
 
         hospitalsData.forEach((hospital) => {
+
           hospital.distance = getDistance(lat, lon, hospital.LATITUDE, hospital.LONGITUDE);
         });
 
