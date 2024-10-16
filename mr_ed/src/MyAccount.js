@@ -22,7 +22,7 @@ const MyAccount = () => {
                     <label className="form-group-label" htmlFor="phone">Phone:</label>
                     <input type="text" id="phone" placeholder="Enter your phone number" />
                 </div>
-                <button type="submit" className="submit-button">Update</button>
+                <button className="submit-button" onClick={(e) => e.preventDefault()}>Update</button>
             </form>
         </div>
     );
