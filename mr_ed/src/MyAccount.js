@@ -1,9 +1,29 @@
 import React from 'react';
+import './index.css'; // Assuming you're using this CSS file
 
 const MyAccount = () => {
     return (
-        <div>
-            <h1>My Account</h1>
+        <div className="account-contain">
+            <h2>My Account</h2>
+            <form className="account">
+                <div className="form-grouping">
+                    <label htmlFor="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" />
+                </div>
+                <div className="form-grouping">
+                    <label htmlFor="birthday">Birthday</label>
+                    <input type="text" id="birthday" placeholder="Enter your birthday" />
+                </div>
+                <div className="form-grouping">
+                    <label htmlFor="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" />
+                </div>
+                <div className="form-grouping">
+                    <label htmlFor="phone">Phone</label>
+                    <input type="text" id="phone" placeholder="Enter your phone number" />
+                </div>
+                <button type="submit" className="submit-button">Update</button>
+            </form>
         </div>
     );
 };
