@@ -14,10 +14,12 @@ function App() {
     <Router>
       <div className="App">
       { !isLoggedIn &&  <div className="LoggedOut">
+          <MrEdHeader setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>
           <LoginPage setIsLoggedIn={setIsLoggedIn} />
+          <Footer />
         </div> }
         { isLoggedIn &&<div className="LoggedIn">
-          <MrEdHeader setIsLoggedIn={setIsLoggedIn}/>
+          <MrEdHeader setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>
           <Switch>
             <Route exact path="/">
               <HomeScreen />
