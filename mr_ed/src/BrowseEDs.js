@@ -91,42 +91,45 @@ const BrowseEDs = () => {
 
       <div id="hospital-list">
         {hospitals.map((hospital) => (
-          <div key={hospital.SV_NAME} className="hospital-card">
-            <h3>{hospital.SV_NAME}</h3>
-            <p>
-              <strong>Address:</strong> {hospital.STREET_NUMBER} {hospital.STREET_NAME} {hospital.STREET_TYPE},{' '}
-              {hospital.CITY}, {hospital.PROVINCE}, {hospital.POSTAL_CODE}
-            </p>
-            <p>
-              <strong>Phone:</strong> {formatPhoneNumber(hospital.PHONE_NUMBER)}
-            </p>
-            <p>
-              <strong>Wheelchair Accessible:</strong> {hospital.WHEELCHAIR_ACCESSIBLE === 'Y' ? 'Yes' : 'No'}
-            </p>
-            <p>
-              <strong>Distance:</strong> {hospital.distance.toFixed(2)} km
-            </p>
-            <div className="waitlist-info">
-              Current Waitlist: <span>{68}</span> people
+            <div key={hospital.SV_NAME} className="hospital-card">
+              <h3>{hospital.SV_NAME}</h3>
+              <p>
+                <strong>Address:</strong> {hospital.STREET_NUMBER} {hospital.STREET_NAME} {hospital.STREET_TYPE},{' '}
+                {hospital.CITY}, {hospital.PROVINCE}, {hospital.POSTAL_CODE}
+              </p>
+              <p>
+                <strong>Phone:</strong> {formatPhoneNumber(hospital.PHONE_NUMBER)}
+              </p>
+              <p>
+                <strong>Wheelchair Accessible:</strong> {hospital.WHEELCHAIR_ACCESSIBLE === 'Y' ? 'Yes' : 'No'}
+              </p>
+              <p>
+                <strong>Distance:</strong> {hospital.distance.toFixed(2)} km
+              </p>
+              <div className="waitlist-info">
+                Current Waitlist: <span>{"68"}</span> people
+              </div>
+              <div className="waitlist-info">
+                Estimated Wait Time: <span>{"4:30"}</span>
+              </div>
+              <div className="action-buttons">
+                <button
+                    className="action-btn"
+                    onClick={() => getDirections(hospital.LATITUDE, hospital.LONGITUDE)}
+                >
+                  <span className="material-icons">directions</span> Directions
+                </button>
+                <button className="action-btn" onClick={() => window.location.href = `tel:${hospital.PHONE_NUMBER}`}>
+                  <span className="material-icons">phone</span> Call
+                </button>
+                <button className="action-btn" onClick={() => window.open(hospital.WEBSITE, '_blank')}>
+                  <span className="material-icons">language</span> Website
+                </button>
+                <button className="action-btn" onClick={() => joinWaitlist(hospital.SV_NAME)}>
+                  <span className="material-icons">queue</span> Join Waitlist
+                </button>
+              </div>
             </div>
-            <div className="action-buttons">
-              <button
-                className="action-btn"
-                onClick={() => getDirections(hospital.LATITUDE, hospital.LONGITUDE)}
-              >
-                <span className="material-icons">directions</span> Directions
-              </button>
-              <button className="action-btn" onClick={() => window.location.href = `tel:${hospital.PHONE_NUMBER}`}>
-                <span className="material-icons">phone</span> Call
-              </button>
-              <button className="action-btn" onClick={() => window.open(hospital.WEBSITE, '_blank')}>
-                <span className="material-icons">language</span> Website
-              </button>
-              <button className="action-btn" onClick={() => joinWaitlist(hospital.SV_NAME)}>
-                <span className="material-icons">queue</span> Join Waitlist
-              </button>
-            </div>
-          </div>
         ))}
       </div>
     </div>
