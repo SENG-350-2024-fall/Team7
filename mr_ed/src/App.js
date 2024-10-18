@@ -6,6 +6,7 @@ import LoginPage from './LoginPage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MyAccount from './MyAccount';
 import VirtualTriage from './VirtualTriage';
+import VirtualTriageSurvey from './VirtualTriageSurvey';
 import BrowseEDs from './BrowseEDs';
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route path="/VirtualTriage">
               <VirtualTriage />
+            </Route>
+            <Route path="/VirtualTriageSurvey">
+              <VirtualTriageSurvey />
             </Route>
             <Route path="/BrowseEDs">
               <BrowseEDs />
