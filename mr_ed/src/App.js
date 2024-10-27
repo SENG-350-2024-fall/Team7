@@ -8,6 +8,7 @@ import MyAccount from './MyAccount';
 import VirtualTriage from './VirtualTriage';
 import VirtualTriageSurvey from './VirtualTriageSurvey';
 import BrowseEDs from './BrowseEDs';
+import TriageReview from './TriageReview';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,6 +34,9 @@ function App() {
             </Route>
             <Route path="/VirtualTriageSurvey">
               <VirtualTriageSurvey />
+            </Route>
+            <Route path="/TriageReview">
+              <TriageReview />
             </Route>
             <Route path="/BrowseEDs">
               <BrowseEDs />
