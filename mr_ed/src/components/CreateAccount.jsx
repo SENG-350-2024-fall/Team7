@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { addAccount } from '../actions/accountActions';
+// import { addAccount } from '../actions/accountActions';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../utils/AuthContext';
 
-const CreateAccount = () => {
+
+
+const CreateAccount = ({setIsLoggedIn}) => {
+
+  const { registerUser } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     birthday: '',
@@ -33,12 +38,21 @@ const CreateAccount = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      await addAccount(formData.name, formData.email, formData.password, formData.role, formData.birthday, formData.phone);
+      // await addAccount(formData.name, formData.email, formData.password, formData.role, formData.birthday, formData.phone);
+      const name = formData.name;
+      const email = formData.email;
+      const password = formData.password;
+      const role = formData.role;
+      const birthday = formData.birthday;
+      const phone = formData.phone;
+      const userInfo = { name, email, password, role, birthday, phone };
+      registerUser(userInfo);
       alert('Account created successfully!');
       history.push('/');
+      setIsLoggedIn(true);
     }
   };
 

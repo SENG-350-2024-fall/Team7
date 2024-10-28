@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect, createContext } from "react";
 import { account } from "./appwrite";
+import { ID } from "appwrite"
 
 const AuthContext = createContext();
 
@@ -29,7 +30,24 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     }
 
-    const registerUser = (userInfo) => {}
+    const registerUser = async (userInfo) => {
+        setLoading(true);
+        try{
+            let response = await account.create(
+                ID.unique(),
+                userInfo.email,
+                userInfo.password,
+                userInfo.name,
+                userInfo.phone,
+            );
+            await account.createEmailPasswordSession( userInfo.email, userInfo.password);
+            let accountDetails = await account.get();
+            setUser(accountDetails);
+        }catch(error){
+            console.error(error);
+        }
+        setLoading(false);
+    }
 
     const checkUserStatus = async () => {
         try{

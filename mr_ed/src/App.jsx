@@ -24,7 +24,7 @@ function App() {
                 <LoginPage setIsLoggedIn={setIsLoggedIn} />
               </Route>
               <Route exact path="/CreateAccount">
-                < CreateAccount />
+                < CreateAccount setIsLoggedIn={setIsLoggedIn}/>
               </Route>
             </Switch>
             <Footer />
