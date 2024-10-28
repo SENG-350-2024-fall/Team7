@@ -419,7 +419,67 @@ li {
   text-align: left;
 }
 
-.show-more-button {
+.show-more-button:hover {
+  color: #0056b3;
+}
+
+/* Recommendation Box */
+.recommendation-box {
+  margin-top: 10px;
+  position: absolute;
+  top: 20px;
+  right: -50%;
+  width: 280px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  text-align: left;
+}
+
+.recommendation-dropdown {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.submit-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-button:disabled {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.create-account-link {
+  display: block;
+  color: #007bff;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.create-account-link:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
 /* CreateAccount.css */
 
 .container {
@@ -559,68 +619,5 @@ h1 {
   cursor: pointer;
   font-size: 14px;
   text-decoration: underline;
-}
-
-.show-more-button:hover {
-  color: #0056b3;
-}
-
-/* Recommendation Box */
-.recommendation-box {
-  margin-top: 10px;
-  position: absolute;
-  top: 20px;
-  right: -50%;
-  width: 280px;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: white;
-  text-align: left;
-}
-
-.recommendation-dropdown {
-  width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.submit-button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px;
-  width: 100%;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.submit-button:disabled {
-  background-color: #9e9e9e;
-  cursor: not-allowed;
-}
-  margin-bottom: 15px;
-}
-
-.forgot-password:hover {
-  text-decoration: underline;
-}
-
-.create-account-link {
-  display: block;
-  color: #007bff;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-.create-account-link:hover {
-  text-decoration: underline;
-}
-
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
 }
 
