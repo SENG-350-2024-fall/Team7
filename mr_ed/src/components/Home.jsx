@@ -9,6 +9,8 @@ const HomeScreen = () => {
 
       {/* for testing med staff triage view,  should move later */}
       <Link className="home-screen-buttons" to="/TriageReview">Medical Staff Triage View</Link>
+      {/* for testing admin staff user view */}
+      <Link className="home-screen-buttons" to="/AdminUserView">Admin User View</Link>
     </div>
   );
 };

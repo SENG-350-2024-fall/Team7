@@ -11,6 +11,7 @@ import BrowseEDs from './components/BrowseEDs';
 import CreateAccount from './components/CreateAccount';
 import { AuthProvider, useAuth } from './utils/AuthContext';
 import TriageReview from './components/TriageReview';
+import AdminUserView from './components/AdminUserView';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(useAuth() ? true : false);
@@ -46,6 +47,9 @@ function App() {
               </Route>
               <Route path="/TriageReview">
                 <TriageReview />
+              </Route>
+              <Route path="/AdminUserView">
+                <AdminUserView />
               </Route>
               <Route path="/BrowseEDs">
                 <BrowseEDs />
