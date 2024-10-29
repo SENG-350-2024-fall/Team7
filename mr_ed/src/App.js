@@ -9,18 +9,21 @@ import VirtualTriage from './VirtualTriage';
 import VirtualTriageSurvey from './VirtualTriageSurvey';
 import BrowseEDs from './BrowseEDs';
 import TriageReview from './TriageReview';
+import BrowseUsers from './BrowseUsers';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userType, setUserType] = useState('');
+  console.log("isLoggedIn:", isLoggedIn, "userType:", userType);
   return (
     <Router>
       <div className="App">
         {!isLoggedIn && <div className="LoggedOut">
           <MrEdHeader setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>
-          <LoginPage setIsLoggedIn={setIsLoggedIn} />
+          <LoginPage setIsLoggedIn={setIsLoggedIn} setUserType={setUserType}/>
           <Footer />
         </div>}
-        {isLoggedIn && <div className="LoggedIn">
+        {isLoggedIn && userType === "patient" && <div className="LoggedIn">
           <MrEdHeader setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
           <Switch>
             <Route exact path="/">
@@ -35,11 +38,50 @@ function App() {
             <Route path="/VirtualTriageSurvey">
               <VirtualTriageSurvey />
             </Route>
+            <Route path="/BrowseEDs">
+              <BrowseEDs />
+            </Route>
+          </Switch>
+          <Footer />
+        </div>}
+        {isLoggedIn && userType === "medical-staff" && <div className="LoggedIn">
+          <MrEdHeader setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+          <Switch>
+            <Route exact path="/">
+              <TriageReview /> (//Update to medical staff home)
+            </Route>
+            <Route path="/MyAccount">
+              <MyAccount />
+            </Route>
             <Route path="/TriageReview">
               <TriageReview />
             </Route>
-            <Route path="/BrowseEDs">
-              <BrowseEDs />
+          </Switch>
+          <Footer />
+        </div>}
+        {isLoggedIn && userType === "admin" && <div className="LoggedIn">
+          <MrEdHeader setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+          <Switch>
+            <Route exact path="/">
+              <BrowseUsers />
+            </Route>
+            <Route exact path="/BrowseUsers">
+              <BrowseUsers />
+            </Route>
+            <Route path="/MyAccount">
+              <MyAccount />
+            </Route>
+          </Switch>
+          <Footer />
+        </div>}
+        {isLoggedIn && userType === "caller" && <div className="LoggedIn">
+          <MrEdHeader setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+          <Switch>
+            <Route exact path="/">
+              <HomeScreen /> (//Update to Caller home)
+            </Route>
+            <Route path="/MyAccount">
+              <MyAccount />
             </Route>
           </Switch>
           <Footer />
