@@ -44,12 +44,16 @@ const BrowseUsers = () => {
     };
 
     return (
-        <div className="login-container">
-            <h1 className="login-title-label">Browse Users</h1>
+        <div className="browse-users-wrapper">
+        <div className="browse-users-metrics-container">
+            <h1 className="browse-users-title">System Metrics</h1>
             {/* Display average login time */}
             <div style={{ margin: '20px 0' }}>
                 <strong>Average Time to Login:</strong> {averageLoginTime}
             </div>
+        </div>
+        <div className="browse-users-container">
+            <h1 className="browse-users-title">Browse Users</h1>
             <div style={{ margin: '20px 0' }}>
                 <label>
                     Search:
@@ -58,7 +62,7 @@ const BrowseUsers = () => {
                         placeholder="Search by username or name"
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
-                        style={{ marginLeft: '10px', padding: '5px' }}
+                        style={{ marginLeft: '10px', padding: '5px', width: '250px'}}
                     />
                 </label>
                 <button onClick={handleSearch} style={{ marginLeft: '10px', padding: '5px 10px' }}>Search</button>
@@ -90,8 +94,10 @@ const BrowseUsers = () => {
             ) : (
                 searchInput && <p style={{ marginTop: '20px', color: 'red' }}>User not found</p>
             )}
+            <div style={{ margin: '20px 0' }}></div>
 
             <Link className="home-screen-buttons" to="/CreateNewUser">Create New User</Link>
+        </div>
         </div>
     );
 };
