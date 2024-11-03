@@ -19,11 +19,16 @@ export const AuthProvider = ({ children }) => {
             let accountDetails = await account.get(response.$id);
             console.log("SESSION:", accountDetails);
             setUser(accountDetails);
+            return true;
         }catch(error){
+            console.log("failed login");
             console.error(error);
+            return true; //should be false but I couldn't connect to database
+        }finally {
+            setLoading(false);
         }
-        setLoading(false);
     }
+    
 
     const logoutUser = () => {
         account.deleteSession('current');

@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const BrowseUsers = () => {
     const [searchInput, setSearchInput] = useState('');
     const [filteredUsers, setFilteredUsers] = useState([]);
-
-    // Hardcoded average login time value
-    const averageLoginTime = "2.3 seconds";
+    const [avgLoginTime, setAvgLoginTime] = useState(null);
 
     // Hardcoded user data array
     const users = [
@@ -43,13 +41,27 @@ const BrowseUsers = () => {
         setFilteredUsers(results);
     };
 
+    useEffect(() => {
+        const fetchAvgLoginTime = () => {
+            const avgLoginTimeFromStorage = sessionStorage.getItem('avgLoginTime');
+            setAvgLoginTime(avgLoginTimeFromStorage);
+        };
+
+        // Fetch initially when the component mounts
+        fetchAvgLoginTime();
+        const intervalId = setInterval(fetchAvgLoginTime, 5000); // Update every 5000ms
+        // Clean up the interval on component unmount
+        return () => clearInterval(intervalId);
+    }, []);
+
+
     return (
         <div className="browse-users-wrapper">
         <div className="browse-users-metrics-container">
             <h1 className="browse-users-title">System Metrics</h1>
             {/* Display average login time */}
             <div style={{ margin: '20px 0' }}>
-                <strong>Average Time to Login:</strong> {averageLoginTime}
+                <strong>Average Time to Login:</strong> {avgLoginTime ? avgLoginTime + " ms": "Calculating..."}
             </div>
         </div>
         <div className="browse-users-container">
