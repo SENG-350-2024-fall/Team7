@@ -11,6 +11,7 @@ import BrowseEDs from './components/BrowseEDs';
 import CreateAccount from './components/CreateAccount';
 import { AuthProvider, useAuth } from './utils/AuthContext';
 import TriageReview from './components/TriageReview';
+import TriageReviewListPage from "./components/TriageReviewListPage";
 import AdminUserView from './components/AdminUserView';
 import BrowseUsers from './components/BrowseUsers';
 
@@ -57,14 +58,16 @@ function App() {
             <MrEdHeader setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
             <Switch>
               <Route exact path="/">
-                <TriageReview />
+                <TriageReviewListPage />
               </Route>
               <Route path="/MyAccount">
                 <MyAccount />
               </Route>
-              <Route path="/TriageReview">
-                <TriageReview />
+              <Route path="/TriageReviewListPage">
+                <TriageReviewListPage />
               </Route>
+                <Route path="/" exact component={TriageReviewListPage} />
+                <Route path="/patient/:id" component={TriageReview} />
             </Switch>
             <Footer />
           </div>}

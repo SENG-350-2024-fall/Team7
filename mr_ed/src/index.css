@@ -361,6 +361,46 @@ input[type="email"] {
   color: #2c3e50;
   margin-bottom: 20px;
 }
+/* Medical Staff Triage list */
+.triage-review-list-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.patient-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.patient-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  transition: box-shadow 0.3s ease;
+}
+
+.patient-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.view-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.view-button:hover {
+  background-color: #0056b3;
+}
+
+
 /* Medical Staff Triage View */
 
 /* Main container */
