@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-// import { addAccount } from '../actions/accountActions';
-import { useHistory } from 'react-router-dom';
 import { useAuth } from '../utils/AuthContext';
 
-
-
-const CreateAccount = ({setIsLoggedIn}) => {
-
+const CreateNewUser = ({ setIsLoggedIn }) => {
   const { registerUser } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
@@ -14,12 +9,10 @@ const CreateAccount = ({setIsLoggedIn}) => {
     email: '',
     phone: '',
     password: '',
-    role: '', // Add role to form data
+    role: '',
   });
 
   const [errors, setErrors] = useState({});
-
-  const history = useHistory();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +26,7 @@ const CreateAccount = ({setIsLoggedIn}) => {
     if (!formData.email) newErrors.email = 'Email is required';
     if (!formData.phone) newErrors.phone = 'Phone number is required';
     if (!formData.password) newErrors.password = 'Password is required';
-    if (!formData.role) newErrors.role = 'Role is required'; // Validate role
+    if (!formData.role) newErrors.role = 'Role is required';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -41,19 +34,19 @@ const CreateAccount = ({setIsLoggedIn}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      // await addAccount(formData.name, formData.email, formData.password, formData.role, formData.birthday, formData.phone);
-      const name = formData.name;
-      const email = formData.email;
-      const password = formData.password;
-      const role = formData.role;
-      const birthday = formData.birthday;
-      const phone = formData.phone;
-      const userInfo = { name, email, password, role, birthday, phone };
-      registerUser(userInfo, false);
+      const { name, email, password, role, birthday, phone } = formData;
+      registerUser({ name, email, password, role, birthday, phone }, true);
       alert('Account created successfully!');
-      history.push('/');
-      setIsLoggedIn(true);
     }
+  };
+
+  const generateRandomPassword = () => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+    let password = '';
+    for (let i = 0; i < 12; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    setFormData((prevData) => ({ ...prevData, password }));
   };
 
   return (
@@ -114,18 +107,22 @@ const CreateAccount = ({setIsLoggedIn}) => {
 
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className={errors.password ? 'error' : ''}
-          />
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <input
+              type="text"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className={errors.password ? 'error' : ''}
+            />
+            <button type="button" onClick={generateRandomPassword} style={{ marginLeft: '10px' }}>
+              Generate
+            </button>
+          </div>
           {errors.password && <p className="error-message">{errors.password}</p>}
         </div>
 
-        {/* Dropdown for selecting the role */}
         <div className="form-group">
           <label htmlFor="role">Role</label>
           <select
@@ -135,7 +132,7 @@ const CreateAccount = ({setIsLoggedIn}) => {
             onChange={handleChange}
             className={errors.role ? 'error' : ''}
           >
-            <option value="">Select your role</option>
+            <option value="">Select users role</option>
             <option value="patient">Patient</option>
             <option value="medical staff">Medical Staff</option>
             <option value="admin">Admin</option>
@@ -145,11 +142,11 @@ const CreateAccount = ({setIsLoggedIn}) => {
         </div>
 
         <button type="submit" className="submit-btn">
-          Create Account
+          Create Account for user
         </button>
       </form>
     </div>
   );
 };
 
-export default CreateAccount;
+export default CreateNewUser;

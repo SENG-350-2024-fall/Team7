@@ -14,6 +14,7 @@ import TriageReview from './components/TriageReview';
 import TriageReviewListPage from "./components/TriageReviewListPage";
 import AdminUserView from './components/AdminUserView';
 import BrowseUsers from './components/BrowseUsers';
+import CreateNewUser from './components/CreateNewUser';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(useAuth() ? true : false);
@@ -85,6 +86,9 @@ function App() {
               </Route>
               <Route path="/AdminUserView">
                 <AdminUserView />
+              </Route>
+              <Route path="/CreateNewUser">
+                <CreateNewUser />
               </Route>
             </Switch>
             <Footer />

@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     }
 
-    const registerUser = async (userInfo) => {
+    const registerUser = async (userInfo, createdByAdmin) => {
         setLoading(true);
         try{
             let response = await account.create(
@@ -40,7 +40,10 @@ export const AuthProvider = ({ children }) => {
                 userInfo.name,
                 userInfo.phone,
             );
-            await account.createEmailPasswordSession( userInfo.email, userInfo.password);
+            
+            if(!createdByAdmin){
+                await account.createEmailPasswordSession( userInfo.email, userInfo.password);
+            }
             let accountDetails = await account.get();
             setUser(accountDetails);
         }catch(error){
