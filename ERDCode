@@ -19,6 +19,9 @@ entity Patient {
     Gender : String
     Address : String
     Birthdate : Date
+    PriorMedicalConditions : String
+    Allergies : String
+    CurrentMedications : String
 }
 
 entity Admin {
@@ -46,7 +49,9 @@ entity Triage {
     --
     PatientID : Int                                  FK
     MedicalStaffID : Int                          FK
-    Symptoms : String
+    SymptomType : String
+    SymptomAffectedArea : String
+    SymptomDuration : String
     SystemRecommendation : String
     TimeOfSubmission : Date
     Severity : String
