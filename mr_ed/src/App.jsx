@@ -1,7 +1,7 @@
 import MrEdHeader from './components/mrEdHeader';
 import HomeScreen from './components/Home';
 import Footer from './components/Footer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LoginPage from './components/LoginPage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MyAccount from './components/MyAccount';
@@ -16,9 +16,29 @@ import AdminUserView from './components/AdminUserView';
 import BrowseUsers from './components/BrowseUsers';
 import CreateNewUser from './components/CreateNewUser';
 
+
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(useAuth() ? true : false);
   const [userType, setUserType] = useState('');
+  sessionStorage.setItem('loginTimeTotal', 0);
+      sessionStorage.setItem('numberOfLogins', 0);
+      sessionStorage.setItem('avgLoginTime', 0);
+
+  useEffect(() => { 
+    if (isLoggedIn) { 
+      const startTime = sessionStorage.getItem('loginStartTime'); 
+      const endTime = performance.now(); 
+      const duration = endTime - startTime; 
+      console.log(`Load time after login: ${duration} ms`);
+      sessionStorage.setItem('loginTimeTotal', sessionStorage.getItem('loginTimeTotal') + duration);
+      sessionStorage.setItem('numberOfLogins', sessionStorage.getItem('numberOfLogins') + 1);
+      sessionStorage.setItem('avgLoginTime', sessionStorage.getItem('loginTimeTotal')/sessionStorage.getItem('numberOfLogins'));
+      console.log(`Avg Login Time: ${sessionStorage.getItem('avgLoginTime')} ms`);
+    }
+
+  }, [isLoggedIn]);
+
   return (
     <Router>
       <AuthProvider>

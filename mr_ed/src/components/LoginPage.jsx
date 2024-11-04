@@ -9,12 +9,23 @@ const LoginPage = ({ setIsLoggedIn, setUserType }) => {
     const [userTypeLogin, setUserTypeLogin] = useState('');
     const { user, loginUser } = useAuth();
 
-    const handleLogin = (e) => {
+    /* const handleLogin = (e) => {
         e.preventDefault();
         const userInfo = { email, password };
         setUserType(userTypeLogin);
         if(loginUser(userInfo)){
             setIsLoggedIn(true);
+        }
+    }; */
+    const handleLogin = async (e) => { 
+        e.preventDefault(); 
+        const userInfo = { email, password }; 
+        const startTime = performance.now(); // Record start time 
+        setUserType(userTypeLogin); 
+        const loginSuccess = await loginUser(userInfo); 
+        if (loginSuccess) {
+            sessionStorage.setItem('loginStartTime', startTime);
+            setIsLoggedIn(true); 
         }
     };
     
