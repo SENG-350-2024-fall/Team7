@@ -22,6 +22,9 @@ class Patient {
     # Address : String
     # Birthdate : Date
     / Age : Int
+    # PriorMedicalConditions : String
+    # Allergies : String
+    # CurrentMedications : String
     startTriage()
     enterWaitlist()
     viewRecommendations()
@@ -73,7 +76,9 @@ class Waitlist {
 }
 
 class Triage {
-    # Symptoms : String
+    # SymptomType : String
+    # SymptomAffectedArea : String
+    # SymptomDuration : String
     # SystemRecommendation : String
     # TimeOfSubmission : Date
     # Severity : String
