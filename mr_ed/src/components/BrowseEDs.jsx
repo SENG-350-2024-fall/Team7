@@ -1,21 +1,32 @@
-import React, { useState, useRef } from 'react';
-import Papa from 'papaparse';
+import React, { useState, useRef, useEffect } from 'react';
 import { GeoapifyContext, GeoapifyGeocoderAutocomplete } from '@geoapify/react-geocoder-autocomplete';
 import '@geoapify/geocoder-autocomplete/styles/minimal.css';
 import 'material-design-icons/iconfont/material-icons.css';
 import { MapPin } from 'lucide-react';
+import { waitlistStore } from '../services/WaitlistStore';
 
-const csvUrl = '/data/hlbc_hospitals.csv';
-
-// To be honest shouldn't be putting key in repo.
-// But in the scope of this project the api key isn't and won't ever be attached to a payment method.
 const GEOAPIFY_API_KEY = 'e48ad67337a141bb93726b8c8050fd61';
 
 const BrowseEDs = () => {
   const [hospitals, setHospitals] = useState([]);
   const [searchAddress, setSearchAddress] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [currentWaitlist, setCurrentWaitlist] = useState(null);
+  const [searchCoordinates, setSearchCoordinates] = useState(null);
   const geocoderRef = useRef();
+
+  useEffect(() => {
+    // Only set up the subscription to waitlist changes
+    const unsubscribe = waitlistStore.subscribe(() => {
+      // If we have search coordinates, refresh the sorted list
+      if (searchCoordinates) {
+        const allHospitals = waitlistStore.getHospitals();
+        processHospitalData(searchCoordinates.lat, searchCoordinates.lon);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [searchCoordinates]); // Add searchCoordinates as dependency
 
   const getDistance = (lat1, lon1, lat2, lon2) => {
     const R = 6371; // Earth radius in km
@@ -45,7 +56,9 @@ const BrowseEDs = () => {
 
       if (data.features && data.features.length > 0) {
         const address = data.features[0].properties.formatted;
-        setSearchAddress(address); // Update the address state
+        setSearchAddress(address);
+        setSearchCoordinates({ lat, lon });
+        processHospitalData(lat, lon);
       }
     } catch (error) {
       console.error('Error getting location:', error);
@@ -62,7 +75,6 @@ const BrowseEDs = () => {
     }
 
     setIsLoading(true);
-    // Try/Except availability tactic here
     try {
       const response = await fetch(
           `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(searchAddress)}&lang=en&limit=5&filter=countrycode:us,ca&apiKey=${GEOAPIFY_API_KEY}`
@@ -71,6 +83,7 @@ const BrowseEDs = () => {
 
       if (data.features && data.features.length > 0) {
         const coordinates = data.features[0].geometry.coordinates;
+        setSearchCoordinates({ lat: coordinates[1], lon: coordinates[0] });
         processHospitalData(coordinates[1], coordinates[0]);
       } else {
         alert('Unable to find the location. Please try again.');
@@ -84,18 +97,52 @@ const BrowseEDs = () => {
   };
 
   const processHospitalData = (lat, lon) => {
-    Papa.parse(csvUrl, {
-      download: true,
-      header: true,
-      complete: (result) => {
-        const hospitalsData = result.data;
-        hospitalsData.forEach((hospital) => {
-          hospital.distance = getDistance(lat, lon, hospital.LATITUDE, hospital.LONGITUDE);
-        });
-        const sortedHospitals = hospitalsData.sort((a, b) => a.distance - b.distance).slice(0, 10);
-        setHospitals(sortedHospitals);
-      },
-    });
+    const allHospitals = waitlistStore.getHospitals();
+    const hospitalsWithDistance = allHospitals.map(hospital => ({
+      ...hospital,
+      distance: getDistance(lat, lon, hospital.LATITUDE, hospital.LONGITUDE)
+    }));
+
+    const sortedHospitals = hospitalsWithDistance
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, 10);
+
+    setHospitals(sortedHospitals);
+  };
+
+  const handleWaitlistAction = (hospital) => {
+    // If leaving current waitlist
+    if (currentWaitlist === hospital.SV_NAME) {
+      waitlistStore.updateHospitalWaitlist(hospital.SV_NAME, Math.max(0, hospital.currentWaitlist - 1), hospital.estimatedWaitTime);
+      waitlistStore.setPosition(null);
+      setCurrentWaitlist(null);
+      alert(`You have left the waitlist for ${hospital.SV_NAME}`);
+      return;
+    }
+
+    // If attempting to join new waitlist while already in one
+    if (currentWaitlist) {
+      if (window.confirm(`You are currently in the waitlist for ${currentWaitlist}. Would you like to leave that waitlist and join ${hospital.SV_NAME}?`)) {
+        // Leave current waitlist
+        const currentHospital = hospitals.find(h => h.SV_NAME === currentWaitlist);
+        if (currentHospital) {
+          waitlistStore.updateHospitalWaitlist(
+              currentWaitlist,
+              Math.max(0, currentHospital.currentWaitlist - 1),
+              currentHospital.estimatedWaitTime
+          );
+        }
+      } else {
+        return; // User cancelled
+      }
+    }
+
+    // Join new waitlist
+    const newWaitlistCount = hospital.currentWaitlist + 1;
+    waitlistStore.updateHospitalWaitlist(hospital.SV_NAME, newWaitlistCount, hospital.estimatedWaitTime);
+    waitlistStore.setPosition(newWaitlistCount);
+    setCurrentWaitlist(hospital.SV_NAME);
+    alert(`You have joined the waitlist for ${hospital.SV_NAME}`);
   };
 
   const formatPhoneNumber = (phoneNumberString) => {
@@ -105,10 +152,6 @@ const BrowseEDs = () => {
       return '(' + match[1] + ') ' + match[2] + '-' + match[3];
     }
     return phoneNumberString;
-  };
-
-  const joinWaitlist = (hospitalName) => {
-    alert(`You have joined the waitlist for ${hospitalName}`);
   };
 
   const getDirections = (hospitalLat, hospitalLng) => {
@@ -131,7 +174,7 @@ const BrowseEDs = () => {
 
   return (
       <div className="container max-w-4xl mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-6">Find the 10 Nearest Hospitals</h1>
+        <h1 className="text-2xl font-bold mb-6">Find the Nearest Hospitals</h1>
 
         <div className="search-section bg-white rounded-lg shadow-md p-4 mb-6">
           <div className="flex gap-2 mb-4">
@@ -139,7 +182,7 @@ const BrowseEDs = () => {
               <GeoapifyContext apiKey={GEOAPIFY_API_KEY}>
                 <GeoapifyGeocoderAutocomplete
                     placeholder="Enter an address"
-                    value={searchAddress} // Bind to searchAddress state
+                    value={searchAddress}
                     limit={5}
                     placeSelect={(place) => {
                       if (place) {
@@ -168,29 +211,29 @@ const BrowseEDs = () => {
           </button>
         </div>
 
-  <div className="hospital-list space-y-4">
-    {hospitals.map((hospital) => (
-        <div key={hospital.SV_NAME} className="hospital-card bg-white rounded-lg shadow-md p-4">
-          <h3 className="text-xl font-semibold mb-2">{hospital.SV_NAME}</h3>
-          <p className="mb-2">
-            <strong>Address:</strong> {hospital.STREET_NUMBER} {hospital.STREET_NAME} {hospital.STREET_TYPE},{' '}
-            {hospital.CITY}, {hospital.PROVINCE}, {hospital.POSTAL_CODE}
-          </p>
-          <p className="mb-2">
-            <strong>Phone:</strong> {formatPhoneNumber(hospital.PHONE_NUMBER)}
-          </p>
-          <p className="mb-2">
-            <strong>Wheelchair Accessible:</strong> {hospital.WHEELCHAIR_ACCESSIBLE === 'Y' ? 'Yes' : 'No'}
-          </p>
-          <p className="mb-2">
-            <strong>Distance:</strong> {hospital.distance.toFixed(2)} km
-          </p>
-          <div className="waitlist-info mb-2">
-            Current Waitlist: <span className="font-semibold">68</span> people
-          </div>
-          <div className="waitlist-info mb-4">
-            Estimated Wait Time: <span className="font-semibold">4:30</span>
-          </div>
+        <div className="hospital-list space-y-4">
+          {hospitals.map((hospital) => (
+              <div key={hospital.SV_NAME} className="hospital-card bg-white rounded-lg shadow-md p-4">
+                <h3 className="text-xl font-semibold mb-2">{hospital.SV_NAME}</h3>
+                <p className="mb-2">
+                  <strong>Address:</strong> {hospital.STREET_NUMBER} {hospital.STREET_NAME} {hospital.STREET_TYPE},{' '}
+                  {hospital.CITY}, {hospital.PROVINCE}, {hospital.POSTAL_CODE}
+                </p>
+                <p className="mb-2">
+                  <strong>Phone:</strong> {formatPhoneNumber(hospital.PHONE_NUMBER)}
+                </p>
+                <p className="mb-2">
+                  <strong>Wheelchair Accessible:</strong> {hospital.WHEELCHAIR_ACCESSIBLE === 'Y' ? 'Yes' : 'No'}
+                </p>
+                <p className="mb-2">
+                  <strong>Distance:</strong> {hospital.distance ? hospital.distance.toFixed(2) : 'N/A'} km
+                </p>
+                <div className="waitlist-info mb-2">
+                  Current Waitlist: <span className="font-semibold">{hospital.currentWaitlist || 0}</span> people
+                </div>
+                <div className="waitlist-info mb-4">
+                  Estimated Wait Time: <span className="font-semibold">{hospital.estimatedWaitTime || "0:00"}</span>
+                </div>
                 <div className="action-buttons grid grid-cols-2 md:grid-cols-4 gap-2">
                   <button
                       className="action-btn flex items-center justify-center gap-1 p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
@@ -199,10 +242,17 @@ const BrowseEDs = () => {
                     <span className="material-icons">directions</span> Directions
                   </button>
                   <button
-                      className="action-btn flex items-center justify-center gap-1 p-2 bg-green-500 text-white rounded hover:bg-green-600"
-                      onClick={() => joinWaitlist(hospital.SV_NAME)}
+                      className={`action-btn flex items-center justify-center gap-1 p-2 ${
+                          currentWaitlist === hospital.SV_NAME
+                              ? 'bg-red-500 hover:bg-red-600'
+                              : 'bg-green-500 hover:bg-green-600'
+                      } text-white rounded`}
+                      onClick={() => handleWaitlistAction(hospital)}
                   >
-                    <span className="material-icons">add</span> Join Waitlist
+                    <span className="material-icons">
+                      {currentWaitlist === hospital.SV_NAME ? 'remove' : 'add'}
+                    </span>
+                    {currentWaitlist === hospital.SV_NAME ? 'Leave Waitlist' : 'Join Waitlist'}
                   </button>
                   <button
                       className="action-btn flex items-center justify-center gap-1 p-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"
@@ -223,4 +273,5 @@ const BrowseEDs = () => {
       </div>
   );
 };
+
 export default BrowseEDs;
