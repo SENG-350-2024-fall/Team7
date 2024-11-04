@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import {Patient, Admin, MedicalStaff, Caller} from '../actions/Users';
 
 const BrowseUsers = () => {
     const [searchInput, setSearchInput] = useState('');
@@ -8,35 +9,17 @@ const BrowseUsers = () => {
 
     // Hardcoded user data array
     const users = [
-        {
-            username: "johndoe",
-            name: "John Doe",
-            birthdate: "1990-01-01",
-            email: "johndoe@example.com",
-            phone: "123-456-7890"
-        },
-        {
-            username: "janedoe",
-            name: "Jane Doe",
-            birthdate: "1992-02-02",
-            email: "janedoe@example.com",
-            phone: "987-654-3210"
-        },
-        {
-            username: "richardsmith",
-            name: "Richard Smith",
-            birthdate: "1985-05-15",
-            email: "richardsmith@example.com",
-            phone: "555-789-1234"
-        }
-    ];
+        new Patient("johndoe", "password123", "John Doe", "johndoe@example.com", "123-456-7890", 'patient', 'H123456', 'Male', '123 Main St','1990-01-01'),
+        new Patient('janeDoe','securePassword!23','Jane Doe','jane.doe@example.com','123-555-7890','patient','H123457','Female','456 Elm Street','1985-05-15'),
+        new Patient('richardSmith','anotherPassword!45','Richard Smith','richard.smith@example.com','321-555-0987','patient','H654321','Male','789 Pine Road','1975-09-30')
+    ]
 
     // Search function to filter users based on partial matches in username or name
     const handleSearch = () => {
         const searchTerm = searchInput.toLowerCase();
-        const results = users.filter(user =>
-            user.username.toLowerCase().includes(searchTerm) ||
-            user.name.toLowerCase().includes(searchTerm)
+        const results = users.filter((user,i) =>
+            users[i].Username.toLowerCase().includes(searchTerm) ||
+            users[i].Name.toLowerCase().includes(searchTerm)
         );
         setFilteredUsers(results);
     };
@@ -95,10 +78,10 @@ const BrowseUsers = () => {
                     <tbody>
                         {filteredUsers.map((user, index) => (
                             <tr key={index}>
-                                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{user.name}</td>
-                                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{user.birthdate}</td>
-                                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{user.email}</td>
-                                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{user.phone}</td>
+                                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{user.Name}</td>
+                                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{user.Birthdate}</td>
+                                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{user.Email}</td>
+                                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{user.PhoneNumber}</td>
                             </tr>
                         ))}
                     </tbody>
