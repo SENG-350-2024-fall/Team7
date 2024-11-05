@@ -17,7 +17,6 @@ import BrowseUsers from './components/BrowseUsers';
 import CreateNewUser from './components/CreateNewUser';
 
 
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(useAuth() ? true : false);
   const [userType, setUserType] = useState('');
