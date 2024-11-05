@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 
 const TriageReview = () => {
-    const initialAssigned = false;
-    const initialShowFullMedicalInfo = false;
-    const initialRecommendation = '';
-
-    const [assigned, setAssigned] = useState(initialAssigned);
-    const [showFullMedicalInfo, setShowFullMedicalInfo] = useState(initialShowFullMedicalInfo);
-    const [recommendation, setRecommendation] = useState(initialRecommendation);
+    const [assigned, setAssigned] = useState(false);
+    const [showFullMedicalInfo, setShowFullMedicalInfo] = useState(false);
+    const [recommendation, setRecommendation] = useState('');
 
     // Hardcoded for now
     const surveyInfo = {
@@ -41,13 +37,6 @@ const TriageReview = () => {
     const handleSubmitRecommendation = () => {
         alert(`Recommendation sent to patient: ${recommendation}`);
         setRecommendation('');
-    };
-
-    // Function to reset state variables
-    const resetState = () => {
-        setAssigned(initialAssigned);
-        setShowFullMedicalInfo(initialShowFullMedicalInfo);
-        setRecommendation(initialRecommendation);
     };
 
     return (
@@ -124,7 +113,7 @@ const TriageReview = () => {
             {/* Refresh Button */}
             <div className="refresh-section">
                 <button 
-                    onClick={resetState} 
+                    onClick={() => window.location.reload()} 
                     className="refresh-button"
                 >
                     Refresh Page
