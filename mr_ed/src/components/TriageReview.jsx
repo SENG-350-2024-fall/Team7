@@ -1,9 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+// state pattern (can't use interface unless we convert this to a tsx file)
+class AssignedState {
+    constructor(setCurrentState) {
+        this.setCurrentState = setCurrentState;
+    }
+
+    toggleAssign() {
+        this.setCurrentState(new UnassignedState(this.setCurrentState));
+    }
+
+    canViewMedicalInfo() {
+        return true;
+    }
+
+    canSubmitRecommendation() {
+        return true;
+    }
+
+    getAssignButtonText() {
+        return "Unassign Myself";
+    }
+}
+
+class UnassignedState {
+    constructor(setCurrentState) {
+        this.setCurrentState = setCurrentState;
+    }
+
+    toggleAssign() {
+        this.setCurrentState(new AssignedState(this.setCurrentState));
+    }
+
+    canViewMedicalInfo() {
+        return false;
+    }
+
+    canSubmitRecommendation() {
+        return false;
+    }
+
+    getAssignButtonText() {
+        return "Assign to Myself";
+    }
+}
+
+// Triage Review Component
 const TriageReview = () => {
-    const [assigned, setAssigned] = useState(false);
+    const [currentState, setCurrentState] = useState(null);
     const [showFullMedicalInfo, setShowFullMedicalInfo] = useState(false);
     const [recommendation, setRecommendation] = useState('');
+
+    // Set initial state
+    useEffect(() => {
+        setCurrentState(new UnassignedState(setCurrentState));
+    }, []);
 
     // Hardcoded for now
     const surveyInfo = {
@@ -19,11 +70,7 @@ const TriageReview = () => {
         medicalConditions: 'Hypertension, Diabetes',
         allergies: 'Penicillin',
         lastVisit: '2024-08-10',
-        medications: 'Benazepril, Insulin'
-    };
-
-    const toggleAssign = () => {
-        setAssigned((prevState) => !prevState);
+        medications: 'Benazepril, Insulin',
     };
 
     const handleShowMore = () => {
@@ -39,21 +86,25 @@ const TriageReview = () => {
         setRecommendation('');
     };
 
+    // Ensure currentState is initialized before rendering
+    if (!currentState) return null; 
+
     return (
         <div className="triage-review-container">
             <h2>Patient Triage Information</h2>
 
-            {/* Survey Information */}
+            {/* Assign Button */}
             <div className="centered-content">
                 <div className="assign-section">
                     <button 
-                        onClick={toggleAssign} 
-                        className={assigned ? "assign-button" : "unassign-button" }
+                        onClick={() => currentState.toggleAssign()} 
+                        className={currentState instanceof AssignedState ? "assign-button" : "unassign-button"}
                     >
-                        {assigned ? "Unassign Myself" : "Assign to Myself"}
+                        {currentState.getAssignButtonText()}
                     </button>
                 </div>
 
+                {/* Survey Information */}
                 <div className="survey-info">
                     <h3>Survey Information</h3>
                     <ul>
@@ -69,31 +120,38 @@ const TriageReview = () => {
             <div className="medical-info med-history-box">
                 <h3>Patient Medical Information</h3>
                 <div className="medical-info-preview">
-                    <ul>
-                        <li><strong>Name:</strong> {medicalInfoPreview.name}</li>
-                        <li><strong>Age:</strong> {medicalInfoPreview.age}</li>
-                        <li><strong>Medical Conditions:</strong> {medicalInfoPreview.medicalConditions}</li>
-                        <li><strong>Allergies:</strong> {medicalInfoPreview.allergies}</li>
-                        {showFullMedicalInfo && (
-                            <>
-                                <li><strong>Last Visit:</strong> {medicalInfoPreview.lastVisit}</li>
-                                <li><strong>Medications:</strong> {medicalInfoPreview.medications}</li>
-                            </>
-                        )}
-                    </ul>
-                    <button onClick={handleShowMore} className="show-more-button">
-                        {showFullMedicalInfo ? "Show Less" : "Show More"}
-                    </button>
+                    {currentState.canViewMedicalInfo() ? (
+                        <ul>
+                            <li><strong>Name:</strong> {medicalInfoPreview.name}</li>
+                            <li><strong>Age:</strong> {medicalInfoPreview.age}</li>
+                            <li><strong>Medical Conditions:</strong> {medicalInfoPreview.medicalConditions}</li>
+                            <li><strong>Allergies:</strong> {medicalInfoPreview.allergies}</li>
+                            {showFullMedicalInfo && (
+                                <>
+                                    <li><strong>Last Visit:</strong> {medicalInfoPreview.lastVisit}</li>
+                                    <li><strong>Medications:</strong> {medicalInfoPreview.medications}</li>
+                                </>
+                            )}
+                        </ul>
+                    ) : (
+                        <p>Medical information is hidden until assigned.</p>
+                    )}
+                    {currentState.canViewMedicalInfo() && (
+                        <button onClick={handleShowMore} className="show-more-button">
+                            {showFullMedicalInfo ? "Show Less" : "Show More"}
+                        </button>
+                    )}
                 </div>
             </div>
 
-            {/* Recommendation */}
+            {/* Recommendation Section */}
             <div className="recommendation-box">
                 <h3>Recommendation</h3>
                 <select
                     value={recommendation}
                     onChange={handleRecommendationChange}
                     className="recommendation-dropdown"
+                    disabled={!currentState.canSubmitRecommendation()}
                 >
                     <option value="">Select a recommendation</option>
                     <option value="Stay home">Stay home</option>
@@ -104,7 +162,7 @@ const TriageReview = () => {
                 <button 
                     onClick={handleSubmitRecommendation} 
                     className="submit-button"
-                    disabled={!recommendation}
+                    disabled={!currentState.canSubmitRecommendation() || !recommendation}
                 >
                     Submit to Patient
                 </button>
