@@ -5,7 +5,7 @@ const TriageReview = () => {
     const [showFullMedicalInfo, setShowFullMedicalInfo] = useState(false);
     const [recommendation, setRecommendation] = useState('');
 
-    //hardcoded for now
+    // Hardcoded for now
     const surveyInfo = {
         symptomType: 'Cough',
         affectedArea: 'Chest',
@@ -107,6 +107,16 @@ const TriageReview = () => {
                     disabled={!recommendation}
                 >
                     Submit to Patient
+                </button>
+            </div>
+
+            {/* Refresh Button */}
+            <div className="refresh-section">
+                <button 
+                    onClick={() => window.location.reload()} 
+                    className="refresh-button"
+                >
+                    Refresh Page
                 </button>
             </div>
         </div>
