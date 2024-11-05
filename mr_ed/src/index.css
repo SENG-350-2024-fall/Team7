@@ -692,3 +692,17 @@ h1 {
   text-decoration: underline;
 }
 
+.refresh-button {
+  background-color: #4CAF50; /* Customize as needed */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.refresh-button:hover {
+  background-color: #45a049;
+}
+

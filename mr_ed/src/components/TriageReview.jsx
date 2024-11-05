@@ -51,12 +51,12 @@ const TriageReview = () => {
     const [showFullMedicalInfo, setShowFullMedicalInfo] = useState(false);
     const [recommendation, setRecommendation] = useState('');
 
-    // Set initial state after setCurrentState is defined
+    // Set initial state
     useEffect(() => {
         setCurrentState(new UnassignedState(setCurrentState));
     }, []);
 
-    // Hardcoded survey and medical info data
+    // Hardcoded for now
     const surveyInfo = {
         symptomType: 'Cough',
         affectedArea: 'Chest',
@@ -86,7 +86,8 @@ const TriageReview = () => {
         setRecommendation('');
     };
 
-    if (!currentState) return null; // Ensure currentState is initialized before rendering
+    // Ensure currentState is initialized before rendering
+    if (!currentState) return null; 
 
     return (
         <div className="triage-review-container">
@@ -164,6 +165,16 @@ const TriageReview = () => {
                     disabled={!currentState.canSubmitRecommendation() || !recommendation}
                 >
                     Submit to Patient
+                </button>
+            </div>
+
+            {/* Refresh Button */}
+            <div className="refresh-section">
+                <button 
+                    onClick={() => window.location.reload()} 
+                    className="refresh-button"
+                >
+                    Refresh Page
                 </button>
             </div>
         </div>
