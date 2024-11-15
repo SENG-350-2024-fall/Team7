@@ -15,6 +15,8 @@ import TriageReviewListPage from "./components/TriageReviewListPage";
 import AdminUserView from './components/AdminUserView';
 import BrowseUsers from './components/BrowseUsers';
 import CreateNewUser from './components/CreateNewUser';
+import CallCenterListPage from "./components/CallCenterListPage";
+import CallPage from "./components/CallPage";
 
 
 
@@ -117,11 +119,16 @@ function App() {
             <MrEdHeader setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
             <Switch>
               <Route exact path="/">
-                <HomeScreen />
+                <CallCenterListPage/>
               </Route>
               <Route path="/MyAccount">
                 <MyAccount />
               </Route>
+              <Route path="/TriageReviewListPage">
+                <CallCenterListPage/>
+              </Route>
+              <Route path="/" exact component={CallCenterListPage} />
+              <Route path="/callpatient/:id" component={CallPage} />
             </Switch>
             <Footer />
           </div>}
