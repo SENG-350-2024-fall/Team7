@@ -19,7 +19,6 @@ import CallCenterListPage from "./components/CallCenterListPage";
 import CallPage from "./components/CallPage";
 
 
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(useAuth() ? true : false);
   const [userType, setUserType] = useState('');

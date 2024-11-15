@@ -411,6 +411,7 @@ input[type="email"] {
   padding: 20px;
   background-color: #f5f5f5;
   text-align: center;
+  height: 70vh;
 }
 
 .centered-content {
@@ -689,5 +690,19 @@ h1 {
   cursor: pointer;
   font-size: 14px;
   text-decoration: underline;
+}
+
+.refresh-button {
+  background-color: #4CAF50; /* Customize as needed */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.refresh-button:hover {
+  background-color: #45a049;
 }
 
