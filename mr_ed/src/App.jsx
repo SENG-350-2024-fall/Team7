@@ -17,6 +17,8 @@ import BrowseUsers from './components/BrowseUsers';
 import CreateNewUser from './components/CreateNewUser';
 import CallCenterListPage from "./components/CallCenterListPage";
 import CallPage from "./components/CallPage";
+import { PatientProvider } from './components/PatientContext';
+
 
 
 function App() {
@@ -116,6 +118,7 @@ function App() {
           </div>}
           {isLoggedIn && userType === "caller" && <div className="LoggedIn">
             <MrEdHeader setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+            <PatientProvider>
             <Switch>
               <Route exact path="/">
                 <CallCenterListPage/>
@@ -129,6 +132,7 @@ function App() {
               <Route path="/" exact component={CallCenterListPage} />
               <Route path="/callpatient/:id" component={CallPage} />
             </Switch>
+            </PatientProvider>
             <Footer />
           </div>}
         </div>
