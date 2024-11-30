@@ -55,6 +55,22 @@ const TriageReview = () => {
     useEffect(() => {
         setCurrentState(new UnassignedState(setCurrentState));
     }, []);
+    const [users, setUsers] = useState(null);
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        fetch("http://localhost:8000/users")
+        .then(res => {
+           return res.json()
+        })
+        .then((data) => {
+            setUsers(data);
+        })
+    }, []);
+    useEffect(() => {
+        if (users) {
+            setUser(users[0]);
+        }
+    }, [users]);
 
     // Hardcoded for now
     const surveyInfo = {
@@ -64,14 +80,7 @@ const TriageReview = () => {
         severity: 'High',
     };
 
-    const medicalInfoPreview = {
-        name: 'John Doe',
-        age: 45,
-        medicalConditions: 'Hypertension, Diabetes',
-        allergies: 'Penicillin',
-        lastVisit: '2024-08-10',
-        medications: 'Benazepril, Insulin',
-    };
+    const medicalInfoPreview = user;
 
     const handleShowMore = () => {
         setShowFullMedicalInfo((prevState) => !prevState);
@@ -121,7 +130,7 @@ const TriageReview = () => {
                 <h3>Patient Medical Information</h3>
                 <div className="medical-info-preview">
                     {currentState.canViewMedicalInfo() ? (
-                        <ul>
+                        user && <ul>
                             <li><strong>Name:</strong> {medicalInfoPreview.name}</li>
                             <li><strong>Age:</strong> {medicalInfoPreview.age}</li>
                             <li><strong>Medical Conditions:</strong> {medicalInfoPreview.medicalConditions}</li>
