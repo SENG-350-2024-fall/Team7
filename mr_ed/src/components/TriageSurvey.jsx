@@ -15,12 +15,18 @@ const TriageSurvey = ({ questions, onSubmitRedirect }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Add any shared logic here if needed
         setSubmitted(true);
     };
 
     if (submitted) {
-        return <Redirect to={onSubmitRedirect} />;
+        return (
+            <Redirect
+                to={{
+                    pathname: onSubmitRedirect,
+                    state: { responses },
+                }}
+            />
+        );
     }
 
     return (
